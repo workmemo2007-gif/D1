@@ -46,20 +46,6 @@
     </script>
 
     <style>
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-
-        .card-3d {
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-            transform-style: preserve-3d;
-        }
-
-        .card-3d:hover {
-            transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
-            box-shadow: 0 15px 25px -8px rgba(46, 147, 58, 0.2), 0 8px 10px -4px rgba(0, 0, 0, 0.04);
-        }
-
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -75,11 +61,21 @@
             background-position: 0 0, 10px 10px;
         }
 
-        .snap-x-mandatory {
-            scroll-snap-type: x mandatory;
+        /* Smooth slow expand animation for accordion items */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out, padding 0.4s ease-in-out;
+            opacity: 0;
         }
-        .snap-card {
-            scroll-snap-align: center;
+
+        .accordion-item.active .accordion-content {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .accordion-item.active .accordion-chevron {
+            transform: rotate(180deg);
         }
 
         @keyframes pulse-subtle {
@@ -94,9 +90,9 @@
 <body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
     <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-8">
+    <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6">
 
-        <!-- Unified Green Main Hero Box (يحتوي على كافة عناصر الهيدر، اللوجو، أدوات التحكم، الأقسام، وشريط البحث) -->
+        <!-- Unified Green Main Hero Box -->
         <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
             <!-- Background Decoration -->
             <div class="absolute inset-0 z-0 pointer-events-none">
@@ -105,7 +101,7 @@
             </div>
 
             <div class="relative z-10 space-y-5">
-                <!-- 1. Top Action Row Inside Green Box (Logo, Socials, Language, Cart) -->
+                <!-- 1. Top Action Row (Logo, Socials, Language, Cart) -->
                 <div class="flex items-center justify-between gap-2 pb-3 border-b border-brand-800/80">
                     <!-- Brand Logo & Title -->
                     <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -120,7 +116,7 @@
                         </div>
                     </div>
 
-                    <!-- Actions: Map, Instagram, Lang, Cart -->
+                    <!-- Actions -->
                     <div class="flex items-center gap-1.5 shrink-0">
                         <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
                             <i class="fa-solid fa-location-dot"></i>
@@ -169,17 +165,17 @@
                     </div>
                 </div>
 
-                <!-- 3. The 6 Main Categories Grid Inside Green Box (3 Top, 3 Bottom) -->
+                <!-- 3. The 6 Main Categories Grid Navigation (Isolated Sections Selector) -->
                 <div class="pt-2">
                     <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية
+                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية (اختر قسماً للعرض)
                     </h3>
                     <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid">
-                        <!-- Dynamically populated (6 main categories) -->
+                        <!-- Dynamically populated main categories buttons -->
                     </div>
                 </div>
 
-                <!-- 4. Integrated Search Bar Inside Green Box -->
+                <!-- 4. Integrated Search Bar -->
                 <div class="pt-1">
                     <div class="relative w-full">
                         <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-9 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
@@ -189,27 +185,27 @@
             </div>
         </section>
 
-        <!-- Search Results Filter View Alert (Hidden by default) -->
-        <div id="searchResultsSection" class="hidden bg-brand-50 border border-brand-200 rounded-2xl p-5">
+        <!-- Search Results Section -->
+        <div id="searchResultsSection" class="hidden bg-brand-50 border border-brand-200 rounded-3xl p-5 shadow-sm">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-base font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
+                <h3 class="text-sm font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
                 <button onclick="clearSearch()" class="text-xs text-red-600 hover:underline font-bold flex items-center gap-1">
                     <i class="fa-solid fa-xmark"></i> إلغاء البحث
                 </button>
             </div>
-            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <div id="searchResultsGrid" class="space-y-2"></div>
         </div>
 
-        <!-- Distinct Standalone Sections for Each Main Category -->
-        <div id="menuCategoriesContainer" class="space-y-8">
-            <!-- Rendered dynamically -->
+        <!-- Isolated Main Category Content Container -->
+        <div id="isolatedCategoryContainer" class="space-y-6">
+            <!-- Currently active single category will render here -->
         </div>
 
     </main>
 
     <!-- Footer Section -->
     <footer class="bg-brand-950 text-white pt-10 pb-6 border-t border-brand-900 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-brand-900 text-xs">
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">
@@ -221,12 +217,12 @@
                     <p class="text-brand-200 leading-relaxed" data-i18n="footerAbout">وجهتك الأولى للوجبات الصحية المتوازنة بدون الحرمان من النكهات اللذيذة.</p>
                 </div>
                 <div>
-                    <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerQuickLinks">روابط سريعة</h5>
+                    <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerQuickLinks">الأقسام الرئيسية</h5>
                     <ul class="space-y-1.5 text-brand-200">
-                        <li><a href="#" onclick="scrollToCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
                     </ul>
                 </div>
                 <div>
@@ -249,77 +245,6 @@
 
 
     <!-- MODALS & OVERLAYS -->
-
-    <!-- Dish Customization & Add Modal -->
-    <div id="dishModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity">
-        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all border border-brand-100 max-h-[90vh] flex flex-col">
-            <div class="relative h-48 sm:h-56 bg-brand-100">
-                <img id="modalDishImage" src="" alt="Dish Image" class="w-full h-full object-cover">
-                <button onclick="closeDishModal()" class="absolute top-3 right-3 rtl:right-3 ltr:left-3 ltr:right-auto w-8 h-8 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div id="modalDishCalBadge" class="absolute bottom-3 right-3 rtl:right-3 ltr:left-3 ltr:right-auto bg-brand-900/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm"></div>
-            </div>
-
-            <div class="p-6 overflow-y-auto space-y-4 flex-1">
-                <div>
-                    <h3 id="modalDishName" class="text-xl font-black text-gray-900"></h3>
-                    <p id="modalDishDesc" class="text-xs text-gray-500 mt-1 leading-relaxed"></p>
-                </div>
-
-                <div class="grid grid-cols-4 gap-2 bg-brand-50 p-3 rounded-2xl text-center border border-brand-100">
-                    <div>
-                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroCal">سعرات</span>
-                        <span id="macroCal" class="text-xs font-black text-brand-950"></span>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroProt">بروتين</span>
-                        <span id="macroProt" class="text-xs font-black text-brand-950"></span>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroCarb">كارب</span>
-                        <span id="macroCarb" class="text-xs font-black text-brand-950"></span>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroFat">دهون</span>
-                        <span id="macroFat" class="text-xs font-black text-brand-950"></span>
-                    </div>
-                </div>
-
-                <div class="space-y-3 pt-2">
-                    <h4 class="text-xs font-bold uppercase text-brand-800 tracking-wider" data-i18n="customizationTitle">تخصيص الوجبة</h4>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-i18n="selectBase">اختر الكارب الجانبي:</label>
-                        <select id="optionBase" class="w-full text-xs bg-gray-50 border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                            <option value="ارز أبيض بستماتي">أرز أبيض بسمتي (Standard)</option>
-                            <option value="ارز بني صحي">أرز بني عضوي (+0 SAR)</option>
-                            <option value="بطاطس مهروسة">بطاطس مهروسة بالمواصفات الصحية (+3 SAR)</option>
-                            <option value="كينوا عضوي">كينوا (+5 SAR)</option>
-                            <option value="بدون كارب">بدون كارب (خضار سوتيه مضاعف)</option>
-                        </select>
-                    </div>
-
-                    <div class="flex items-center justify-between p-2.5 border border-gray-100 rounded-xl bg-gray-50">
-                        <span class="text-xs font-medium text-gray-700" data-i18n="extraProtein">إضافة 50 جم بروتين إضافي</span>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="optionExtraProtein" class="sr-only peer">
-                            <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-4">
-                <div>
-                    <span class="block text-[10px] text-gray-400 font-semibold" data-i18n="totalPrice">الإجمالي</span>
-                    <span id="modalTotalPrice" class="text-lg font-black text-brand-700"></span>
-                </div>
-                <button onclick="confirmAddToCart()" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold py-3 px-6 rounded-2xl shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-plus"></i> <span data-i18n="confirmAddBtn">إضافة للطلب</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Shopping Cart Modal Sidebar -->
     <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
@@ -378,9 +303,10 @@
                 <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
             </a>
         </div>
-    </footer>
+    </div>
 
-    <!-- JAVASCRIPT LOGIC & APP ENGINE -->
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         const menuData = [
             {
@@ -626,41 +552,6 @@
                 ]
             },
             {
-                id: "cat-desserts",
-                icon: "fa-ice-cream",
-                title: { ar: "قسم الحلويات الصحية", en: "Healthy Desserts" },
-                subCategories: [
-                    {
-                        id: "sub-sweets",
-                        title: { ar: "تفرع حلا بدون سكر", en: "Sugar-Free Sweets" },
-                        dishes: [
-                            {
-                                id: "d16",
-                                name: { ar: "تشيز كيك الشوفان بالفرولة", en: "Oat Strawberry Cheesecake" },
-                                desc: { ar: "تشيز كيك صحي بقاعدة الشوفان وجبن القريش الخفيف ومربى خالي من السكر.", en: "Healthy cheesecake with oat base, light cottage cheese & sugar-free jam." },
-                                price: 21,
-                                cal: 190,
-                                prot: "12g",
-                                carb: "18g",
-                                fat: "5g",
-                                img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d17",
-                                name: { ar: "كيكة الشوكولاتة بالبروتين", en: "Protein Chocolate Cake" },
-                                desc: { ar: "كيكة شوكولاتة داكنة غنية بالبروتين بدون دقيق أبيض أو سكر مضاف.", en: "Dark chocolate protein cake with no white flour or added sugar." },
-                                price: 24,
-                                cal: 210,
-                                prot: "16g",
-                                carb: "19g",
-                                fat: "6g",
-                                img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
                 id: "cat-combos",
                 icon: "fa-box-tissue",
                 title: { ar: "قسم الوجبات المتكاملة", en: "Combo Meals" },
@@ -708,7 +599,7 @@
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.",
                 deliveryTime: "التوصيل",
                 rating: "التقييم",
-                addBtn: "إضافة",
+                addBtn: "إضافة للطلب",
                 macroCal: "سعرات",
                 macroProt: "بروتين",
                 macroCarb: "كارب",
@@ -716,8 +607,7 @@
                 totalPrice: "الإجمالي",
                 customizationTitle: "تخصيص الوجبة",
                 selectBase: "اختر الكارب الجانبي:",
-                extraProtein: "إضافة 50 جم بروتين إضافي (+8 SAR)",
-                confirmAddBtn: "إضافة للطلب",
+                extraProtein: "إضافة 50 جم بروتين إضافي (+8 ر.س)",
                 cartTitle: "سلة الوجبات المختارة",
                 totalCalSummary: "مجموع السعرات الحرارية:",
                 deliveryFee: "رسوم التوصيل:",
@@ -746,7 +636,7 @@
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
                 deliveryTime: "Delivery",
                 rating: "Rating",
-                addBtn: "Add",
+                addBtn: "Add to Order",
                 macroCal: "Calories",
                 macroProt: "Protein",
                 macroCarb: "Carbs",
@@ -755,7 +645,6 @@
                 customizationTitle: "Meal Customization",
                 selectBase: "Choose Side Carbs:",
                 extraProtein: "Add Extra 50g Protein (+8 SAR)",
-                confirmAddBtn: "Add To Order",
                 cartTitle: "Your Selected Items",
                 totalCalSummary: "Total Calories:",
                 deliveryFee: "Delivery Fee:",
@@ -777,8 +666,8 @@
         };
 
         let currentLang = "ar";
+        let activeCategoryId = "cat-meats"; // Default selected active category
         let cart = [];
-        let activeModalDish = null;
 
         window.addEventListener('DOMContentLoaded', () => {
             renderApp();
@@ -787,7 +676,7 @@
         function renderApp() {
             renderI18nTexts();
             renderHeaderCategoriesGrid();
-            renderSubCategoriesSections();
+            renderIsolatedActiveCategory();
             updateCartUI();
         }
 
@@ -825,162 +714,203 @@
             });
         }
 
-        // Render 6 Main Categories inside Green Box Grid (3 top, 3 bottom)
+        // Render Main Categories Grid Selector (Only 1 Active at a time)
         function renderHeaderCategoriesGrid() {
             const container = document.getElementById('headerCategoriesGrid');
             if (!container) return;
             container.innerHTML = '';
 
-            const mainSix = menuData.slice(0, 6);
-            mainSix.forEach(cat => {
+            menuData.forEach(cat => {
+                const isActive = cat.id === activeCategoryId;
                 const btn = document.createElement('button');
-                btn.className = "flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/20 active:bg-brand-500 text-white border border-white/15 rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate group backdrop-blur-sm";
-                btn.onclick = () => scrollToCategory(cat.id);
+                
+                btn.className = `flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
+                    isActive 
+                    ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30" 
+                    : "bg-white/10 hover:bg-white/20 text-white/90 border-white/15"
+                }`;
+                btn.onclick = () => selectCategory(cat.id);
 
                 btn.innerHTML = `
-                    <i class="fa-solid ${cat.icon} text-brand-300 group-hover:text-white text-xs transition shrink-0"></i>
+                    <i class="fa-solid ${cat.icon} ${isActive ? 'text-white' : 'text-brand-300'} text-xs shrink-0"></i>
                     <span class="truncate">${cat.title[currentLang]}</span>
                 `;
                 container.appendChild(btn);
             });
         }
 
-        // Render Standalone Separate Sections for Each Main Category
-        function renderSubCategoriesSections() {
-            const container = document.getElementById('menuCategoriesContainer');
+        function selectCategory(catId) {
+            activeCategoryId = catId;
+            renderHeaderCategoriesGrid();
+            renderIsolatedActiveCategory();
+            clearSearch();
+        }
+
+        // Render ONLY the isolated selected Main Category
+        function renderIsolatedActiveCategory() {
+            const container = document.getElementById('isolatedCategoryContainer');
             container.innerHTML = '';
 
-            menuData.forEach(cat => {
-                const section = document.createElement('section');
-                section.id = cat.id;
-                section.className = "scroll-mt-6 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
+            const currentCat = menuData.find(c => c.id === activeCategoryId) || menuData[0];
 
-                // Section Main Header
-                let subHtml = `
-                    <div class="flex items-center gap-3 border-b border-brand-100 pb-3">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md shadow-brand-600/30">
-                            <i class="fa-solid ${cat.icon}"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black text-brand-950">${cat.title[currentLang]}</h3>
-                            <span class="text-[11px] text-gray-400">استعرض أشهى الأطباق الصحية لهذا القسم</span>
+            const section = document.createElement('section');
+            section.className = "bg-white rounded-3xl border border-brand-100 p-4 sm:p-6 shadow-sm space-y-5 animate-fade-in";
+
+            // Main Category Header
+            let html = `
+                <div class="flex items-center gap-3 border-b border-brand-100 pb-3">
+                    <div class="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md shadow-brand-600/20">
+                        <i class="fa-solid ${currentCat.icon}"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-brand-950">${currentCat.title[currentLang]}</h3>
+                        <span class="text-[11px] text-gray-400">انقر على الطبق لمشاهدة التفاصيل والصورة والتخصيص</span>
+                    </div>
+                </div>
+            `;
+
+            // Sub Categories List with Accordion Thin Transparent Bars
+            currentCat.subCategories.forEach(sub => {
+                html += `
+                    <div class="space-y-2 pt-1">
+                        <h4 class="text-xs font-extrabold text-brand-800 flex items-center gap-2 px-1">
+                            <span class="w-2 h-2 rounded-full bg-brand-500 inline-block"></span>
+                            ${sub.title[currentLang]}
+                        </h4>
+
+                        <!-- Vertical Thin Transparent Bars List -->
+                        <div class="space-y-2">
+                            ${sub.dishes.map(dish => createAccordionDishBarHTML(dish)).join('')}
                         </div>
                     </div>
                 `;
+            });
 
-                // Render Sub-Categories
-                cat.subCategories.forEach(sub => {
-                    subHtml += `
-                        <div class="space-y-3 pt-1">
-                            <div class="flex items-center justify-between">
-                                <h4 class="text-xs font-extrabold text-brand-800 flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-brand-500 inline-block"></span>
-                                    ${sub.title[currentLang]}
-                                </h4>
-                                <span class="text-[10px] text-gray-400">اسحب أفقياً &rarr;</span>
-                            </div>
+            section.innerHTML = html;
+            container.appendChild(section);
+        }
 
-                            <div class="perspective-1000 relative">
-                                <div class="flex gap-3.5 overflow-x-auto no-scrollbar py-1 px-0.5 snap-x-mandatory">
-                                    ${sub.dishes.map(dish => create3DDishCardHTML(dish)).join('')}
+        // Creates Accordion Dish Bar: Thin & Transparent by default, expands slowly on click
+        function createAccordionDishBarHTML(dish) {
+            const currency = i18nText[currentLang].currency;
+
+            return `
+                <div id="accordion-${dish.id}" class="accordion-item bg-brand-50/40 hover:bg-brand-50/80 border border-brand-100/80 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    
+                    <!-- Thin Bar Header (Always Visible: Name + Price) -->
+                    <div onclick="toggleAccordion('${dish.id}')" class="p-3 sm:px-4 flex items-center justify-between cursor-pointer select-none">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-2 h-2 rounded-full bg-brand-400 shrink-0"></div>
+                            <span class="font-bold text-xs sm:text-sm text-gray-800">${dish.name[currentLang]}</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-black text-brand-700 bg-white px-2.5 py-1 rounded-xl border border-brand-100 shadow-xs">${dish.price} ${currency}</span>
+                            <i class="fa-solid fa-chevron-down text-brand-600 text-xs transition-transform duration-500 accordion-chevron"></i>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Content (Image on Left, Info/Options on Right) -->
+                    <div class="accordion-content">
+                        <div class="overflow-hidden">
+                            <div class="p-3 sm:p-4 border-t border-brand-100/60 bg-white/70">
+                                <div class="flex flex-col md:flex-row gap-4 items-stretch">
+                                    
+                                    <!-- Image on LEFT (Right in LTR) -->
+                                    <div class="w-full md:w-5/12 h-44 sm:h-48 md:h-auto rounded-2xl overflow-hidden relative border border-brand-100 shrink-0 order-first md:order-last">
+                                        <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
+                                        <div class="absolute top-2 right-2 rtl:right-2 ltr:left-2 ltr:right-auto bg-brand-950/80 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md">
+                                            <i class="fa-solid fa-fire-flame-curved text-amber-400 mr-1"></i> ${dish.cal} cal
+                                        </div>
+                                    </div>
+
+                                    <!-- Info & Customization on RIGHT -->
+                                    <div class="flex-1 flex flex-col justify-between space-y-3">
+                                        <div>
+                                            <h5 class="font-black text-sm text-gray-900">${dish.name[currentLang]}</h5>
+                                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">${dish.desc[currentLang]}</p>
+                                            
+                                            <!-- Macros Badges -->
+                                            <div class="grid grid-cols-4 gap-1.5 mt-2.5 text-center bg-brand-50/80 p-2 rounded-xl border border-brand-100/60 text-[10px] font-bold text-brand-900">
+                                                <div><span class="block text-[9px] text-brand-600 font-semibold">${i18nText[currentLang].macroCal}</span>${dish.cal}</div>
+                                                <div><span class="block text-[9px] text-brand-600 font-semibold">${i18nText[currentLang].macroProt}</span>${dish.prot}</div>
+                                                <div><span class="block text-[9px] text-brand-600 font-semibold">${i18nText[currentLang].macroCarb}</span>${dish.carb}</div>
+                                                <div><span class="block text-[9px] text-brand-600 font-semibold">${i18nText[currentLang].macroFat}</span>${dish.fat}</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Customization Options -->
+                                        <div class="space-y-2 pt-1 border-t border-gray-100">
+                                            <div>
+                                                <label class="block text-[11px] font-semibold text-gray-700 mb-1">${i18nText[currentLang].selectBase}</label>
+                                                <select id="base-${dish.id}" class="w-full text-xs bg-white border border-brand-200 rounded-xl p-2 focus:ring-1 focus:ring-brand-500 focus:outline-none">
+                                                    <option value="ارز أبيض بستماتي">أرز أبيض بسمتي (Standard)</option>
+                                                    <option value="ارز بني صحي">أرز بني عضوي (+0 SAR)</option>
+                                                    <option value="بطاطس مهروسة">بطاطس مهروسة (+3 SAR)</option>
+                                                    <option value="كينوا عضوي">كينوا (+5 SAR)</option>
+                                                    <option value="بدون كارب">بدون كارب (خضار سوتيه مضاعف)</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="flex items-center justify-between p-2 border border-brand-100 rounded-xl bg-white">
+                                                <span class="text-[11px] font-medium text-gray-700">${i18nText[currentLang].extraProtein}</span>
+                                                <label class="relative inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" id="extra-${dish.id}" class="sr-only peer">
+                                                    <div class="w-8 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-600"></div>
+                                                </label>
+                                            </div>
+
+                                            <!-- Add to Cart Action Button -->
+                                            <button onclick="addDishToCartDirect('${dish.id}')" class="w-full bg-brand-600 hover:bg-brand-700 active:scale-98 text-white font-bold py-2.5 px-4 rounded-xl shadow-md shadow-brand-600/20 text-xs transition flex items-center justify-center gap-2 mt-2">
+                                                <i class="fa-solid fa-plus text-xs"></i> <span>${i18nText[currentLang].addBtn}</span>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    `;
-                });
-
-                section.innerHTML = subHtml;
-                container.appendChild(section);
-            });
-        }
-
-        function create3DDishCardHTML(dish) {
-            const currency = i18nText[currentLang].currency;
-            const addBtnText = i18nText[currentLang].addBtn;
-
-            return `
-                <div class="snap-card min-w-[240px] sm:min-w-[260px] max-w-[260px] bg-white rounded-2xl border border-brand-100 shadow-sm card-3d flex flex-col justify-between overflow-hidden relative group">
-                    <div>
-                        <div class="relative h-32 overflow-hidden bg-brand-50">
-                            <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-2 right-2 rtl:right-2 ltr:left-2 ltr:right-auto bg-brand-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-md shadow">
-                                <i class="fa-solid fa-fire-flame-curved text-amber-400 mr-1"></i> ${dish.cal} cal
-                            </div>
-                        </div>
-
-                        <div class="p-3 space-y-1.5">
-                            <h5 class="font-bold text-xs text-gray-900 group-hover:text-brand-600 transition truncate">${dish.name[currentLang]}</h5>
-                            <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed h-7">${dish.desc[currentLang]}</p>
-
-                            <div class="flex justify-between items-center text-[10px] font-semibold text-brand-800 bg-brand-50/70 p-1.5 rounded-xl border border-brand-100/50">
-                                <span>P: ${dish.prot}</span>
-                                <span>C: ${dish.carb}</span>
-                                <span>F: ${dish.fat}</span>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="p-3 pt-0 flex items-center justify-between border-t border-gray-50 mt-1">
-                        <div>
-                            <span class="text-[10px] text-gray-400 block">${i18nText[currentLang].totalPrice}</span>
-                            <span class="text-xs font-black text-brand-700">${dish.price} <span class="text-[10px]">${currency}</span></span>
-                        </div>
-                        <button onclick="openDishModal('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-sm shadow-brand-600/20 flex items-center gap-1">
-                            <i class="fa-solid fa-plus text-[10px]"></i> ${addBtnText}
-                        </button>
-                    </div>
                 </div>
             `;
         }
 
-        function scrollToCategory(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+        // Accordion Expansion Logic
+        function toggleAccordion(dishId) {
+            const target = document.getElementById(`accordion-${dishId}`);
+            if (!target) return;
+
+            const isAlreadyActive = target.classList.contains('active');
+
+            // Close all other accordions
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Toggle selected
+            if (!isAlreadyActive) {
+                target.classList.add('active');
             }
         }
 
-        function openDishModal(dishId) {
-            let selectedDish = null;
+        // Add to Cart Logic
+        function addDishToCartDirect(dishId) {
+            let foundDish = null;
             menuData.forEach(cat => {
                 cat.subCategories.forEach(sub => {
-                    const found = sub.dishes.find(d => d.id === dishId);
-                    if (found) selectedDish = found;
+                    const match = sub.dishes.find(d => d.id === dishId);
+                    if (match) foundDish = match;
                 });
             });
 
-            if (!selectedDish) return;
-            activeModalDish = selectedDish;
+            if (!foundDish) return;
 
-            document.getElementById('modalDishImage').src = selectedDish.img;
-            document.getElementById('modalDishName').innerText = selectedDish.name[currentLang];
-            document.getElementById('modalDishDesc').innerText = selectedDish.desc[currentLang];
-            document.getElementById('modalDishCalBadge').innerText = `${selectedDish.cal} kcal`;
+            const baseChoice = document.getElementById(`base-${dishId}`)?.value || 'أرز بسمتي';
+            const extraProtein = document.getElementById(`extra-${dishId}`)?.checked || false;
 
-            document.getElementById('macroCal').innerText = `${selectedDish.cal}`;
-            document.getElementById('macroProt').innerText = selectedDish.prot;
-            document.getElementById('macroCarb').innerText = selectedDish.carb;
-            document.getElementById('macroFat').innerText = selectedDish.fat;
-
-            document.getElementById('modalTotalPrice').innerText = `${selectedDish.price} ${i18nText[currentLang].currency}`;
-            document.getElementById('optionExtraProtein').checked = false;
-
-            document.getElementById('dishModal').classList.remove('hidden');
-        }
-
-        function closeDishModal() {
-            document.getElementById('dishModal').classList.add('hidden');
-            activeModalDish = null;
-        }
-
-        function confirmAddToCart() {
-            if (!activeModalDish) return;
-
-            const baseChoice = document.getElementById('optionBase').value;
-            const extraProtein = document.getElementById('optionExtraProtein').checked;
-
-            let finalPrice = activeModalDish.price;
-            let addedCal = activeModalDish.cal;
+            let finalPrice = foundDish.price;
+            let addedCal = foundDish.cal;
 
             if (extraProtein) {
                 finalPrice += 8;
@@ -988,17 +918,16 @@
             }
 
             const item = {
-                id: activeModalDish.id + '_' + Date.now(),
-                name: activeModalDish.name[currentLang],
+                id: foundDish.id + '_' + Date.now(),
+                name: foundDish.name[currentLang],
                 basePrice: finalPrice,
                 cal: addedCal,
                 customization: `${baseChoice} ${extraProtein ? ' + 50g Protein' : ''}`,
-                img: activeModalDish.img
+                img: foundDish.img
             };
 
             cart.push(item);
             updateCartUI();
-            closeDishModal();
             toggleCartModal();
         }
 
@@ -1112,12 +1041,12 @@
             resultsGrid.innerHTML = '';
 
             if (matchedDishes.length === 0) {
-                resultsGrid.innerHTML = `<p class="text-xs text-gray-500 col-span-full">لم يتم العثور على أطباق تطابق بحثك.</p>`;
+                resultsGrid.innerHTML = `<p class="text-xs text-gray-500">لم يتم العثور على أطباق تطابق بحثك.</p>`;
                 return;
             }
 
             matchedDishes.forEach(dish => {
-                resultsGrid.innerHTML += create3DDishCardHTML(dish);
+                resultsGrid.innerHTML += createAccordionDishBarHTML(dish);
             });
         }
 
