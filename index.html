@@ -69,7 +69,7 @@
         }
 
         .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
@@ -99,76 +99,61 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
-    <!-- Unified Sticky Header with Integrated Main Categories -->
+    <!-- Unified Fixed Header with 6 Main Categories (3x2 Grid) and Search Bar -->
     <header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
         <!-- Top Navigation Bar -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-13 flex items-center justify-between gap-3">
             <!-- Brand Logo & Name -->
-            <div class="flex items-center gap-2.5 cursor-pointer shrink-0" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/30 font-bold text-lg border-2 border-white">
-                    <i class="fa-solid fa-leaf text-sm"></i>
+            <div class="flex items-center gap-2 cursor-pointer shrink-0" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/30 font-bold text-sm border-2 border-white">
+                    <i class="fa-solid fa-leaf text-xs"></i>
                 </div>
                 <div>
-                    <h1 class="text-base font-black tracking-tight text-brand-900 leading-none">
+                    <h1 class="text-sm font-black tracking-tight text-brand-900 leading-none">
                         <span data-i18n="navTitle">دايت فود</span>
                     </h1>
-                    <span class="text-[10px] font-semibold text-brand-600 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Healthy Diet Food</span>
+                    <span class="text-[9px] font-semibold text-brand-600 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Healthy Diet Food</span>
                 </div>
-            </div>
-
-            <!-- Search Bar (Desktop / Tablet) -->
-            <div class="hidden md:flex flex-1 max-w-xs mx-3 relative">
-                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
-                <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2.5 text-brand-500 text-xs"></i>
             </div>
 
             <!-- Actions: Socials, Map, Language Toggle, Cart -->
             <div class="flex items-center gap-1.5 shrink-0">
-                <!-- Location Button -->
-                <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-8 h-8 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
+                <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
                     <i class="fa-solid fa-location-dot"></i>
                 </button>
-
-                <!-- Instagram Button -->
-                <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-50 text-brand-700 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
+                <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7 h-7 rounded-full bg-brand-50 text-brand-700 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-
-                <!-- Language Toggle Button -->
-                <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-1 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1">
-                    <i class="fa-solid fa-globe text-brand-600 text-[10px]"></i>
+                <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[10px] font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1">
+                    <i class="fa-solid fa-globe text-brand-600 text-[9px]"></i>
                     <span id="langLabel">English</span>
                 </button>
-
-                <!-- Floating Cart Button -->
-                <button onclick="toggleCartModal()" class="relative px-3 py-1.5 rounded-full bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-basket-shopping"></i>
+                <button onclick="toggleCartModal()" class="relative px-2.5 py-1 rounded-full bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
                     <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
-                    <span id="cartBadge" class="bg-white text-brand-800 text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
+                    <span id="cartBadge" class="bg-white text-brand-800 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
                 </button>
             </div>
         </div>
 
-        <!-- Integrated Header Category Strip (Horizontal Scroll) -->
-        <div class="bg-brand-50/60 border-t border-brand-100/80 py-2">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 snap-x-mandatory" id="mainCategoriesGrid">
-                    <!-- Dynamic Category Chips Rendered Here -->
-                </div>
+        <!-- 6 Main Categories Grid (3 top, 3 bottom) -->
+        <div class="px-4 py-1.5 bg-brand-50/70 border-t border-brand-100/70">
+            <div class="max-w-3xl mx-auto grid grid-cols-3 gap-1.5" id="headerCategoriesGrid">
+                <!-- Dynamically populated (6 main categories) -->
             </div>
         </div>
 
-        <!-- Mobile Search Input Bar -->
-        <div class="px-4 py-2 md:hidden border-t border-brand-100/50 bg-white/50">
-            <div class="relative w-full">
-                <input type="text" id="mobileSearchInput" onkeyup="handleSearchMobile()" placeholder="ابحث عن وجبتك المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
+        <!-- Search Bar Row Below Categories -->
+        <div class="px-4 py-2 border-t border-brand-100/70 bg-white">
+            <div class="max-w-3xl mx-auto relative w-full">
+                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
                 <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2 text-brand-500 text-[11px]"></i>
             </div>
         </div>
     </header>
 
     <!-- Main Content Container with safe top margin to prevent overlapping -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 md:pt-32 pb-12 flex-1 w-full space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 pb-12 flex-1 w-full space-y-8">
 
         <!-- Hero Banner Section -->
         <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-lg py-6 px-6">
@@ -725,7 +710,7 @@
             ar: {
                 navTitle: "دايت فود",
                 navSubtitle: "Diet Food Restaurant",
-                searchPlaceholder: "ابحث عن وجبتك...",
+                searchPlaceholder: "ابحث عن وجبتك الصحية المفضلة...",
                 cartBtn: "السلة",
                 heroBadge: "نمط حياة صحي ولذيذ",
                 heroTitle: "مطعم دايت فود - Diet Food",
@@ -763,7 +748,7 @@
             en: {
                 navTitle: "Diet Food",
                 navSubtitle: "Healthy Diet Restaurant",
-                searchPlaceholder: "Search meals...",
+                searchPlaceholder: "Search for your favorite healthy meal...",
                 cartBtn: "Cart",
                 heroBadge: "Healthy & Delicious Lifestyle",
                 heroTitle: "Diet Food Restaurant",
@@ -810,7 +795,7 @@
 
         function renderApp() {
             renderI18nTexts();
-            renderMainCategoriesHeaderStrip();
+            renderHeaderCategoriesGrid();
             renderSubCategoriesSections();
             updateCartUI();
         }
@@ -849,21 +834,24 @@
             });
         }
 
-        // Compact Strip Rendered inside Fixed Header
-        function renderMainCategoriesHeaderStrip() {
-            const container = document.getElementById('mainCategoriesGrid');
+        // Render 6 Main Categories inside Header Grid (3 top, 3 bottom)
+        function renderHeaderCategoriesGrid() {
+            const container = document.getElementById('headerCategoriesGrid');
+            if (!container) return;
             container.innerHTML = '';
 
-            menuData.forEach(cat => {
-                const chip = document.createElement('button');
-                chip.className = "snap-card flex items-center gap-2 bg-white hover:bg-brand-600 hover:text-white text-brand-900 border border-brand-200/90 rounded-full px-3 py-1.5 transition-all duration-200 text-xs font-bold whitespace-nowrap shadow-sm shrink-0 group";
-                chip.onclick = () => scrollToCategory(cat.id);
+            // Take the first 6 main categories
+            const mainSix = menuData.slice(0, 6);
+            mainSix.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = "flex items-center justify-center gap-1.5 bg-white hover:bg-brand-600 hover:text-white text-brand-900 border border-brand-200/90 rounded-xl py-1.5 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate group";
+                btn.onclick = () => scrollToCategory(cat.id);
 
-                chip.innerHTML = `
-                    <i class="fa-solid ${cat.icon} text-brand-600 group-hover:text-white text-xs transition"></i>
-                    <span>${cat.title[currentLang]}</span>
+                btn.innerHTML = `
+                    <i class="fa-solid ${cat.icon} text-brand-600 group-hover:text-white text-xs transition shrink-0"></i>
+                    <span class="truncate">${cat.title[currentLang]}</span>
                 `;
-                container.appendChild(chip);
+                container.appendChild(btn);
             });
         }
 
@@ -875,7 +863,7 @@
             menuData.forEach(cat => {
                 const section = document.createElement('section');
                 section.id = cat.id;
-                section.className = "scroll-mt-36 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
+                section.className = "scroll-mt-48 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
 
                 // Section Main Header
                 let subHtml = `
@@ -1110,11 +1098,6 @@
             executeSearch(query);
         }
 
-        function handleSearchMobile() {
-            const query = document.getElementById('mobileSearchInput').value.toLowerCase().trim();
-            executeSearch(query);
-        }
-
         function executeSearch(query) {
             const resultsSection = document.getElementById('searchResultsSection');
             const resultsGrid = document.getElementById('searchResultsGrid');
@@ -1150,7 +1133,6 @@
 
         function clearSearch() {
             document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
             document.getElementById('searchResultsSection').classList.add('hidden');
         }
     </script>
