@@ -46,6 +46,20 @@
     </script>
 
     <style>
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .card-3d-sub {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d-sub:hover {
+            transform: translateY(-4px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+            box-shadow: 0 20px 30px -10px rgba(46, 147, 58, 0.2);
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -67,6 +81,13 @@
             background-position: 0 0, 10px 10px;
         }
 
+        .snap-x-mandatory {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-card {
+            scroll-snap-align: center;
+        }
+
         @keyframes pulse-subtle {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -74,11 +95,16 @@
         .badge-pulse {
             animation: pulse-subtle 3s infinite ease-in-out;
         }
+
+        /* Slow expandable transition */
+        .expandable-dish {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
-    <!-- Top Compact Navigation Bar & Integrated Header -->
+    <!-- Top Compact Navigation Bar & Integrated Header (UNCHANGED) -->
     <header class="sticky top-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             <!-- Brand Logo & Name -->
@@ -136,8 +162,8 @@
         </div>
     </header>
 
-    <!-- Compact Hero Banner Section -->
-    <section class="relative bg-brand-900 text-white overflow-hidden py-8">
+    <!-- Compact Hero Banner Section (UNCHANGED) -->
+    <section class="relative bg-brand-900 text-white overflow-hidden py-6">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Healthy Diet Background" class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-transparent"></div>
@@ -145,20 +171,20 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-right rtl:sm:text-right">
-                <div class="w-20 h-20 rounded-full border-2 border-white shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
+                <div class="w-16 h-16 rounded-full border-2 border-white shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
                     <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
                 </div>
                 <div>
                     <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
                         <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
                     </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
-                    <p class="text-brand-100 text-xs max-w-lg mt-1 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
+                    <h2 class="text-lg sm:text-xl font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
+                    <p class="text-brand-100 text-xs max-w-lg mt-0.5 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
                 </div>
             </div>
 
             <!-- Quick Stats -->
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 flex gap-4 text-xs text-center shrink-0">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
                 <div>
                     <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
                     <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
@@ -173,7 +199,22 @@
     </section>
 
     <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+
+        <!-- 2. Horizontal Scrolling Square Categories Container (UNCHANGED) -->
+        <section class="bg-white border border-brand-100 rounded-3xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-black text-brand-950 flex items-center gap-2" data-i18n="mainCategoriesTitle">
+                    <i class="fa-solid fa-utensils text-brand-600 text-sm"></i> الأقسام الرئيسية
+                </h3>
+                <span class="text-[11px] text-gray-400 font-medium">اختر القسم لاستعراضه بمفرده &larr; &rarr;</span>
+            </div>
+
+            <!-- Horizontal Swipeable Square Cards -->
+            <div class="flex gap-4 overflow-x-auto no-scrollbar py-2 px-1 snap-x-mandatory" id="mainCategoriesGrid">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
 
         <!-- Search Results Filter View Alert (Hidden by default) -->
         <div id="searchResultsSection" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-6">
@@ -183,11 +224,11 @@
                     <i class="fa-solid fa-xmark"></i> إلغاء البحث
                 </button>
             </div>
-            <div id="searchResultsGrid" class="space-y-4"></div>
+            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- 3. Distinct Standalone Sections for Each Main Category -->
-        <div id="menuCategoriesContainer" class="space-y-12">
+        <!-- 4. Isolated Main Category View Container (Only one main category visible at a time) -->
+        <div id="isolatedCategoryContainer" class="w-full">
             <!-- Rendered dynamically -->
         </div>
 
@@ -209,10 +250,10 @@
                 <div>
                     <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerQuickLinks">روابط سريعة</h5>
                     <ul class="space-y-1.5 text-brand-200">
-                        <li><a href="#" onclick="scrollToCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
-                        <li><a href="#" onclick="scrollToCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
+                        <li><a href="#" onclick="selectMainCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
+                        <li><a href="#" onclick="selectMainCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
+                        <li><a href="#" onclick="selectMainCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
+                        <li><a href="#" onclick="selectMainCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
                     </ul>
                 </div>
                 <div>
@@ -302,26 +343,114 @@
                 id: "cat-meats",
                 icon: "fa-drumstick-bite",
                 title: { ar: "قسم اللحوم", en: "Meat Section" },
+                bgImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-chicken",
                         title: { ar: "طلبات الدجاج", en: "Healthy Chicken Specials" },
                         dishes: [
-                            { id: "d1", name: { ar: "وجبة دجاج الكاري", en: "Chicken Curry Meal" }, desc: { ar: "صدور دجاج طرية بصوص الكاري الهندي الصحي مع أرز بسمتي.", en: "Tender chicken breast with healthy Indian curry sauce and basmati rice." }, price: 34, cal: 380, prot: "42g", carb: "35g", fat: "6g", img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d2", name: { ar: "ستيك دجاج", en: "Chicken Steak" }, desc: { ar: "شريحة دجاج مشوية مع أعشاب وبطاطس مهروسة.", en: "Grilled chicken steak with herbs and mashed potatoes." }, price: 36, cal: 410, prot: "40g", carb: "42g", fat: "7g", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d3", name: { ar: "صدر دجاج محشي بالخضار", en: "Stuffed Chicken Breast" }, desc: { ar: "صدر دجاج محشي خضار طازجة وجبن لايت.", en: "Chicken breast stuffed with fresh veggies and light cheese." }, price: 38, cal: 395, prot: "44g", carb: "28g", fat: "8g", img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d4", name: { ar: "وجبة فاهيتا دجاج", en: "Chicken Fajita Meal" }, desc: { ar: "شرائح دجاج مع فلفل رومي وبصل وتوابل فاهيتا.", en: "Chicken strips with bell pepper, onion, and fajita spices." }, price: 35, cal: 370, prot: "41g", carb: "30g", fat: "6g", img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d5", name: { ar: "وجبة شيش طاووق", en: "Shish Tawook Meal" }, desc: { ar: "مكعبات دجاج متبلة بالزبادي والبهارات على الفحم.", en: "Yogurt-marinated chicken skewers grilled over charcoal." }, price: 38, cal: 390, prot: "43g", carb: "26g", fat: "8g", img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d6", name: { ar: "وجبة بيكاتا دجاج", en: "Chicken Piccata" }, desc: { ar: "دجاج بصوص الليمون والفطر الصحي.", en: "Chicken with healthy lemon mushroom sauce." }, price: 39, cal: 400, prot: "42g", carb: "25g", fat: "9g", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d7", name: { ar: "وجبة دجاج صيني بالخضار", en: "Chinese Chicken with Veggies" }, desc: { ar: "دجاج آسيوي بصوص الصويا الصحي والخضار.", en: "Asian chicken with healthy soy sauce and vegetables." }, price: 37, cal: 360, prot: "39g", carb: "32g", fat: "6g", img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" }
+                            {
+                                id: "d1",
+                                name: { ar: "وجبة دجاج الكاري", en: "Curry Chicken Meal" },
+                                desc: { ar: "صدور دجاج طرية متبلة بالكاري الصحي مع أرز بسمتي وخضار مفيدة.", en: "Tender chicken breast marinated in healthy curry with basmati rice." },
+                                price: "8,000",
+                                priceVal: 34,
+                                cal: 380,
+                                prot: "42g",
+                                carb: "35g",
+                                fat: "6g",
+                                img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d2",
+                                name: { ar: "ستيك دجاج", en: "Chicken Steak" },
+                                desc: { ar: "شريحة ستيك دجاج صافية بدون دهون مع صوص الفطر الصحي وبطاطس مهروسة.", en: "Lean chicken steak with healthy mushroom sauce & mashed potatoes." },
+                                price: "8,000",
+                                priceVal: 36,
+                                cal: 410,
+                                prot: "40g",
+                                carb: "42g",
+                                fat: "7g",
+                                img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d3",
+                                name: { ar: "صدر دجاج محشي بالخضار", en: "Stuffed Chicken Breast" },
+                                desc: { ar: "صدور دجاج محشوة بالخضار الطازجة ومشوية بطريقة صحية.", en: "Chicken breast stuffed with fresh vegetables grilled healthily." },
+                                price: "9,000",
+                                priceVal: 38,
+                                cal: 395,
+                                prot: "44g",
+                                carb: "28g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d4",
+                                name: { ar: "وجبة فاهيتا دجاج", en: "Chicken Fajita Meal" },
+                                desc: { ar: "شرائح دجاج مع الفلفل الملون والبصل وبهارات الفاهيتا الخاصة.", en: "Chicken strips with bell peppers, onions, and fajita spices." },
+                                price: "7,000",
+                                priceVal: 32,
+                                cal: 360,
+                                prot: "38g",
+                                carb: "25g",
+                                fat: "6g",
+                                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d5",
+                                name: { ar: "وجبة شيش طاووق", en: "Shish Tawook Meal" },
+                                desc: { ar: "مكعبات دجاج متبلة بالزبادي خفيف الدسم والبهارات مشوية على الفحم.", en: "Grilled yogurt-marinated chicken skewers with light spices." },
+                                price: "7,000",
+                                priceVal: 35,
+                                cal: 390,
+                                prot: "42g",
+                                carb: "26g",
+                                fat: "7g",
+                                img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d6",
+                                name: { ar: "وجبة بيكاتا دجاج", en: "Chicken Piccata" },
+                                desc: { ar: "صدور دجاج بصوص الليمون الخفيف والأعشاب الطازجة.", en: "Chicken breasts with light lemon sauce and fresh herbs." },
+                                price: "8,000",
+                                priceVal: 37,
+                                cal: 375,
+                                prot: "40g",
+                                carb: "24g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
+                            }
                         ]
                     },
                     {
                         id: "sub-beef",
-                        title: { ar: "طلبات اللحوم الحمراء", en: "Lean Beef Specials" },
+                        title: { ar: "طلبات اللحم البقري", en: "Lean Beef Specials" },
                         dishes: [
-                            { id: "d8", name: { ar: "ستيك بيف بلاك أنجوس", en: "Black Angus Lean Steak" }, desc: { ar: "شريحة ستيك أنجوس صافية بدون دهون مع صوص الفطر الصحي.", en: "Lean Angus steak with healthy mushroom sauce." }, price: 48, cal: 460, prot: "48g", carb: "25g", fat: "12g", img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d9", name: { ar: "كفتة لحم بالفرن", en: "Oven Baked Beef Kofta" }, desc: { ar: "لحم بقري مفروم خالي من الدهون مع خضروات مشوية.", en: "Lean minced beef kofta baked with roasted veggies." }, price: 42, cal: 430, prot: "41g", carb: "32g", fat: "11g", img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80" }
+                            {
+                                id: "d7",
+                                name: { ar: "ستيك بيف بلاك أنجوس", en: "Black Angus Lean Steak" },
+                                desc: { ar: "شريحة ستيك أنجوس صافية بدون دهون مع صوص الفطر الصحي.", en: "Lean Angus steak with healthy mushroom sauce." },
+                                price: "12,000",
+                                priceVal: 48,
+                                cal: 460,
+                                prot: "48g",
+                                carb: "25g",
+                                fat: "12g",
+                                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d8",
+                                name: { ar: "كفتة لحم بالفرن", en: "Oven Baked Beef Kofta" },
+                                desc: { ar: "لحم بقري مفروم خالي من الدهون مع خضروات مشوية وأرز بني.", en: "Lean minced beef kofta baked with roasted veggies & brown rice." },
+                                price: "10,000",
+                                priceVal: 42,
+                                cal: 430,
+                                prot: "41g",
+                                carb: "32g",
+                                fat: "11g",
+                                img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80"
+                            }
                         ]
                     }
                 ]
@@ -330,13 +459,36 @@
                 id: "cat-seafood",
                 icon: "fa-fish",
                 title: { ar: "قسم الأسماك", en: "Seafood Section" },
+                bgImage: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-fish",
                         title: { ar: "طلبات الأسماك الطازجة", en: "Fresh Fish Choices" },
                         dishes: [
-                            { id: "d10", name: { ar: "سلمون مشوي بالليمون", en: "Grilled Lemon Salmon" }, desc: { ar: "فيليه سلمون نرويجي غني بأوميغا 3 مشوي بصلصة الليمون.", en: "Norwegian salmon fillet with lemon sauce." }, price: 54, cal: 450, prot: "38g", carb: "18g", fat: "16g", img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d11", name: { ar: "فيليه سي باس مشوي", en: "Grilled Sea Bass Fillet" }, desc: { ar: "سمك سي باس طازج خفيف يقدم مع خضروات التبخير.", en: "Fresh sea bass fillet served with steamed veggies." }, price: 49, cal: 340, prot: "36g", carb: "12g", fat: "8g", img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=500&q=80" }
+                            {
+                                id: "d9",
+                                name: { ar: "سلمون مشوي بالليمون", en: "Grilled Lemon Salmon" },
+                                desc: { ar: "فيليه سلمون نرويجي غني بأوميغا 3 مشوي بصلصة الليمون والشبت.", en: "Norwegian salmon fillet with lemon dill sauce & steamed quinoa." },
+                                price: "15,000",
+                                priceVal: 54,
+                                cal: 450,
+                                prot: "38g",
+                                carb: "18g",
+                                fat: "16g",
+                                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d10",
+                                name: { ar: "فيليه سي باس مشوي", en: "Grilled Sea Bass Fillet" },
+                                desc: { ar: "سمك سي باس طازج خفيف ومقرمش يقدم مع خضروات التبخير.", en: "Fresh sea bass fillet served with steamed garden vegetables." },
+                                price: "13,000",
+                                priceVal: 49,
+                                cal: 340,
+                                prot: "36g",
+                                carb: "12g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=500&q=80"
+                            }
                         ]
                     }
                 ]
@@ -345,13 +497,36 @@
                 id: "cat-salads",
                 icon: "fa-carrot",
                 title: { ar: "قسم السلطات", en: "Salads Section" },
+                bgImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-fresh-salads",
-                        title: { ar: "طلبات السلطات الصحية", en: "Protein Salads" },
+                        title: { ar: "سلطات البروتين", en: "Protein Salads" },
                         dishes: [
-                            { id: "d12", name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" }, desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي وصوص الليمون.", en: "Organic quinoa with grilled chicken and lemon dressing." }, price: 29, cal: 320, prot: "28g", carb: "26g", fat: "9g", img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d13", name: { ar: "سلطة قيصر الدايت", en: "Diet Caesar Salad" }, desc: { ar: "خس رومان طازج مع شرائح الدجاج ودرسنج قيصر لايت.", en: "Romaine lettuce, grilled chicken, and light caesar dressing." }, price: 28, cal: 290, prot: "30g", carb: "14g", fat: "8g", img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80" }
+                            {
+                                id: "d11",
+                                name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" },
+                                desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي، الخيار، الطماطم وصوص الليمون.", en: "Organic quinoa with grilled chicken, avocado slices & lemon dressing." },
+                                price: "7,000",
+                                priceVal: 29,
+                                cal: 320,
+                                prot: "28g",
+                                carb: "26g",
+                                fat: "9g",
+                                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d12",
+                                name: { ar: "سلطة قيصر الدايت", en: "Diet Caesar Salad" },
+                                desc: { ar: "خس رومان طازج مع شرائح الدجاج المشوي ودرسنج قيصر لايت وخبز محمص.", en: "Romaine lettuce, grilled chicken, light caesar dressing & croutons." },
+                                price: "6,000",
+                                priceVal: 28,
+                                cal: 290,
+                                prot: "30g",
+                                carb: "14g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80"
+                            }
                         ]
                     }
                 ]
@@ -359,14 +534,37 @@
             {
                 id: "cat-combos",
                 icon: "fa-box-tissue",
-                title: { ar: "قسم الوجبات المتكاملة", en: "Combo Meals" },
+                title: { ar: "الوجبات المتكاملة", en: "Combo Meals" },
+                bgImage: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-box-combos",
                         title: { ar: "بوكسات التنشيف والتضخيم", en: "Fitness Box Combos" },
                         dishes: [
-                            { id: "d14", name: { ar: "بوكس التنشيف الشامل", en: "Shredding Combo Box" }, desc: { ar: "صدر دجاج 200جم + أرز بسمتي 150جم + سلطة خضراء + عصير ديتوكس.", en: "200g Chicken breast + 150g Basmati rice + Salad + Detox Juice." }, price: 49, cal: 520, prot: "52g", carb: "45g", fat: "8g", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" },
-                            { id: "d15", name: { ar: "بوكس البناء العضلي (تضخيم)", en: "Bulking Muscle Combo Box" }, desc: { ar: "ستيك أنجوس 250جم + بطاطس وودجز بالفرن + سلطة كينوا.", en: "250g Angus Steak + Baked Potato + Quinoa Salad." }, price: 65, cal: 740, prot: "68g", carb: "65g", fat: "16g", img: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=500&q=80" }
+                            {
+                                id: "d13",
+                                name: { ar: "بوكس التنشيف الشامل", en: "Shredding Combo Box" },
+                                desc: { ar: "صدر دجاج 200جم + أرز بسمتي 150جم + سلطة خضراء + عصير ديتوكس.", en: "200g Chicken breast + 150g Basmati rice + Salad + Detox Juice." },
+                                price: "14,000",
+                                priceVal: 49,
+                                cal: 520,
+                                prot: "52g",
+                                carb: "45g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d14",
+                                name: { ar: "بوكس البناء العضلي (تضخيم)", en: "Bulking Muscle Combo Box" },
+                                desc: { ar: "ستيك أنجوس 250جم + بطاطس وودجز بالفرن + سلطة كينوا + سموذي بروتين.", en: "250g Angus Steak + Baked Potato + Quinoa Salad + Protein Smoothie." },
+                                price: "18,000",
+                                priceVal: 65,
+                                cal: 740,
+                                prot: "68g",
+                                carb: "65g",
+                                fat: "16g",
+                                img: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=500&q=80"
+                            }
                         ]
                     }
                 ]
@@ -384,12 +582,12 @@
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة لتستمتع بطعم رائع وجسم متناسق يومياً.",
                 deliveryTime: "التوصيل",
                 rating: "التقييم",
+                mainCategoriesTitle: "الأقسام الرئيسية",
                 addBtn: "إضافة للطلب",
                 macroCal: "سعرات",
                 macroProt: "بروتين",
                 macroCarb: "كارب",
                 macroFat: "دهون",
-                totalPrice: "السعر:",
                 cartTitle: "سلة الوجبات المختارة",
                 totalCalSummary: "مجموع السعرات الحرارية:",
                 deliveryFee: "رسوم التوصيل:",
@@ -405,7 +603,7 @@
                 catSeafood: "قسم الأسماك",
                 catSalads: "قسم السلطات",
                 catCombos: "الوجبات المتكاملة",
-                currency: "ر.س",
+                currency: "د.ع",
                 emptyCart: "السلة فارغة حالياً. أضف بعض الوجبات الشهية!"
             },
             en: {
@@ -418,12 +616,12 @@
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
                 deliveryTime: "Delivery",
                 rating: "Rating",
+                mainCategoriesTitle: "Main Categories",
                 addBtn: "Add to Order",
                 macroCal: "Calories",
                 macroProt: "Protein",
                 macroCarb: "Carbs",
                 macroFat: "Fats",
-                totalPrice: "Price:",
                 cartTitle: "Your Selected Items",
                 totalCalSummary: "Total Calories:",
                 deliveryFee: "Delivery Fee:",
@@ -439,13 +637,15 @@
                 catSeafood: "Seafood Section",
                 catSalads: "Salads Section",
                 catCombos: "Combo Meals",
-                currency: "SAR",
+                currency: "IQD",
                 emptyCart: "Your cart is empty right now. Add some delicious healthy meals!"
             }
         };
 
         let currentLang = "ar";
         let cart = [];
+        let activeMainCategoryId = "cat-meats";
+        let expandedDishIds = {}; // Track expanded state for each dish
 
         window.addEventListener('DOMContentLoaded', () => {
             renderApp();
@@ -453,7 +653,8 @@
 
         function renderApp() {
             renderI18nTexts();
-            renderMenuSections();
+            renderMainCategoriesGrid();
+            renderIsolatedCategoryView();
             updateCartUI();
         }
 
@@ -491,114 +692,180 @@
             });
         }
 
-        // Render Standalone Separate Sections with List Style Matching the Image
-        function renderMenuSections() {
-            const container = document.getElementById('menuCategoriesContainer');
+        // Render Horizontal Swipeable Square Category Cards (UNCHANGED UI)
+        function renderMainCategoriesGrid() {
+            const container = document.getElementById('mainCategoriesGrid');
             container.innerHTML = '';
-            const currency = i18nText[currentLang].currency;
 
             menuData.forEach(cat => {
-                const mainSection = document.createElement('section');
-                mainSection.id = cat.id;
-                mainSection.className = "space-y-6 bg-white rounded-3xl border border-brand-100 p-6 shadow-sm";
+                const isSelected = cat.id === activeMainCategoryId;
+                const card = document.createElement('div');
+                card.className = `snap-card min-w-[110px] w-[110px] sm:min-w-[130px] sm:w-[130px] bg-white border ${isSelected ? 'border-brand-600 ring-2 ring-brand-500/30 shadow-md' : 'border-brand-200/80'} rounded-2xl p-3 text-center cursor-pointer shadow-sm hover:shadow-md hover:border-brand-500 transition-all duration-300 flex flex-col items-center justify-between overflow-hidden aspect-square group shrink-0`;
+                card.onclick = () => selectMainCategory(cat.id);
 
-                // Main Category Header
-                let sectionHTML = `
-                    <div class="flex items-center gap-3 border-b border-brand-100 pb-4">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-xl shadow-md shadow-brand-600/30">
-                            <i class="fa-solid ${cat.icon}"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-black text-brand-950">${cat.title[currentLang]}</h3>
-                            <span class="text-xs text-gray-400">استعرض أشهى الأطباق الصحية لهذا القسم</span>
-                        </div>
+                card.innerHTML = `
+                    <div class="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition duration-300">
+                        <img src="${cat.bgImage}" class="w-full h-full object-cover" alt="bg">
+                    </div>
+                    <div class="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${isSelected ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-600'} group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300 flex items-center justify-center text-lg sm:text-xl shadow-inner">
+                        <i class="fa-solid ${cat.icon}"></i>
+                    </div>
+                    <div class="relative z-10 mt-1.5 w-full">
+                        <h4 class="font-bold text-[11px] sm:text-xs text-brand-950 group-hover:text-brand-600 transition-colors truncate">${cat.title[currentLang]}</h4>
+                        <span class="text-[9px] text-gray-400 block mt-0.5">${cat.subCategories.length} ${currentLang === 'ar' ? 'فروع' : 'Branches'}</span>
                     </div>
                 `;
-
-                // Render Sub-categories boxes (like the screenshot)
-                cat.subCategories.forEach(sub => {
-                    sectionHTML += `
-                        <div class="border-2 border-brand-300 rounded-3xl overflow-hidden shadow-sm bg-white my-4">
-                            <!-- SubCategory Banner Header -->
-                            <div class="bg-brand-600 text-white text-center py-3 px-4 font-black text-base tracking-wide shadow-inner">
-                                ${sub.title[currentLang]}
-                            </div>
-
-                            <!-- Dishes List -->
-                            <div class="divide-y divide-brand-100 p-3 space-y-2">
-                    `;
-
-                    sub.dishes.forEach(dish => {
-                        sectionHTML += `
-                            <div class="dish-container rounded-2xl transition-all duration-300 overflow-hidden bg-brand-50/40 hover:bg-brand-50 border border-transparent hover:border-brand-200">
-                                <!-- Clickable Header Row -->
-                                <div onclick="toggleDishExpand('${dish.id}')" class="flex items-center justify-between p-3 cursor-pointer select-none">
-                                    <span class="text-sm font-extrabold text-brand-900">${dish.price.toLocaleString()} <span class="text-[11px] font-normal text-gray-500">${currency}</span></span>
-                                    <span class="text-sm font-bold text-gray-800 hover:text-brand-700 transition">${dish.name[currentLang]}</span>
-                                </div>
-
-                                <!-- Expandable Rectangular Details Card -->
-                                <div id="expand-${dish.id}" class="hidden p-4 bg-white border-t border-brand-100 space-y-3 transition-all">
-                                    <div class="relative h-44 rounded-2xl overflow-hidden shadow-md">
-                                        <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
-                                        <div class="absolute top-2 right-2 bg-brand-900/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                                            <i class="fa-solid fa-fire text-amber-400 mr-1"></i> ${dish.cal} kcal
-                                        </div>
-                                    </div>
-                                    <p class="text-xs text-gray-600 leading-relaxed">${dish.desc[currentLang]}</p>
-                                    
-                                    <div class="grid grid-cols-3 gap-2 bg-brand-50 p-2.5 rounded-xl text-center text-xs font-bold text-brand-900">
-                                        <div>P: ${dish.prot}</div>
-                                        <div>C: ${dish.carb}</div>
-                                        <div>F: ${dish.fat}</div>
-                                    </div>
-
-                                    <button onclick="addToCartDirect('${dish.id}', '${dish.name[currentLang]}', ${dish.price}, ${dish.cal}, '${dish.img}')" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-2.5 rounded-xl text-xs font-bold shadow-md transition flex items-center justify-center gap-2">
-                                        <i class="fa-solid fa-plus"></i> ${i18nText[currentLang].addBtn} (${dish.price} ${currency})
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    });
-
-                    sectionHTML += `
-                            </div>
-                        </div>
-                    `;
-                });
-
-                mainSection.innerHTML = sectionHTML;
-                container.appendChild(mainSection);
+                container.appendChild(card);
             });
         }
 
-        function toggleDishExpand(dishId) {
-            const expandEl = document.getElementById(`expand-${dishId}`);
-            if (expandEl) {
-                expandEl.classList.toggle('hidden');
+        function selectMainCategory(id) {
+            activeMainCategoryId = id;
+            renderMainCategoriesGrid();
+            renderIsolatedCategoryView();
+            // Scroll smoothly to isolated view
+            document.getElementById('isolatedCategoryContainer').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Render Isolated Main Category with Horizontal 3D Sub-categories Carousel
+        function renderIsolatedCategoryView() {
+            const container = document.getElementById('isolatedCategoryContainer');
+            const cat = menuData.find(c => c.id === activeMainCategoryId) || menuData[0];
+
+            let subCategoriesHtml = '';
+            cat.subCategories.forEach((sub, subIdx) => {
+                subCategoriesHtml += `
+                    <div class="snap-card min-w-full sm:min-w-[550px] max-w-[650px] w-full bg-white rounded-3xl border-2 border-brand-300 p-6 shadow-xl card-3d-sub flex flex-col shrink-0">
+                        <!-- Subcategory Green Header Box (matching image style) -->
+                        <div class="bg-brand-700 text-white rounded-2xl py-3 px-6 text-center shadow-md mb-6">
+                            <h3 class="text-base sm:text-lg font-black tracking-wide">${sub.title[currentLang]}</h3>
+                        </div>
+
+                        <!-- Dishes List Container -->
+                        <div class="space-y-3 flex-1 overflow-y-auto max-h-[550px] pr-1 pl-1">
+                            ${sub.dishes.map(dish => createExpandableDishRowHTML(dish)).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="bg-gradient-to-br from-brand-50/50 to-white rounded-3xl border border-brand-200 p-4 sm:p-8 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between border-b border-brand-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl shadow-md shadow-brand-600/30">
+                                <i class="fa-solid ${cat.icon}"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-black text-brand-950">${cat.title[currentLang]}</h3>
+                                <span class="text-xs text-brand-600 font-semibold">${cat.subCategories.length} فروع فرعية - اسحب يميناً ويساراً &larr; &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="scrollSubCarousel(-1)" class="w-9 h-9 rounded-full bg-brand-100 hover:bg-brand-600 hover:text-white text-brand-800 flex items-center justify-center transition shadow-sm"><i class="fa-solid fa-chevron-right"></i></button>
+                            <button onclick="scrollSubCarousel(1)" class="w-9 h-9 rounded-full bg-brand-100 hover:bg-brand-600 hover:text-white text-brand-800 flex items-center justify-center transition shadow-sm"><i class="fa-solid fa-chevron-left"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Horizontal 3D Sub-categories Carousel -->
+                    <div class="perspective-1000 overflow-hidden py-4">
+                        <div id="subCarouselTrack" class="flex gap-6 overflow-x-auto no-scrollbar snap-x-mandatory px-2 py-2 items-start justify-start">
+                            ${subCategoriesHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function scrollSubCarousel(direction) {
+            const track = document.getElementById('subCarouselTrack');
+            if (track) {
+                const scrollAmount = 550 * direction;
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
         }
 
-        function addToCartDirect(id, name, price, cal, img) {
+        // Create Dish Row with slow rectangular expansion on click
+        function createExpandableDishRowHTML(dish) {
+            const isExpanded = !!expandedDishIds[dish.id];
+            const currency = i18nText[currentLang].currency;
+            const addBtnText = i18nText[currentLang].addBtn;
+
+            if (!isExpanded) {
+                // Collapsed state: Name on right, Price on left (matching user's image)
+                return `
+                    <div onclick="toggleDishExpansion('${dish.id}')" class="expandable-dish bg-brand-50/60 hover:bg-brand-100/80 border border-brand-200/80 rounded-2xl p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all">
+                        <span class="text-sm sm:text-base font-extrabold text-brand-950">${dish.name[currentLang]}</span>
+                        <span class="text-sm sm:text-base font-black text-brand-700 bg-white px-3 py-1 rounded-xl shadow-xs border border-brand-100">${dish.price} <span class="text-xs">${currency}</span></span>
+                    </div>
+                `;
+            } else {
+                // Expanded state: Rectangle card with image on left (in RTL), details & add button on right
+                return `
+                    <div class="expandable-dish bg-white border-2 border-brand-500 rounded-2xl p-4 shadow-lg space-y-4">
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                            <span class="text-sm sm:text-base font-extrabold text-brand-950">${dish.name[currentLang]}</span>
+                            <button onclick="toggleDishExpansion('${dish.id}')" class="text-gray-400 hover:text-red-500 text-xs px-2 py-1"><i class="fa-solid fa-xmark text-base"></i></button>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 items-center">
+                            <!-- Image on Left (in RTL layout) -->
+                            <div class="w-full sm:w-36 h-36 rounded-xl overflow-hidden bg-brand-50 shrink-0 shadow-md">
+                                <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
+                            </div>
+
+                            <!-- Details on Right -->
+                            <div class="flex-1 space-y-2 w-full text-right rtl:text-right ltr:text-left">
+                                <p class="text-xs text-gray-600 leading-relaxed">${dish.desc[currentLang]}</p>
+                                
+                                <div class="flex flex-wrap gap-2 text-[10px] font-semibold text-brand-800 bg-brand-50 p-2 rounded-xl border border-brand-100">
+                                    <span><i class="fa-solid fa-fire text-amber-500"></i> ${dish.cal} cal</span>
+                                    <span>P: ${dish.prot}</span>
+                                    <span>C: ${dish.carb}</span>
+                                    <span>F: ${dish.fat}</span>
+                                </div>
+
+                                <div class="flex items-center justify-between pt-2">
+                                    <span class="text-base font-black text-brand-700">${dish.price} <span class="text-xs">${currency}</span></span>
+                                    <button onclick="addToCartDirect('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md shadow-brand-600/30 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-cart-plus"></i> ${addBtnText}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function toggleDishExpansion(dishId) {
+            expandedDishIds[dishId] = !expandedDishIds[dishId];
+            renderIsolatedCategoryView();
+        }
+
+        function addToCartDirect(dishId) {
+            let selectedDish = null;
+            menuData.forEach(cat => {
+                cat.subCategories.forEach(sub => {
+                    const found = sub.dishes.find(d => d.id === dishId);
+                    if (found) selectedDish = found;
+                });
+            });
+
+            if (!selectedDish) return;
+
             const item = {
-                id: id + '_' + Date.now(),
-                name: name,
-                basePrice: price,
-                cal: cal,
-                customization: 'وجبة قياسية',
-                img: img
+                id: selectedDish.id + '_' + Date.now(),
+                name: selectedDish.name[currentLang],
+                basePrice: selectedDish.priceVal,
+                cal: selectedDish.cal,
+                customization: 'وجبة أساسية',
+                img: selectedDish.img
             };
 
             cart.push(item);
             updateCartUI();
             toggleCartModal();
-        }
-
-        function scrollToCategory(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
         }
 
         function toggleCartModal() {
@@ -664,12 +931,12 @@
             let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*%0A%0A`;
             let total = 0;
             cart.forEach((item, i) => {
-                msg += `${i+1}. *${item.name}* (${item.customization}) - ${item.basePrice} SAR%0A`;
+                msg += `${i+1}. *${item.name}* - ${item.basePrice} ${i18nText[currentLang].currency}%0A`;
                 total += item.basePrice;
             });
 
-            msg += `%0A*رسوم التوصيل:* 10 SAR`;
-            msg += `%0A*المجموع الكلي:* ${total + 10} SAR`;
+            msg += `%0A*رسوم التوصيل:* 10 ${i18nText[currentLang].currency}`;
+            msg += `%0A*المجموع الكلي:* ${total + 10} ${i18nText[currentLang].currency}`;
             msg += `%0A%0Aيرجى تأكيد الطلب وتحديد الموقع.`;
 
             window.open(`https://wa.me/966501234567?text=${msg}`, '_blank');
@@ -722,15 +989,11 @@
 
             matchedDishes.forEach(dish => {
                 resultsGrid.innerHTML += `
-                    <div class="bg-white p-3 rounded-2xl border border-brand-200 flex items-center justify-between gap-4">
-                        <img src="${dish.img}" class="w-14 h-14 rounded-xl object-cover" alt="dish">
+                    <div class="bg-white rounded-2xl border border-brand-200 p-4 shadow-sm flex items-center gap-4">
+                        <img src="${dish.img}" class="w-16 h-16 rounded-xl object-cover" alt="dish">
                         <div class="flex-1">
-                            <h4 class="font-bold text-xs text-gray-900">${dish.name[currentLang]}</h4>
-                            <p class="text-[11px] text-gray-500">${dish.desc[currentLang]}</p>
-                        </div>
-                        <div class="text-left">
-                            <span class="text-xs font-black text-brand-700 block">${dish.price} ${i18nText[currentLang].currency}</span>
-                            <button onclick="addToCartDirect('${dish.id}', '${dish.name[currentLang]}', ${dish.price}, ${dish.cal}, '${dish.img}')" class="mt-1 bg-brand-600 text-white px-3 py-1 rounded-lg text-[10px] font-bold">إضافة</button>
+                            <h5 class="font-bold text-sm text-gray-900">${dish.name[currentLang]}</h5>
+                            <span class="text-xs font-black text-brand-700">${dish.price} ${i18nText[currentLang].currency}</span>
                         </div>
                     </div>
                 `;
