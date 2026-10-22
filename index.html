@@ -56,8 +56,8 @@
         }
 
         .card-3d:hover {
-            transform: translateY(-8px) rotateX(4deg) rotateY(-3deg) scale(1.02);
-            box-shadow: 0 20px 30px -10px rgba(46, 147, 58, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+            transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+            box-shadow: 0 15px 25px -8px rgba(46, 147, 58, 0.2), 0 8px 10px -4px rgba(0, 0, 0, 0.04);
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -69,9 +69,9 @@
         }
 
         .glass-nav {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .bg-pattern {
@@ -99,13 +99,14 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
-    <!-- Top Compact Navigation Bar & Integrated Header -->
-    <header class="sticky top-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <!-- Unified Sticky Header with Integrated Main Categories -->
+    <header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
+        <!-- Top Navigation Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
             <!-- Brand Logo & Name -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="flex items-center gap-2.5 cursor-pointer shrink-0" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <div class="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/30 font-bold text-lg border-2 border-white">
-                    <i class="fa-solid font-bold fa-leaf text-sm"></i>
+                    <i class="fa-solid fa-leaf text-sm"></i>
                 </div>
                 <div>
                     <h1 class="text-base font-black tracking-tight text-brand-900 leading-none">
@@ -116,13 +117,13 @@
             </div>
 
             <!-- Search Bar (Desktop / Tablet) -->
-            <div class="hidden md:flex flex-1 max-w-sm mx-4 relative">
-                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-9 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
+            <div class="hidden md:flex flex-1 max-w-xs mx-3 relative">
+                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
                 <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2.5 text-brand-500 text-xs"></i>
             </div>
 
             <!-- Actions: Socials, Map, Language Toggle, Cart -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 shrink-0">
                 <!-- Location Button -->
                 <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-8 h-8 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
                     <i class="fa-solid fa-location-dot"></i>
@@ -134,13 +135,13 @@
                 </a>
 
                 <!-- Language Toggle Button -->
-                <button onclick="toggleLanguage()" id="langBtn" class="px-2.5 py-1 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1">
+                <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-1 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1">
                     <i class="fa-solid fa-globe text-brand-600 text-[10px]"></i>
                     <span id="langLabel">English</span>
                 </button>
 
                 <!-- Floating Cart Button -->
-                <button onclick="toggleCartModal()" class="relative px-3 py-1 rounded-full bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-1.5">
+                <button onclick="toggleCartModal()" class="relative px-3 py-1.5 rounded-full bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
                     <span id="cartBadge" class="bg-white text-brand-800 text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
@@ -148,8 +149,17 @@
             </div>
         </div>
 
+        <!-- Integrated Header Category Strip (Horizontal Scroll) -->
+        <div class="bg-brand-50/60 border-t border-brand-100/80 py-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 snap-x-mandatory" id="mainCategoriesGrid">
+                    <!-- Dynamic Category Chips Rendered Here -->
+                </div>
+            </div>
+        </div>
+
         <!-- Mobile Search Input Bar -->
-        <div class="px-4 pb-2.5 md:hidden">
+        <div class="px-4 py-2 md:hidden border-t border-brand-100/50 bg-white/50">
             <div class="relative w-full">
                 <input type="text" id="mobileSearchInput" onkeyup="handleSearchMobile()" placeholder="ابحث عن وجبتك المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
                 <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2 text-brand-500 text-[11px]"></i>
@@ -157,80 +167,65 @@
         </div>
     </header>
 
-    <!-- Compact Hero Banner Section -->
-    <section class="relative bg-brand-900 text-white overflow-hidden py-8">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Healthy Diet Background" class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-transparent"></div>
-        </div>
+    <!-- Main Content Container with safe top margin to prevent overlapping -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 md:pt-32 pb-12 flex-1 w-full space-y-8">
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-right rtl:sm:text-right">
-                <div class="w-20 h-20 rounded-full border-2 border-white shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
-                </div>
-                <div>
-                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
-                        <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
-                    </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
-                    <p class="text-brand-100 text-xs max-w-lg mt-1 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
-                </div>
+        <!-- Hero Banner Section -->
+        <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-lg py-6 px-6">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Healthy Diet Background" class="w-full h-full object-cover opacity-20">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-transparent"></div>
             </div>
 
-            <!-- Quick Stats -->
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 flex gap-4 text-xs text-center shrink-0">
-                <div>
-                    <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
-                    <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-right rtl:sm:text-right">
+                    <div class="w-16 h-16 rounded-full border-2 border-white shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <div>
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
+                            <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
+                        </span>
+                        <h2 class="text-lg sm:text-xl font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
+                        <p class="text-brand-100 text-xs max-w-lg mt-0.5 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
+                    </div>
                 </div>
-                <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
-                <div>
-                    <div class="text-brand-300 text-[10px]" data-i18n="rating">التقييم</div>
-                    <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-[10px]"></i> 4.9</div>
+
+                <!-- Quick Stats -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
+                    <div>
+                        <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
+                        <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
+                    </div>
+                    <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
+                    <div>
+                        <div class="text-brand-300 text-[10px]" data-i18n="rating">التقييم</div>
+                        <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-[10px]"></i> 4.9</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-10">
-
-        <!-- 2. Horizontal Scrolling Square Categories Container (Right below header) -->
-        <section class="bg-white border border-brand-100 rounded-3xl p-5 shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-base font-black text-brand-950 flex items-center gap-2" data-i18n="mainCategoriesTitle">
-                    <i class="fa-solid fa-utensils text-brand-600 text-sm"></i> الأقسام الرئيسية
-                </h3>
-                <span class="text-[11px] text-gray-400 font-medium">اسحب للتنقل أفقياً &larr; &rarr;</span>
-            </div>
-
-            <!-- Horizontal Swipeable Square Cards -->
-            <div class="flex gap-4 overflow-x-auto no-scrollbar py-2 px-1 snap-x-mandatory" id="mainCategoriesGrid">
-                <!-- Dynamically populated via JavaScript -->
             </div>
         </section>
 
         <!-- Search Results Filter View Alert (Hidden by default) -->
-        <div id="searchResultsSection" class="hidden mb-6 bg-brand-50 border border-brand-200 rounded-2xl p-6">
+        <div id="searchResultsSection" class="hidden bg-brand-50 border border-brand-200 rounded-2xl p-5">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
+                <h3 class="text-base font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
                 <button onclick="clearSearch()" class="text-xs text-red-600 hover:underline font-bold flex items-center gap-1">
                     <i class="fa-solid fa-xmark"></i> إلغاء البحث
                 </button>
             </div>
-            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
 
-        <!-- 3. Distinct Standalone Sections for Each Main Category -->
-        <div id="menuCategoriesContainer" class="space-y-12">
+        <!-- Distinct Standalone Sections for Each Main Category -->
+        <div id="menuCategoriesContainer" class="space-y-8">
             <!-- Rendered dynamically -->
         </div>
 
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-brand-950 text-white pt-10 pb-6 border-t border-brand-900 mt-16">
+    <footer class="bg-brand-950 text-white pt-10 pb-6 border-t border-brand-900 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-brand-900 text-xs">
                 <div class="space-y-2">
@@ -730,20 +725,13 @@
             ar: {
                 navTitle: "دايت فود",
                 navSubtitle: "Diet Food Restaurant",
-                searchPlaceholder: "ابحث عن وجبتك الصحية المفضلة...",
+                searchPlaceholder: "ابحث عن وجبتك...",
                 cartBtn: "السلة",
                 heroBadge: "نمط حياة صحي ولذيذ",
                 heroTitle: "مطعم دايت فود - Diet Food",
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة لتستمتع بطعم رائع وجسم متناسق يومياً.",
-                tag1: "سعرات محددة",
-                tag2: "بروتين عالي",
-                tag3: "100% عضوي وطازج",
-                workingHoursTitle: "ساعات العمل اليوم",
-                workingHours: "11:00 ص - 12:00 منتصف الليل",
                 deliveryTime: "التوصيل",
                 rating: "التقييم",
-                mainCategoriesTitle: "الأقسام الرئيسية",
-                mainCategoriesSubtitle: "اختر القسم لاستعراض الأطباق الصحية والتفرعات الخاصة بها",
                 addBtn: "إضافة",
                 macroCal: "سعرات",
                 macroProt: "بروتين",
@@ -775,20 +763,13 @@
             en: {
                 navTitle: "Diet Food",
                 navSubtitle: "Healthy Diet Restaurant",
-                searchPlaceholder: "Search for your favorite healthy meal...",
+                searchPlaceholder: "Search meals...",
                 cartBtn: "Cart",
                 heroBadge: "Healthy & Delicious Lifestyle",
                 heroTitle: "Diet Food Restaurant",
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
-                tag1: "Calorie Counted",
-                tag2: "High Protein",
-                tag3: "100% Fresh Organic",
-                workingHoursTitle: "Working Hours",
-                workingHours: "11:00 AM - 12:00 AM",
                 deliveryTime: "Delivery",
                 rating: "Rating",
-                mainCategoriesTitle: "Main Categories",
-                mainCategoriesSubtitle: "Select a category to explore sub-branches & healthy dishes",
                 addBtn: "Add",
                 macroCal: "Calories",
                 macroProt: "Protein",
@@ -829,7 +810,7 @@
 
         function renderApp() {
             renderI18nTexts();
-            renderMainCategoriesGrid();
+            renderMainCategoriesHeaderStrip();
             renderSubCategoriesSections();
             updateCartUI();
         }
@@ -868,29 +849,21 @@
             });
         }
 
-        // Render Horizontal Swipeable Square Category Cards
-        function renderMainCategoriesGrid() {
+        // Compact Strip Rendered inside Fixed Header
+        function renderMainCategoriesHeaderStrip() {
             const container = document.getElementById('mainCategoriesGrid');
             container.innerHTML = '';
 
             menuData.forEach(cat => {
-                const card = document.createElement('div');
-                card.className = "snap-card min-w-[110px] w-[110px] sm:min-w-[130px] sm:w-[130px] bg-white border border-brand-200/80 rounded-2xl p-3 text-center cursor-pointer shadow-sm hover:shadow-md hover:border-brand-500 transition-all duration-300 flex flex-col items-center justify-between overflow-hidden aspect-square group shrink-0";
-                card.onclick = () => scrollToCategory(cat.id);
+                const chip = document.createElement('button');
+                chip.className = "snap-card flex items-center gap-2 bg-white hover:bg-brand-600 hover:text-white text-brand-900 border border-brand-200/90 rounded-full px-3 py-1.5 transition-all duration-200 text-xs font-bold whitespace-nowrap shadow-sm shrink-0 group";
+                chip.onclick = () => scrollToCategory(cat.id);
 
-                card.innerHTML = `
-                    <div class="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition duration-300">
-                        <img src="${cat.bgImage}" class="w-full h-full object-cover" alt="bg">
-                    </div>
-                    <div class="relative z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand-50 group-hover:bg-brand-600 text-brand-600 group-hover:text-white transition-colors duration-300 flex items-center justify-center text-lg sm:text-xl shadow-inner">
-                        <i class="fa-solid ${cat.icon}"></i>
-                    </div>
-                    <div class="relative z-10 mt-1.5 w-full">
-                        <h4 class="font-bold text-[11px] sm:text-xs text-brand-950 group-hover:text-brand-600 transition-colors truncate">${cat.title[currentLang]}</h4>
-                        <span class="text-[9px] text-gray-400 block mt-0.5">${cat.subCategories.length} ${currentLang === 'ar' ? 'فروع' : 'Branches'}</span>
-                    </div>
+                chip.innerHTML = `
+                    <i class="fa-solid ${cat.icon} text-brand-600 group-hover:text-white text-xs transition"></i>
+                    <span>${cat.title[currentLang]}</span>
                 `;
-                container.appendChild(card);
+                container.appendChild(chip);
             });
         }
 
@@ -902,17 +875,17 @@
             menuData.forEach(cat => {
                 const section = document.createElement('section');
                 section.id = cat.id;
-                section.className = "scroll-mt-20 bg-white rounded-3xl border border-brand-100 p-5 sm:p-7 shadow-sm space-y-6";
+                section.className = "scroll-mt-36 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
 
                 // Section Main Header
                 let subHtml = `
-                    <div class="flex items-center gap-3 border-b border-brand-100 pb-4">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-xl shadow-md shadow-brand-600/30">
+                    <div class="flex items-center gap-3 border-b border-brand-100 pb-3">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md shadow-brand-600/30">
                             <i class="fa-solid ${cat.icon}"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-black text-brand-950">${cat.title[currentLang]}</h3>
-                            <span class="text-xs text-gray-400">استعرض أشهى الأطباق الصحية لهذا القسم</span>
+                            <h3 class="text-lg font-black text-brand-950">${cat.title[currentLang]}</h3>
+                            <span class="text-[11px] text-gray-400">استعرض أشهى الأطباق الصحية لهذا القسم</span>
                         </div>
                     </div>
                 `;
@@ -920,9 +893,9 @@
                 // Render Sub-Categories
                 cat.subCategories.forEach(sub => {
                     subHtml += `
-                        <div class="space-y-3 pt-2">
+                        <div class="space-y-3 pt-1">
                             <div class="flex items-center justify-between">
-                                <h4 class="text-sm font-extrabold text-brand-800 flex items-center gap-2">
+                                <h4 class="text-xs font-extrabold text-brand-800 flex items-center gap-2">
                                     <span class="w-2 h-2 rounded-full bg-brand-500 inline-block"></span>
                                     ${sub.title[currentLang]}
                                 </h4>
@@ -930,7 +903,7 @@
                             </div>
 
                             <div class="perspective-1000 relative">
-                                <div class="flex gap-4 overflow-x-auto no-scrollbar py-2 px-1 snap-x-mandatory">
+                                <div class="flex gap-3.5 overflow-x-auto no-scrollbar py-1 px-0.5 snap-x-mandatory">
                                     ${sub.dishes.map(dish => create3DDishCardHTML(dish)).join('')}
                                 </div>
                             </div>
@@ -948,16 +921,16 @@
             const addBtnText = i18nText[currentLang].addBtn;
 
             return `
-                <div class="snap-card min-w-[250px] sm:min-w-[270px] max-w-[270px] bg-white rounded-2xl border border-brand-100 shadow-sm card-3d flex flex-col justify-between overflow-hidden relative group">
+                <div class="snap-card min-w-[240px] sm:min-w-[260px] max-w-[260px] bg-white rounded-2xl border border-brand-100 shadow-sm card-3d flex flex-col justify-between overflow-hidden relative group">
                     <div>
-                        <div class="relative h-36 overflow-hidden bg-brand-50">
+                        <div class="relative h-32 overflow-hidden bg-brand-50">
                             <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-2.5 right-2.5 rtl:right-2.5 ltr:left-2.5 ltr:right-auto bg-brand-950/80 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md shadow">
+                            <div class="absolute top-2 right-2 rtl:right-2 ltr:left-2 ltr:right-auto bg-brand-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-md shadow">
                                 <i class="fa-solid fa-fire-flame-curved text-amber-400 mr-1"></i> ${dish.cal} cal
                             </div>
                         </div>
 
-                        <div class="p-3.5 space-y-1.5">
+                        <div class="p-3 space-y-1.5">
                             <h5 class="font-bold text-xs text-gray-900 group-hover:text-brand-600 transition truncate">${dish.name[currentLang]}</h5>
                             <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed h-7">${dish.desc[currentLang]}</p>
 
@@ -969,12 +942,12 @@
                         </div>
                     </div>
 
-                    <div class="p-3.5 pt-0 flex items-center justify-between border-t border-gray-50 mt-1">
+                    <div class="p-3 pt-0 flex items-center justify-between border-t border-gray-50 mt-1">
                         <div>
                             <span class="text-[10px] text-gray-400 block">${i18nText[currentLang].totalPrice}</span>
-                            <span class="text-sm font-black text-brand-700">${dish.price} <span class="text-[10px]">${currency}</span></span>
+                            <span class="text-xs font-black text-brand-700">${dish.price} <span class="text-[10px]">${currency}</span></span>
                         </div>
-                        <button onclick="openDishModal('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm shadow-brand-600/20 flex items-center gap-1">
+                        <button onclick="openDishModal('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-sm shadow-brand-600/20 flex items-center gap-1">
                             <i class="fa-solid fa-plus text-[10px]"></i> ${addBtnText}
                         </button>
                     </div>
