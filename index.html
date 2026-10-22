@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دايت فود - Diet Food | القائمة الصحية الرقمية</title>
+
+    <!-- Google Fonts: Tajawal & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f2fcf3',
+                            100: '#e1f8e4',
+                            200: '#c5f1cb',
+                            300: '#99e4a4',
+                            400: '#64ce73',
+                            500: '#3cb34c',
+                            600: '#2e933a',
+                            700: '#277431',
+                            800: '#235c2b',
+                            900: '#1e4c25',
+                            950: '#0b2911',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Montserrat', 'sans-serif'],
+                        en: ['Montserrat', 'Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom 3D Card Scroll & Perspective Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .card-3d {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(-3deg) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(46, 147, 58, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hide scrollbar for clean UI but keep scroll functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glassmorphism Header */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .bg-pattern {
+            background-color: #f7fdf8;
+            background-image: radial-gradient(#2e933a 0.5px, transparent 0.5px), radial-gradient(#2e933a 0.5px, #f7fdf8 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.03;
+        }
+
+        /* Custom Horizontal Scroll Snap */
+        .snap-x-mandatory {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-card {
+            scroll-snap-align: center;
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .badge-pulse {
+            animation: pulse-subtle 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Brand Logo & Name -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/30 font-bold text-xl border-2 border-white">
+                    <i class="fa-solid font-bold fa-leaf text-base"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-black tracking-tight text-brand-900 leading-none">
+                        <span data-i18n="navTitle">دايت فود</span>
+                    </h1>
+                    <span class="text-xs font-semibold text-brand-600 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Healthy Diet Food</span>
+                </div>
+            </div>
+
+            <!-- Search Bar (Desktop / Tablet) -->
+            <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
+                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/60 border border-brand-200 rounded-full py-2 px-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
+                <i class="fa-solid fa-magnifying-glass absolute right-3.5 rtl:right-3.5 ltr:left-3.5 ltr:right-auto top-3 text-brand-500 text-sm"></i>
+            </div>
+
+            <!-- Actions: Socials, Map, Language Toggle, Cart -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Location Button -->
+                <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-9 h-9 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center border border-brand-200">
+                    <i class="fa-solid fa-location-dot"></i>
+                </button>
+
+                <!-- Instagram Button -->
+                <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-9 h-9 rounded-full bg-brand-50 text-brand-700 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white transition flex items-center justify-center border border-brand-200">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+
+                <!-- Language Toggle Button -->
+                <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-globe text-brand-600"></i>
+                    <span id="langLabel">English</span>
+                </button>
+
+                <!-- Floating Cart Button -->
+                <button onclick="toggleCartModal()" class="relative px-3.5 py-1.5 rounded-full bg-brand-600 text-white font-bold text-sm shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
+                    <span id="cartBadge" class="bg-white text-brand-800 text-xs w-5 h-5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Input Bar -->
+        <div class="px-4 pb-3 md:hidden">
+            <div class="relative w-full">
+                <input type="text" id="mobileSearchInput" onkeyup="handleSearchMobile()" placeholder="ابحث عن وجبتك المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-2 px-9 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2.5 text-brand-500 text-xs"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="relative bg-brand-900 text-white overflow-hidden">
+        <!-- Cover Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1600&q=80" alt="Healthy Diet Background" class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 text-center md:text-right flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Restaurant Info & Branding -->
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <!-- Circular Logo -->
+                <div class="relative group">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white shadow-2xl overflow-hidden bg-white flex items-center justify-center p-1 badge-pulse">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=300&q=80" alt="Diet Food Logo" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <span class="absolute bottom-1 right-1 bg-brand-500 text-white p-1.5 rounded-full text-xs shadow" title="عضوي وصحي 100%">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+                </div>
+
+                <!-- Text Headings -->
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-xs font-semibold">
+                        <i class="fa-solid fa-seedling text-brand-400"></i>
+                        <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight" data-i18n="heroTitle">
+                        مطعم دايت فود - Diet Food
+                    </h2>
+                    <p class="text-brand-100 text-sm sm:text-base max-w-xl font-normal leading-relaxed" data-i18n="heroDescription">
+                        وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة لتستمتع بطعم رائع وجسم متناسق يومياً.
+                    </p>
+                    <div class="pt-2 flex flex-wrap justify-center md:justify-start gap-4 text-xs font-medium text-brand-200">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-fire-flame-curved text-amber-400"></i> <span data-i18n="tag1">سعرات محددة</span></span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-drumstick-bite text-emerald-400"></i> <span data-i18n="tag2">بروتين عالي</span></span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-leaf text-green-300"></i> <span data-i18n="tag3">100% عضوي وطازج</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Info Card -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 w-full md:w-auto min-w-[240px] text-center space-y-3">
+                <div class="text-xs text-brand-200 font-semibold uppercase tracking-wider" data-i18n="workingHoursTitle">ساعات العمل اليوم</div>
+                <div class="text-base font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-clock text-brand-400"></i>
+                    <span data-i18n="workingHours">11:00 ص - 12:00 منتصف الليل</span>
+                </div>
+                <hr class="border-white/10">
+                <div class="flex justify-around text-xs font-medium">
+                    <div>
+                        <div class="text-brand-300" data-i18n="deliveryTime">التوصيل</div>
+                        <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
+                    </div>
+                    <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
+                    <div>
+                        <div class="text-brand-300" data-i18n="rating">التقييم</div>
+                        <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-xs"></i> 4.9 (1.2k+)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
+
+        <!-- 1. Primary Categories Header Section (7 Main Square Cards Grid) -->
+        <section class="mb-14">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h3 class="text-2xl font-black text-brand-950 flex items-center gap-2" data-i18n="mainCategoriesTitle">
+                        <i class="fa-solid fa-utensils text-brand-600"></i>
+                        الأقسام الرئيسية
+                    </h3>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-1" data-i18n="mainCategoriesSubtitle">اختر القسم لاستعراض الأطباق الصحية والتفرعات الخاصة بها</p>
+                </div>
+            </div>
+
+            <!-- 7 Grid Square Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3.5 sm:gap-4" id="mainCategoriesGrid">
+                <!-- Javascript populated dynamically or pre-rendered for instant viewing -->
+            </div>
+        </section>
+
+        <!-- Search Results Filter View Alert (Hidden by default) -->
+        <div id="searchResultsSection" class="hidden mb-10 bg-brand-50 border border-brand-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
+                <button onclick="clearSearch()" class="text-xs text-red-600 hover:underline font-bold flex items-center gap-1">
+                    <i class="fa-solid fa-xmark"></i> إلغاء البحث
+                </button>
+            </div>
+            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+
+        <!-- 2. Sub-Categories Vertical Layout & Horizontal 3D Scrollable Dishes Cards -->
+        <div id="menuCategoriesContainer" class="space-y-16">
+            <!-- Dynamic Sections rendered via JavaScript for full localization support -->
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-950 text-white pt-12 pb-8 border-t border-brand-900 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-brand-900">
+                <!-- Col 1: About -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-leaf text-sm"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white" data-i18n="navTitle">دايت فود - Diet Food</h4>
+                    </div>
+                    <p class="text-xs text-brand-200 leading-relaxed" data-i18n="footerAbout">
+                        وجهتك الأولى للوجبات الصحية المتوازنة. نمط حياة صحي بدون الحرمان من النكهات اللذيذة. جميع الأطباق معتمدة من أخصائيي التغذية.
+                    </p>
+                </div>
+
+                <!-- Col 2: Fast Links -->
+                <div>
+                    <h5 class="text-sm font-bold text-brand-400 mb-3 uppercase tracking-wider" data-i18n="footerQuickLinks">روابط سريعة</h5>
+                    <ul class="space-y-2 text-xs text-brand-200">
+                        <li><a href="#" onclick="scrollToCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
+                        <li><a href="#" onclick="scrollToCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
+                        <li><a href="#" onclick="scrollToCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
+                        <li><a href="#" onclick="scrollToCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contact & Location -->
+                <div>
+                    <h5 class="text-sm font-bold text-brand-400 mb-3 uppercase tracking-wider" data-i18n="footerContact">التواصل والموقع</h5>
+                    <div class="space-y-2 text-xs text-brand-200">
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+966 50 123 4567</span></p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-500"></i> <span>info@dietfood.com</span></p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> <span data-i18n="locationAddress">شارع الصحة والجمال، الرياض، المملكة العربية السعودية</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright & Socials -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-300">
+                <p>&copy; 2026 دايت فود - جميع الحقوق محفوظة. Diet Food App.</p>
+                <div class="flex items-center gap-4 text-lg">
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODALS & OVERLAYS -->
+
+    <!-- Dish Customization & Add Modal -->
+    <div id="dishModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all border border-brand-100 max-h-[90vh] flex flex-col">
+            <!-- Modal Header Image -->
+            <div class="relative h-48 sm:h-56 bg-brand-100">
+                <img id="modalDishImage" src="" alt="Dish Image" class="w-full h-full object-cover">
+                <button onclick="closeDishModal()" class="absolute top-3 right-3 rtl:right-3 ltr:left-3 ltr:right-auto w-9 h-9 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div id="modalDishCalBadge" class="absolute bottom-3 right-3 rtl:right-3 ltr:left-3 ltr:right-auto bg-brand-900/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                </div>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto space-y-4 flex-1">
+                <div>
+                    <h3 id="modalDishName" class="text-xl font-black text-gray-900"></h3>
+                    <p id="modalDishDesc" class="text-xs text-gray-500 mt-1 leading-relaxed"></p>
+                </div>
+
+                <!-- Macros Breakdown -->
+                <div class="grid grid-cols-4 gap-2 bg-brand-50 p-3 rounded-2xl text-center border border-brand-100">
+                    <div>
+                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroCal">سعرات</span>
+                        <span id="macroCal" class="text-xs font-black text-brand-950"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroProt">بروتين</span>
+                        <span id="macroProt" class="text-xs font-black text-brand-950"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroCarb">كارب</span>
+                        <span id="macroCarb" class="text-xs font-black text-brand-950"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-brand-700 font-semibold" data-i18n="macroFat">دهون</span>
+                        <span id="macroFat" class="text-xs font-black text-brand-950"></span>
+                    </div>
+                </div>
+
+                <!-- Customization Options -->
+                <div class="space-y-3 pt-2">
+                    <h4 class="text-xs font-bold uppercase text-brand-800 tracking-wider" data-i18n="customizationTitle">تخصيص الوجبة</h4>
+                    
+                    <!-- Side / Base Selection -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1" data-i18n="selectBase">اختر الكارب الجانبي:</label>
+                        <select id="optionBase" class="w-full text-xs bg-gray-50 border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="ارز أبيض بستماتي">أرز أبيض بسمتي (Standard)</option>
+                            <option value="ارز بني صحي">أرز بني عضوي (+0 SAR)</option>
+                            <option value="بطاطس مهروسة">بطاطس مهروسة بالمواصفات الصحية (+3 SAR)</option>
+                            <option value="كينوا عضوي">كينوا (+5 SAR)</option>
+                            <option value="بدون كارب">بدون كارب (خضار سوتيه مضاعف)</option>
+                        </select>
+                    </div>
+
+                    <!-- Extra Protein -->
+                    <div class="flex items-center justify-between p-2.5 border border-gray-100 rounded-xl bg-gray-50">
+                        <span class="text-xs font-medium text-gray-700" data-i18n="extraProtein">إضافة 50 جم بروتين إضافي</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="optionExtraProtein" class="sr-only peer">
+                            <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer Button -->
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-4">
+                <div>
+                    <span class="block text-[10px] text-gray-400 font-semibold" data-i18n="totalPrice">الإجمالي</span>
+                    <span id="modalTotalPrice" class="text-lg font-black text-brand-700"></span>
+                </div>
+                <button onclick="confirmAddToCart()" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold py-3 px-6 rounded-2xl shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span data-i18n="confirmAddBtn">إضافة للطلب</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Shopping Cart Modal Sidebar -->
+    <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
+        <div class="absolute inset-y-0 right-0 rtl:right-0 ltr:left-0 ltr:right-auto max-w-md w-full bg-white shadow-2xl flex flex-col transform transition-transform">
+            <!-- Cart Header -->
+            <div class="p-4 sm:p-5 bg-brand-900 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-brand-400 text-lg"></i>
+                    <h3 class="font-bold text-base" data-i18n="cartTitle">سلة الوجبات المختارة</h3>
+                </div>
+                <button onclick="toggleCartModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cartItemsContainer" class="p-4 overflow-y-auto flex-1 space-y-3 divide-y divide-gray-100">
+                <!-- Cart items dynamically appended here -->
+            </div>
+
+            <!-- Cart Summary Footer -->
+            <div class="p-4 sm:p-5 bg-brand-50 border-t border-brand-100 space-y-3">
+                <div class="space-y-1.5 text-xs">
+                    <div class="flex justify-between text-gray-600">
+                        <span data-i18n="totalCalSummary">مجموع السعرات الحرارية:</span>
+                        <span id="cartTotalCalories" class="font-bold text-brand-900">0 سعرة</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span data-i18n="deliveryFee">رسوم التوصيل:</span>
+                        <span class="font-bold text-brand-900">10 SAR</span>
+                    </div>
+                    <div class="flex justify-between text-base font-black text-brand-950 pt-2 border-t border-brand-200">
+                        <span data-i18n="grandTotal">المجموع النهائي:</span>
+                        <span id="cartTotalPrice" class="text-brand-700">0 SAR</span>
+                    </div>
+                </div>
+
+                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span data-i18n="sendOrderWA">إرسال الطلب عبر الواتساب</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Google Map / Location Modal -->
+    <div id="mapModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-brand-950 flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-brand-600"></i>
+                    <span data-i18n="locationTitle">موقع مطعم دايت فود</span>
+                </h3>
+                <button onclick="closeMapModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-500" data-i18n="locationAddress">شارع الصحة والجمال، طريق الملك فهد، الرياض، المملكة العربية السعودية</p>
+
+            <!-- Map Mockup Container -->
+            <div class="w-full h-60 bg-gray-200 rounded-2xl overflow-hidden relative border border-gray-200 shadow-inner">
+                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzg5LjAiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="w-full block text-center bg-brand-50 hover:bg-brand-100 text-brand-800 text-xs font-bold py-2.5 rounded-xl border border-brand-200 transition">
+                <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC & APP ENGINE -->
+    <script>
+        // DATA STRUCTURE: MENU CATEGORIES, SUB-CATEGORIES & DISHES
+        const menuData = [
+            {
+                id: "cat-meats",
+                icon: "fa-drumstick-bite",
+                title: { ar: "قسم اللحوم", en: "Meat Section" },
+                bgImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-chicken",
+                        title: { ar: "تفرع الدجاج الصحّي", en: "Healthy Chicken Specials" },
+                        dishes: [
+                            {
+                                id: "d1",
+                                name: { ar: "صدر دجاج مشوي بالأعشاب", en: "Grilled Herb Chicken Breast" },
+                                desc: { ar: "صدور دجاج طرية متبلة بالأعشاب البرية وزيت الزيتون البكر مع أرز بسمتي وخضار.", en: "Tender chicken breast marinated in wild herbs & olive oil with basmati rice." },
+                                price: 34,
+                                cal: 380,
+                                prot: "42g",
+                                carb: "35g",
+                                fat: "6g",
+                                img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d2",
+                                name: { ar: "دجاج ترياكي دايت", en: "Diet Chicken Teriyaki" },
+                                desc: { ar: "شرائح دجاج مع صوص الترياكي الصحي الخالي من السكر وبذور السمسم.", en: "Sliced chicken with sugar-free teriyaki sauce and sesame seeds." },
+                                price: 36,
+                                cal: 410,
+                                prot: "40g",
+                                carb: "42g",
+                                fat: "7g",
+                                img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d3",
+                                name: { ar: "شيش طاووق صحي", en: "Healthy Shish Tawook" },
+                                desc: { ar: "مكعبات دجاج متبلة بالزبادي خفيف الدسم والبهارات العثمانية مشوية على الفحم.", en: "Grilled yogurt-marinated chicken skewers with light spices." },
+                                price: 38,
+                                cal: 395,
+                                prot: "44g",
+                                carb: "28g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    },
+                    {
+                        id: "sub-beef",
+                        title: { ar: "تفرع اللحم البقري الصافي", en: "Lean Beef Specials" },
+                        dishes: [
+                            {
+                                id: "d4",
+                                name: { ar: "ستيك بيف بلاك أنجوس", en: "Black Angus Lean Steak" },
+                                desc: { ar: "شريحة ستيك أنجوس صافية بدون دهون مع صوص الفطر الصحي وبطاطس مهروسة.", en: "Lean Angus steak with healthy mushroom sauce & mashed potatoes." },
+                                price: 48,
+                                cal: 460,
+                                prot: "48g",
+                                carb: "25g",
+                                fat: "12g",
+                                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d5",
+                                name: { ar: "كفتة لحم بالفرن", en: "Oven Baked Beef Kofta" },
+                                desc: { ar: "لحم بقري مفروم خالي من الدهون مع خضروات مشوية وأرز بني.", en: "Lean minced beef kofta baked with roasted veggies & brown rice." },
+                                price: 42,
+                                cal: 430,
+                                prot: "41g",
+                                carb: "32g",
+                                fat: "11g",
+                                img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-seafood",
+                icon: "fa-fish",
+                title: { ar: "قسم الأسماك", en: "Seafood Section" },
+                bgImage: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-fish",
+                        title: { ar: "تفرع الأسماك الطازجة", en: "Fresh Fish Choices" },
+                        dishes: [
+                            {
+                                id: "d6",
+                                name: { ar: "سلمون مشوي بالليمون", en: "Grilled Lemon Salmon" },
+                                desc: { ar: "فيليه سلمون نرويجي غني بأوميغا 3 مشوي بصلصة الليمون والشبت.", en: "Norwegian salmon fillet with lemon dill sauce & steamed quinoa." },
+                                price: 54,
+                                cal: 450,
+                                prot: "38g",
+                                carb: "18g",
+                                fat: "16g",
+                                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d7",
+                                name: { ar: "فيليه سي باس مشوي", en: "Grilled Sea Bass Fillet" },
+                                desc: { ar: "سمك سي باس طازج خفيف ومقرمش يقدم مع خضروات التبخير.", en: "Fresh sea bass fillet served with steamed garden vegetables." },
+                                price: 49,
+                                cal: 340,
+                                prot: "36g",
+                                carb: "12g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    },
+                    {
+                        id: "sub-kumpir",
+                        title: { ar: "تفرع سمك وكمبير صحي", en: "Seafood & Healthy Kumpir" },
+                        dishes: [
+                            {
+                                id: "d8",
+                                name: { ar: "كمبير الروبيان الصحي", en: "Healthy Shrimp Kumpir" },
+                                desc: { ar: "بطاطس مشوية بالفرن محشوة بالروبيان المشوي والجبن الدايت وخضار.", en: "Oven-baked potato stuffed with grilled shrimp & light cheese." },
+                                price: 44,
+                                cal: 420,
+                                prot: "32g",
+                                carb: "48g",
+                                fat: "7g",
+                                img: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d9",
+                                name: { ar: "روبيان مشوي بصوص الأعشاب", en: "Herb Grilled Shrimp" },
+                                desc: { ar: "جامبو روبيان مشوي بتتبيلة الثوم والليمون والأعشاب الطازجة.", en: "Jumbo shrimp grilled with garlic, lemon, and fresh herbs." },
+                                price: 52,
+                                cal: 310,
+                                prot: "35g",
+                                carb: "8g",
+                                fat: "5g",
+                                img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-salads",
+                icon: "fa-carrot",
+                title: { ar: "قسم السلطات", en: "Salads Section" },
+                bgImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-fresh-salads",
+                        title: { ar: "تفرع السلطات والبروتين", en: "Protein Salads" },
+                        dishes: [
+                            {
+                                id: "d10",
+                                name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" },
+                                desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي، الخيار، الطماطم وصوص الليمون.", en: "Organic quinoa with grilled chicken, avocado slices & lemon dressing." },
+                                price: 29,
+                                cal: 320,
+                                prot: "28g",
+                                carb: "26g",
+                                fat: "9g",
+                                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d11",
+                                name: { ar: "سلطة قيصر الدايت", en: "Diet Caesar Salad" },
+                                desc: { ar: "خس رومان طازج مع شرائح الدجاج المشوي ودرسنج قيصر لايت وخبز محمص.", en: "Romaine lettuce, grilled chicken, light caesar dressing & croutons." },
+                                price: 28,
+                                cal: 290,
+                                prot: "30g",
+                                carb: "14g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-sandwiches",
+                icon: "fa-burger",
+                title: { ar: "قسم الساندويتشات", en: "Healthy Sandwiches" },
+                bgImage: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-wraps",
+                        title: { ar: "تفرع بروتين راب وساندويتش", en: "Protein Wraps & Sandwiches" },
+                        dishes: [
+                            {
+                                id: "d12",
+                                name: { ar: "راب الدجاج بالبروتين", en: "High Protein Chicken Wrap" },
+                                desc: { ar: "خبز الشوفان المحمص المحشو بالدجاج المشوي، صوص الخردل، والخس.", en: "Oat wrap stuffed with grilled chicken, honey mustard & greens." },
+                                price: 26,
+                                cal: 360,
+                                prot: "34g",
+                                carb: "30g",
+                                fat: "7g",
+                                img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d13",
+                                name: { ar: "برجر دايت دجاج الشوفان", en: "Oat Chicken Diet Burger" },
+                                desc: { ar: "قرص دجاج صحي بخبز الشوفان الكامل مع جبن لايت وصوص خاص.", en: "Lean chicken patty in whole oat bun with light cheese & tomato." },
+                                price: 31,
+                                cal: 390,
+                                prot: "36g",
+                                carb: "32g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-drinks",
+                icon: "fa-glass-water",
+                title: { ar: "قسم المشروبات", en: "Drinks & Smoothies" },
+                bgImage: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-smoothies",
+                        title: { ar: "تفرع العصائر والسموذي", en: "Detox & Protein Smoothies" },
+                        dishes: [
+                            {
+                                id: "d14",
+                                name: { ar: "سموذي البروتين بالأفوكادو", en: "Avocado Protein Smoothie" },
+                                desc: { ar: "أفوكادو طازج مع واي بروتين وحليب اللوز وعسل عضوي.", en: "Fresh avocado, whey protein, almond milk & organic honey." },
+                                price: 22,
+                                cal: 240,
+                                prot: "20g",
+                                carb: "18g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d15",
+                                name: { ar: "عصير الديتوكس الأخضر", en: "Green Detox Juice" },
+                                desc: { ar: "تفاح أخضر، خيار، كرفس، زنجبيل، وليمون حارق للدهون.", en: "Green apple, cucumber, celery, ginger & lemon." },
+                                price: 18,
+                                cal: 95,
+                                prot: "2g",
+                                carb: "20g",
+                                fat: "0g",
+                                img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-desserts",
+                icon: "fa-ice-cream",
+                title: { ar: "قسم الحلويات الصحية", en: "Healthy Desserts" },
+                bgImage: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-sweets",
+                        title: { ar: "تفرع حلا بدون سكر", en: "Sugar-Free Sweets" },
+                        dishes: [
+                            {
+                                id: "d16",
+                                name: { ar: "تشيز كيك الشوفان بالفرولة", en: "Oat Strawberry Cheesecake" },
+                                desc: { ar: "تشيز كيك صحي بقاعدة الشوفان وجبن القريش الخفيف ومربى خالي من السكر.", en: "Healthy cheesecake with oat base, light cottage cheese & sugar-free jam." },
+                                price: 21,
+                                cal: 190,
+                                prot: "12g",
+                                carb: "18g",
+                                fat: "5g",
+                                img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d17",
+                                name: { ar: "كيكة الشوكولاتة بالبروتين", en: "Protein Chocolate Cake" },
+                                desc: { ar: "كيكة شوكولاتة داكنة غنية بالبروتين بدون دقيق أبيض أو سكر مضاف.", en: "Dark chocolate protein cake with no white flour or added sugar." },
+                                price: 24,
+                                cal: 210,
+                                prot: "16g",
+                                carb: "19g",
+                                fat: "6g",
+                                img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-combos",
+                icon: "fa-box-tissue",
+                title: { ar: "قسم الوجبات المتكاملة", en: "Combo Meals" },
+                bgImage: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=400&q=80",
+                subCategories: [
+                    {
+                        id: "sub-box-combos",
+                        title: { ar: "تفرع بوكسات التنشيف والتضخيم", en: "Fitness Box Combos" },
+                        dishes: [
+                            {
+                                id: "d18",
+                                name: { ar: "بوكس التنشيف الشامل", en: "Shredding Combo Box" },
+                                desc: { ar: "صدر دجاج 200جم + أرز بسمتي 150جم + سلطة خضراء + عصير ديتوكس.", en: "200g Chicken breast + 150g Basmati rice + Salad + Detox Juice." },
+                                price: 49,
+                                cal: 520,
+                                prot: "52g",
+                                carb: "45g",
+                                fat: "8g",
+                                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d19",
+                                name: { ar: "بوكس البناء العضلي (تضخيم)", en: "Bulking Muscle Combo Box" },
+                                desc: { ar: "ستيك أنجوس 250جم + بطاطس وودجز بالفرن + سلطة كينوا + سموذي بروتين.", en: "250g Angus Steak + Baked Potato + Quinoa Salad + Protein Smoothie." },
+                                price: 65,
+                                cal: 740,
+                                prot: "68g",
+                                carb: "65g",
+                                fat: "16g",
+                                img: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // TRANSLATIONS TRANSLATION DICTIONARY
+        const i18nText = {
+            ar: {
+                navTitle: "دايت فود",
+                navSubtitle: "Diet Food Restaurant",
+                searchPlaceholder: "ابحث عن وجبتك الصحية المفضلة...",
+                cartBtn: "السلة",
+                heroBadge: "نمط حياة صحي ولذيذ",
+                heroTitle: "مطعم دايت فود - Diet Food",
+                heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة لتستمتع بطعم رائع وجسم متناسق يومياً.",
+                tag1: "سعرات محددة",
+                tag2: "بروتين عالي",
+                tag3: "100% عضوي وطازج",
+                workingHoursTitle: "ساعات العمل اليوم",
+                workingHours: "11:00 ص - 12:00 منتصف الليل",
+                deliveryTime: "التوصيل",
+                rating: "التقييم",
+                mainCategoriesTitle: "الأقسام الرئيسية",
+                mainCategoriesSubtitle: "اختر القسم لاستعراض الأطباق الصحية والتفرعات الخاصة بها",
+                addBtn: "إضافة",
+                macroCal: "سعرات",
+                macroProt: "بروتين",
+                macroCarb: "كارب",
+                macroFat: "دهون",
+                totalPrice: "الإجمالي",
+                customizationTitle: "تخصيص الوجبة",
+                selectBase: "اختر الكارب الجانبي:",
+                extraProtein: "إضافة 50 جم بروتين إضافي (+8 SAR)",
+                confirmAddBtn: "إضافة للطلب",
+                cartTitle: "سلة الوجبات المختارة",
+                totalCalSummary: "مجموع السعرات الحرارية:",
+                deliveryFee: "رسوم التوصيل:",
+                grandTotal: "المجموع النهائي:",
+                sendOrderWA: "إرسال الطلب عبر الواتساب",
+                locationTitle: "موقع مطعم دايت فود",
+                locationAddress: "شارع الصحة والجمال، الرياض، المملكة العربية السعودية",
+                openGoogleMaps: "فتح في خرائط جوجل",
+                footerAbout: "وجهتك الأولى للوجبات الصحية المتوازنة. نمط حياة صحي بدون الحرمان من النكهات اللذيذة.",
+                footerQuickLinks: "روابط سريعة",
+                footerContact: "التواصل والموقع",
+                catMeats: "قسم اللحوم",
+                catSeafood: "قسم الأسماك",
+                catSalads: "قسم السلطات",
+                catCombos: "الوجبات المتكاملة",
+                currency: "ر.س",
+                emptyCart: "السلة فارغة حالياً. أضف بعض الوجبات الشهية!"
+            },
+            en: {
+                navTitle: "Diet Food",
+                navSubtitle: "Healthy Diet Restaurant",
+                searchPlaceholder: "Search for your favorite healthy meal...",
+                cartBtn: "Cart",
+                heroBadge: "Healthy & Delicious Lifestyle",
+                heroTitle: "Diet Food Restaurant",
+                heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
+                tag1: "Calorie Counted",
+                tag2: "High Protein",
+                tag3: "100% Fresh Organic",
+                workingHoursTitle: "Working Hours",
+                workingHours: "11:00 AM - 12:00 AM",
+                deliveryTime: "Delivery",
+                rating: "Rating",
+                mainCategoriesTitle: "Main Categories",
+                mainCategoriesSubtitle: "Select a category to explore sub-branches & healthy dishes",
+                addBtn: "Add",
+                macroCal: "Calories",
+                macroProt: "Protein",
+                macroCarb: "Carbs",
+                macroFat: "Fats",
+                totalPrice: "Total",
+                customizationTitle: "Meal Customization",
+                selectBase: "Choose Side Carbs:",
+                extraProtein: "Add Extra 50g Protein (+8 SAR)",
+                confirmAddBtn: "Add To Order",
+                cartTitle: "Your Selected Items",
+                totalCalSummary: "Total Calories:",
+                deliveryFee: "Delivery Fee:",
+                grandTotal: "Grand Total:",
+                sendOrderWA: "Send Order via WhatsApp",
+                locationTitle: "Diet Food Location",
+                locationAddress: "Health & Beauty Street, Riyadh, Saudi Arabia",
+                openGoogleMaps: "Open in Google Maps",
+                footerAbout: "Your premier destination for balanced healthy meals without compromising on flavor.",
+                footerQuickLinks: "Quick Links",
+                footerContact: "Contact & Location",
+                catMeats: "Meat Section",
+                catSeafood: "Seafood Section",
+                catSalads: "Salads Section",
+                catCombos: "Combo Meals",
+                currency: "SAR",
+                emptyCart: "Your cart is empty right now. Add some delicious healthy meals!"
+            }
+        };
+
+        // GLOBAL APP STATE
+        let currentLang = "ar";
+        let cart = [];
+        let activeModalDish = null;
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            renderApp();
+        });
+
+        function renderApp() {
+            renderI18nTexts();
+            renderMainCategoriesGrid();
+            renderSubCategoriesSections();
+            updateCartUI();
+        }
+
+        // TOGGLE LANGUAGE
+        function toggleLanguage() {
+            currentLang = currentLang === "ar" ? "en" : "ar";
+            const htmlEl = document.documentElement;
+            
+            if (currentLang === "en") {
+                htmlEl.setAttribute("dir", "ltr");
+                htmlEl.setAttribute("lang", "en");
+                document.getElementById("langLabel").innerText = "العربية";
+            } else {
+                htmlEl.setAttribute("dir", "rtl");
+                htmlEl.setAttribute("lang", "ar");
+                document.getElementById("langLabel").innerText = "English";
+            }
+
+            renderApp();
+        }
+
+        function renderI18nTexts() {
+            const lang = i18nText[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (lang[key]) {
+                    el.innerText = lang[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (lang[key]) {
+                    el.placeholder = lang[key];
+                }
+            });
+        }
+
+        // RENDER 7 MAIN CATEGORY SQUARE CARDS
+        function renderMainCategoriesGrid() {
+            const container = document.getElementById('mainCategoriesGrid');
+            container.innerHTML = '';
+
+            menuData.forEach(cat => {
+                const card = document.createElement('div');
+                card.className = "group relative bg-white border border-brand-100 rounded-2xl p-4 text-center cursor-pointer shadow-sm hover:shadow-lg hover:border-brand-500 transition-all duration-300 flex flex-col items-center justify-between overflow-hidden aspect-square";
+                card.onclick = () => scrollToCategory(cat.id);
+
+                card.innerHTML = `
+                    <div class="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition duration-300">
+                        <img src="${cat.bgImage}" class="w-full h-full object-cover" alt="bg">
+                    </div>
+                    <div class="relative z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-brand-50 group-hover:bg-brand-600 text-brand-600 group-hover:text-white transition-colors duration-300 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
+                        <i class="fa-solid ${cat.icon}"></i>
+                    </div>
+                    <div class="relative z-10 mt-2">
+                        <h4 class="font-extrabold text-xs sm:text-sm text-brand-950 group-hover:text-brand-600 transition-colors">${cat.title[currentLang]}</h4>
+                        <span class="text-[10px] text-gray-400 font-medium block mt-0.5">${cat.subCategories.length} ${currentLang === 'ar' ? 'تفرعات' : 'Branches'}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // RENDER SECTIONS & 3D HORIZONTAL DISH CARDS
+        function renderSubCategoriesSections() {
+            const container = document.getElementById('menuCategoriesContainer');
+            container.innerHTML = '';
+
+            menuData.forEach(cat => {
+                const section = document.createElement('section');
+                section.id = cat.id;
+                section.className = "scroll-mt-24 space-y-8";
+
+                // Section Main Header Banner
+                let subHtml = `
+                    <div class="flex items-center gap-3 border-b border-brand-200 pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md">
+                            <i class="fa-solid ${cat.icon}"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-black text-brand-950">${cat.title[currentLang]}</h3>
+                        </div>
+                    </div>
+                `;
+
+                // Render Sub-Categories Separately (Vertical Branches)
+                cat.subCategories.forEach(sub => {
+                    subHtml += `
+                        <div class="space-y-4">
+                            <!-- Branch Title -->
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-base font-extrabold text-brand-800 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 inline-block"></span>
+                                    ${sub.title[currentLang]}
+                                </h4>
+                                <span class="text-xs text-gray-400 font-medium">مرر أفقياً لرؤية المزيد الأصناف &rarr;</span>
+                            </div>
+
+                            <!-- 3D Horizontal Scrollable Cards Container -->
+                            <div class="perspective-1000 relative">
+                                <div class="flex gap-5 overflow-x-auto no-scrollbar py-4 px-1 snap-x-mandatory">
+                                    ${sub.dishes.map(dish => create3DDishCardHTML(dish)).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                section.innerHTML = subHtml;
+                container.appendChild(section);
+            });
+        }
+
+        // CREATE 3D TILT DISH CARD HTML
+        function create3DDishCardHTML(dish) {
+            const currency = i18nText[currentLang].currency;
+            const addBtnText = i18nText[currentLang].addBtn;
+
+            return `
+                <div class="snap-card min-w-[260px] sm:min-w-[280px] max-w-[280px] bg-white rounded-3xl border border-brand-100/80 shadow-md card-3d flex flex-col justify-between overflow-hidden relative group">
+                    <div>
+                        <!-- Dish Image & Calorie Tag -->
+                        <div class="relative h-40 overflow-hidden bg-brand-50">
+                            <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-3 right-3 rtl:right-3 ltr:left-3 ltr:right-auto bg-brand-950/80 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md shadow">
+                                <i class="fa-solid fa-fire-flame-curved text-amber-400 mr-1"></i> ${dish.cal} cal
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-4 space-y-2">
+                            <h5 class="font-bold text-sm text-gray-900 group-hover:text-brand-600 transition line-clamp-1">${dish.name[currentLang]}</h5>
+                            <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed h-8">${dish.desc[currentLang]}</p>
+
+                            <!-- Mini Macros Pills -->
+                            <div class="flex justify-between items-center text-[10px] font-semibold text-brand-800 bg-brand-50/70 p-2 rounded-xl border border-brand-100/50">
+                                <span>P: ${dish.prot}</span>
+                                <span>C: ${dish.carb}</span>
+                                <span>F: ${dish.fat}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price & Action Row -->
+                    <div class="p-4 pt-0 flex items-center justify-between border-t border-gray-50 mt-2">
+                        <div>
+                            <span class="text-xs text-gray-400 block">${i18nText[currentLang].totalPrice}</span>
+                            <span class="text-base font-black text-brand-700">${dish.price} <span class="text-xs">${currency}</span></span>
+                        </div>
+                        <button onclick="openDishModal('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md shadow-brand-600/20 flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> ${addBtnText}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // SMOOTH SCROLL TO CATEGORY
+        function scrollToCategory(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // DISH MODAL CUSTOMIZATION HANDLERS
+        function openDishModal(dishId) {
+            // Find dish
+            let selectedDish = null;
+            menuData.forEach(cat => {
+                cat.subCategories.forEach(sub => {
+                    const found = sub.dishes.find(d => d.id === dishId);
+                    if (found) selectedDish = found;
+                });
+            });
+
+            if (!selectedDish) return;
+            activeModalDish = selectedDish;
+
+            document.getElementById('modalDishImage').src = selectedDish.img;
+            document.getElementById('modalDishName').innerText = selectedDish.name[currentLang];
+            document.getElementById('modalDishDesc').innerText = selectedDish.desc[currentLang];
+            document.getElementById('modalDishCalBadge').innerText = `${selectedDish.cal} kcal`;
+
+            document.getElementById('macroCal').innerText = `${selectedDish.cal}`;
+            document.getElementById('macroProt').innerText = selectedDish.prot;
+            document.getElementById('macroCarb').innerText = selectedDish.carb;
+            document.getElementById('macroFat').innerText = selectedDish.fat;
+
+            document.getElementById('modalTotalPrice').innerText = `${selectedDish.price} ${i18nText[currentLang].currency}`;
+            document.getElementById('optionExtraProtein').checked = false;
+
+            document.getElementById('dishModal').classList.remove('hidden');
+        }
+
+        function closeDishModal() {
+            document.getElementById('dishModal').classList.add('hidden');
+            activeModalDish = null;
+        }
+
+        function confirmAddToCart() {
+            if (!activeModalDish) return;
+
+            const baseChoice = document.getElementById('optionBase').value;
+            const extraProtein = document.getElementById('optionExtraProtein').checked;
+
+            let finalPrice = activeModalDish.price;
+            let addedCal = activeModalDish.cal;
+
+            if (extraProtein) {
+                finalPrice += 8;
+                addedCal += 60;
+            }
+
+            const item = {
+                id: activeModalDish.id + '_' + Date.now(),
+                name: activeModalDish.name[currentLang],
+                basePrice: finalPrice,
+                cal: addedCal,
+                customization: `${baseChoice} ${extraProtein ? ' + 50g Protein' : ''}`,
+                img: activeModalDish.img
+            };
+
+            cart.push(item);
+            updateCartUI();
+            closeDishModal();
+            toggleCartModal();
+        }
+
+        // CART UI & LOGIC
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartTotalCalories = document.getElementById('cartTotalCalories');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
+
+            cartBadge.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-brand-200"></i>
+                        <p class="text-xs font-semibold">${i18nText[currentLang].emptyCart}</p>
+                    </div>
+                `;
+                cartTotalCalories.innerText = `0 kcal`;
+                cartTotalPrice.innerText = `0 ${i18nText[currentLang].currency}`;
+                return;
+            }
+
+            let totalCal = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                totalCal += item.cal;
+                totalPrice += item.basePrice;
+
+                const cartRow = document.createElement('div');
+                cartRow.className = "pt-3 flex items-center justify-between gap-3";
+                cartRow.innerHTML = `
+                    <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover" alt="item">
+                    <div class="flex-1">
+                        <h6 class="text-xs font-bold text-gray-900 line-clamp-1">${item.name}</h6>
+                        <span class="text-[10px] text-gray-400 block">${item.customization}</span>
+                        <span class="text-xs font-black text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                cartItemsContainer.appendChild(cartRow);
+            });
+
+            cartTotalCalories.innerText = `${totalCal} kcal`;
+            cartTotalPrice.innerText = `${totalPrice + 10} ${i18nText[currentLang].currency}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+
+            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*%0A%0A`;
+            let total = 0;
+            cart.forEach((item, i) => {
+                msg += `${i+1}. *${item.name}* (${item.customization}) - ${item.basePrice} SAR%0A`;
+                total += item.basePrice;
+            });
+
+            msg += `%0A*رسوم التوصيل:* 10 SAR`;
+            msg += `%0A*المجموع الكلي:* ${total + 10} SAR`;
+            msg += `%0A%0Aيرجى تأكيد الطلب وتحديد الموقع.`;
+
+            window.open(`https://wa.me/966501234567?text=${msg}`, '_blank');
+        }
+
+        // MAP MODAL HANDLERS
+        function openMapModal() {
+            document.getElementById('mapModal').classList.remove('hidden');
+        }
+        function closeMapModal() {
+            document.getElementById('mapModal').classList.add('hidden');
+        }
+
+        // SEARCH FUNCTIONALITY
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            executeSearch(query);
+        }
+
+        function handleSearchMobile() {
+            const query = document.getElementById('mobileSearchInput').value.toLowerCase().trim();
+            executeSearch(query);
+        }
+
+        function executeSearch(query) {
+            const resultsSection = document.getElementById('searchResultsSection');
+            const resultsGrid = document.getElementById('searchResultsGrid');
+
+            if (!query) {
+                resultsSection.classList.add('hidden');
+                return;
+            }
+
+            const matchedDishes = [];
+            menuData.forEach(cat => {
+                cat.subCategories.forEach(sub => {
+                    sub.dishes.forEach(dish => {
+                        if (dish.name.ar.toLowerCase().includes(query) || dish.name.en.toLowerCase().includes(query) || dish.desc.ar.toLowerCase().includes(query)) {
+                            matchedDishes.push(dish);
+                        }
+                    });
+                });
+            });
+
+            resultsSection.classList.remove('hidden');
+            resultsGrid.innerHTML = '';
+
+            if (matchedDishes.length === 0) {
+                resultsGrid.innerHTML = `<p class="text-xs text-gray-500 col-span-full">لم يتم العثور على أطباق تطابق بحثك.</p>`;
+                return;
+            }
+
+            matchedDishes.forEach(dish => {
+                resultsGrid.innerHTML += create3DDishCardHTML(dish);
+            });
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            document.getElementById('searchResultsSection').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
