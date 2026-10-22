@@ -68,12 +68,6 @@
             scrollbar-width: none;
         }
 
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
         .bg-pattern {
             background-color: #f7fdf8;
             background-image: radial-gradient(#2e933a 0.5px, transparent 0.5px), radial-gradient(#2e933a 0.5px, #f7fdf8 0.5px);
@@ -99,93 +93,97 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased bg-pattern min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
-    <!-- Unified Fixed Header with 6 Main Categories (3x2 Grid) and Search Bar -->
-    <header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-brand-100 shadow-sm transition-all duration-300">
-        <!-- Top Navigation Bar -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-13 flex items-center justify-between gap-3">
-            <!-- Brand Logo & Name -->
-            <div class="flex items-center gap-2 cursor-pointer shrink-0" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/30 font-bold text-sm border-2 border-white">
-                    <i class="fa-solid fa-leaf text-xs"></i>
-                </div>
-                <div>
-                    <h1 class="text-sm font-black tracking-tight text-brand-900 leading-none">
-                        <span data-i18n="navTitle">دايت فود</span>
-                    </h1>
-                    <span class="text-[9px] font-semibold text-brand-600 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Healthy Diet Food</span>
-                </div>
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-8">
+
+        <!-- Unified Green Main Hero Box (يحتوي على كافة عناصر الهيدر، اللوجو، أدوات التحكم، الأقسام، وشريط البحث) -->
+        <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
+            <!-- Background Decoration -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Background" class="w-full h-full object-cover opacity-15">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-950/90 via-brand-900/95 to-brand-950"></div>
             </div>
 
-            <!-- Actions: Socials, Map, Language Toggle, Cart -->
-            <div class="flex items-center gap-1.5 shrink-0">
-                <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
-                    <i class="fa-solid fa-location-dot"></i>
-                </button>
-                <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7 h-7 rounded-full bg-brand-50 text-brand-700 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white transition flex items-center justify-center border border-brand-200 text-xs">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[10px] font-bold hover:bg-brand-200 transition border border-brand-300 flex items-center gap-1">
-                    <i class="fa-solid fa-globe text-brand-600 text-[9px]"></i>
-                    <span id="langLabel">English</span>
-                </button>
-                <button onclick="toggleCartModal()" class="relative px-2.5 py-1 rounded-full bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-600/30 hover:bg-brand-700 transition flex items-center gap-1">
-                    <i class="fa-solid fa-basket-shopping text-xs"></i>
-                    <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
-                    <span id="cartBadge" class="bg-white text-brand-800 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- 6 Main Categories Grid (3 top, 3 bottom) -->
-        <div class="px-4 py-1.5 bg-brand-50/70 border-t border-brand-100/70">
-            <div class="max-w-3xl mx-auto grid grid-cols-3 gap-1.5" id="headerCategoriesGrid">
-                <!-- Dynamically populated (6 main categories) -->
-            </div>
-        </div>
-
-        <!-- Search Bar Row Below Categories -->
-        <div class="px-4 py-2 border-t border-brand-100/70 bg-white">
-            <div class="max-w-3xl mx-auto relative w-full">
-                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-50/80 border border-brand-200 rounded-full py-1.5 px-8 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
-                <i class="fa-solid fa-magnifying-glass absolute right-3 rtl:right-3 ltr:left-3 ltr:right-auto top-2 text-brand-500 text-[11px]"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Container with safe top margin to prevent overlapping -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 sm:pt-48 pb-12 flex-1 w-full space-y-8">
-
-        <!-- Hero Banner Section -->
-        <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-lg py-6 px-6">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Healthy Diet Background" class="w-full h-full object-cover opacity-20">
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/90 to-transparent"></div>
-            </div>
-
-            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-right rtl:sm:text-right">
-                    <div class="w-16 h-16 rounded-full border-2 border-white shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
-                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
+            <div class="relative z-10 space-y-5">
+                <!-- 1. Top Action Row Inside Green Box (Logo, Socials, Language, Cart) -->
+                <div class="flex items-center justify-between gap-2 pb-3 border-b border-brand-800/80">
+                    <!-- Brand Logo & Title -->
+                    <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                        <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-sm font-black tracking-tight text-white leading-none">
+                                <span data-i18n="navTitle">دايت فود</span>
+                            </h1>
+                            <span class="text-[9px] font-semibold text-brand-300 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Diet Food Restaurant</span>
+                        </div>
                     </div>
-                    <div>
-                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
-                            <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
-                        </span>
-                        <h2 class="text-lg sm:text-xl font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
-                        <p class="text-brand-100 text-xs max-w-lg mt-0.5 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
+
+                    <!-- Actions: Map, Instagram, Lang, Cart -->
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </button>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-1 rounded-full bg-white/15 text-white text-[10px] font-bold hover:bg-white/25 transition border border-white/20 flex items-center gap-1">
+                            <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
+                            <span id="langLabel">English</span>
+                        </button>
+                        <button onclick="toggleCartModal()" class="relative px-2.5 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
+                            <i class="fa-solid fa-basket-shopping text-xs"></i>
+                            <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
+                            <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Quick Stats -->
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
-                    <div>
-                        <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
-                        <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
+                <!-- 2. Restaurant Profile & Quick Stats -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right rtl:sm:text-right">
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <div class="w-16 h-16 rounded-full border-2 border-white/30 shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
+                            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <div>
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
+                                <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
+                            </span>
+                            <h2 class="text-base sm:text-lg font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
+                            <p class="text-brand-200 text-xs max-w-lg mt-0.5 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
+                        </div>
                     </div>
-                    <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
-                    <div>
-                        <div class="text-brand-300 text-[10px]" data-i18n="rating">التقييم</div>
-                        <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-[10px]"></i> 4.9</div>
+
+                    <!-- Quick Stats -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
+                        <div>
+                            <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
+                            <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
+                        </div>
+                        <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
+                        <div>
+                            <div class="text-brand-300 text-[10px]" data-i18n="rating">التقييم</div>
+                            <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-[10px]"></i> 4.9</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. The 6 Main Categories Grid Inside Green Box (3 Top, 3 Bottom) -->
+                <div class="pt-2">
+                    <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية
+                    </h3>
+                    <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid">
+                        <!-- Dynamically populated (6 main categories) -->
+                    </div>
+                </div>
+
+                <!-- 4. Integrated Search Bar Inside Green Box -->
+                <div class="pt-1">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-9 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
+                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 rtl:right-3.5 ltr:left-3.5 ltr:right-auto top-2.5 text-brand-300 text-xs"></i>
                     </div>
                 </div>
             </div>
@@ -380,7 +378,7 @@
                 <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
             </a>
         </div>
-    </div>
+    </footer>
 
     <!-- JAVASCRIPT LOGIC & APP ENGINE -->
     <script>
@@ -389,7 +387,6 @@
                 id: "cat-meats",
                 icon: "fa-drumstick-bite",
                 title: { ar: "قسم اللحوم", en: "Meat Section" },
-                bgImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-chicken",
@@ -464,7 +461,6 @@
                 id: "cat-seafood",
                 icon: "fa-fish",
                 title: { ar: "قسم الأسماك", en: "Seafood Section" },
-                bgImage: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-fish",
@@ -528,7 +524,6 @@
                 id: "cat-salads",
                 icon: "fa-carrot",
                 title: { ar: "قسم السلطات", en: "Salads Section" },
-                bgImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-fresh-salads",
@@ -564,7 +559,6 @@
                 id: "cat-sandwiches",
                 icon: "fa-burger",
                 title: { ar: "قسم الساندويتشات", en: "Healthy Sandwiches" },
-                bgImage: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-wraps",
@@ -600,7 +594,6 @@
                 id: "cat-drinks",
                 icon: "fa-glass-water",
                 title: { ar: "قسم المشروبات", en: "Drinks & Smoothies" },
-                bgImage: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-smoothies",
@@ -636,7 +629,6 @@
                 id: "cat-desserts",
                 icon: "fa-ice-cream",
                 title: { ar: "قسم الحلويات الصحية", en: "Healthy Desserts" },
-                bgImage: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-sweets",
@@ -672,7 +664,6 @@
                 id: "cat-combos",
                 icon: "fa-box-tissue",
                 title: { ar: "قسم الوجبات المتكاملة", en: "Combo Meals" },
-                bgImage: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=400&q=80",
                 subCategories: [
                     {
                         id: "sub-box-combos",
@@ -714,7 +705,7 @@
                 cartBtn: "السلة",
                 heroBadge: "نمط حياة صحي ولذيذ",
                 heroTitle: "مطعم دايت فود - Diet Food",
-                heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة لتستمتع بطعم رائع وجسم متناسق يومياً.",
+                heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.",
                 deliveryTime: "التوصيل",
                 rating: "التقييم",
                 addBtn: "إضافة",
@@ -834,21 +825,20 @@
             });
         }
 
-        // Render 6 Main Categories inside Header Grid (3 top, 3 bottom)
+        // Render 6 Main Categories inside Green Box Grid (3 top, 3 bottom)
         function renderHeaderCategoriesGrid() {
             const container = document.getElementById('headerCategoriesGrid');
             if (!container) return;
             container.innerHTML = '';
 
-            // Take the first 6 main categories
             const mainSix = menuData.slice(0, 6);
             mainSix.forEach(cat => {
                 const btn = document.createElement('button');
-                btn.className = "flex items-center justify-center gap-1.5 bg-white hover:bg-brand-600 hover:text-white text-brand-900 border border-brand-200/90 rounded-xl py-1.5 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate group";
+                btn.className = "flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/20 active:bg-brand-500 text-white border border-white/15 rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate group backdrop-blur-sm";
                 btn.onclick = () => scrollToCategory(cat.id);
 
                 btn.innerHTML = `
-                    <i class="fa-solid ${cat.icon} text-brand-600 group-hover:text-white text-xs transition shrink-0"></i>
+                    <i class="fa-solid ${cat.icon} text-brand-300 group-hover:text-white text-xs transition shrink-0"></i>
                     <span class="truncate">${cat.title[currentLang]}</span>
                 `;
                 container.appendChild(btn);
@@ -863,7 +853,7 @@
             menuData.forEach(cat => {
                 const section = document.createElement('section');
                 section.id = cat.id;
-                section.className = "scroll-mt-48 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
+                section.className = "scroll-mt-6 bg-white rounded-3xl border border-brand-100 p-5 sm:p-6 shadow-sm space-y-5";
 
                 // Section Main Header
                 let subHtml = `
