@@ -92,7 +92,7 @@
         /* Header Background Animation Effect */
         @keyframes headerZoom {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.07); }
+            50% { transform: scale(1.06); }
         }
         .header-bg-effect {
             animation: headerZoom 18s infinite ease-in-out;
@@ -150,22 +150,26 @@
     <!-- Main Content Container -->
     <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6 relative z-10">
 
-        <!-- Unified Green Main Hero Box with Background Effect -->
-        <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
+        <!-- Unified Green Main Hero Box with Gradient-Faded Cover Image -->
+        <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
+            
+            <!-- Cover Image Layer with Dual Green Gradient Fades (Bottom to Top & Top Fade) -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Background" class="w-full h-full object-cover opacity-20 header-bg-effect">
-                <div class="absolute inset-0 bg-gradient-to-b from-brand-950/90 via-brand-900/90 to-brand-950/95"></div>
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1400&q=80" alt="Cover Header" class="w-full h-full object-cover header-bg-effect">
+                
+                <!-- Masking Gradient: Starts green at bottom, clear/visible in middle (profile area), fades green to top -->
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/35 to-brand-950/95"></div>
             </div>
 
             <div class="relative z-10 space-y-5">
-                <!-- Top Action Row -->
-                <div class="flex items-center justify-between gap-2 pb-3 border-b border-brand-800/80">
+                <!-- Top Action Row (شريط اللغة والمواقع) -->
+                <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/15 backdrop-blur-xs">
                     <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                         <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
                             <i class="fa-solid fa-leaf"></i>
                         </div>
                         <div>
-                            <h1 class="text-sm font-black tracking-tight text-white leading-none">
+                            <h1 class="text-sm font-black tracking-tight text-white leading-none drop-shadow-sm">
                                 <span data-i18n="navTitle">دايت فود</span>
                             </h1>
                             <span class="text-[9px] font-semibold text-brand-300 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Diet Food Restaurant</span>
@@ -173,17 +177,17 @@
                     </div>
 
                     <div class="flex items-center gap-1.5 shrink-0">
-                        <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
+                        <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                             <i class="fa-solid fa-location-dot"></i>
                         </button>
-                        <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <button onclick="toggleLanguage()" id="langBtn" class="px-2 py-1 rounded-full bg-white/15 text-white text-[10px] font-bold hover:bg-white/25 transition border border-white/20 flex items-center gap-1">
+                        <button onclick="toggleLanguage()" id="langBtn" class="px-2.5 py-1 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
                             <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
                             <span id="langLabel">English</span>
                         </button>
-                        <button onclick="toggleCartModal()" class="relative px-2.5 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
+                        <button onclick="toggleCartModal()" class="relative px-3 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
                             <i class="fa-solid fa-basket-shopping text-xs"></i>
                             <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
                             <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
@@ -192,29 +196,17 @@
                 </div>
 
                 <!-- Restaurant Profile -->
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right rtl:sm:text-right">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right rtl:sm:text-right py-1">
                     <div class="flex flex-col sm:flex-row items-center gap-3">
-                        <div class="w-16 h-16 rounded-full border-2 border-white/30 shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
+                        <div class="w-16 h-16 rounded-full border-2 border-white/40 shadow-2xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
                             <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
                         </div>
                         <div>
-                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-800/80 border border-brand-600 text-brand-200 text-[10px] font-semibold mb-1">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-950/70 backdrop-blur-md border border-brand-500/50 text-brand-200 text-[10px] font-bold mb-1 shadow-xs">
                                 <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
                             </span>
-                            <h2 class="text-base sm:text-lg font-black text-white tracking-tight" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
-                            <p class="text-brand-200 text-xs max-w-lg mt-0.5 leading-relaxed" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
-                        <div>
-                            <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
-                            <div class="font-bold text-white mt-0.5">30-45 دقيقة</div>
-                        </div>
-                        <div class="border-r border-white/20 rtl:border-l rtl:border-r-0"></div>
-                        <div>
-                            <div class="text-brand-300 text-[10px]" data-i18n="rating">التقييم</div>
-                            <div class="font-bold text-amber-300 mt-0.5"><i class="fa-solid fa-star text-[10px]"></i> 4.9</div>
+                            <h2 class="text-base sm:text-xl font-black text-white tracking-tight drop-shadow-md" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
+                            <p class="text-brand-100 text-xs max-w-lg mt-0.5 leading-relaxed drop-shadow-xs" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
                         </div>
                     </div>
                 </div>
@@ -222,7 +214,7 @@
                 <!-- Main Categories Selector (13 Categories Layout) -->
                 <div class="pt-2">
                     <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية (13 قسماً)
+                        <i class="fa-solid fa-layer-group text-brand-400"></i> القوائم الرئيسية (13 قسماً)
                     </h3>
                     <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid"></div>
                 </div>
@@ -230,7 +222,7 @@
                 <!-- Search Input with Microphone Feature -->
                 <div class="pt-1">
                     <div class="relative w-full flex items-center">
-                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-10 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-950/80 backdrop-blur-md border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-10 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950 transition shadow-inner">
                         <i class="fa-solid fa-magnifying-glass absolute right-3.5 text-brand-300 text-xs pointer-events-none"></i>
                         <button onclick="startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-3.5 text-brand-300 hover:text-white hover:scale-110 transition text-xs p-1">
                             <i class="fa-solid fa-microphone text-sm"></i>
@@ -651,8 +643,6 @@
                 heroBadge: "نمط حياة صحي ولذيذ",
                 heroTitle: "مطعم دايت فود - Diet Food",
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.",
-                deliveryTime: "التوصيل",
-                rating: "التقييم",
                 addBtn: "اضافه",
                 totalPrice: "الإجمالي",
                 cartTitle: "سلة الوجبات المختارة",
@@ -677,8 +667,6 @@
                 heroBadge: "Healthy & Delicious Lifestyle",
                 heroTitle: "Diet Food Restaurant",
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
-                deliveryTime: "Delivery",
-                rating: "Rating",
                 addBtn: "Add",
                 totalPrice: "Total",
                 cartTitle: "Your Selected Items",
@@ -762,7 +750,7 @@
                 } ${
                     isActive 
                     ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30 scale-[1.02]" 
-                    : "bg-white/10 hover:bg-white/20 hover:scale-[1.02] text-white/90 border-white/15"
+                    : "bg-brand-950/60 hover:bg-brand-900 text-white/90 border-white/15"
                 }`;
                 btn.onclick = () => selectCategory(cat.id);
 
@@ -826,7 +814,6 @@
             container.appendChild(section);
         }
 
-        /* Strictly Horizontal Expand Layout for Mobile & Desktop */
         function createResponsiveHorizontalCardHTML(dish) {
             const currency = i18nText[currentLang].currency;
 
@@ -1064,7 +1051,6 @@
             document.getElementById('searchResultsSection').classList.add('hidden');
         }
 
-        /* Voice Search Feature Using Web Speech API */
         function startVoiceSearch() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
