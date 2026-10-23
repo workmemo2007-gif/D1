@@ -37,8 +37,8 @@
                         },
                         gold: {
                             400: '#fbbf24',
-                            500: '#d97706',
-                            600: '#b45309'
+                            500: '#f59e0b',
+                            600: '#d97706'
                         }
                     },
                     fontFamily: {
@@ -59,7 +59,7 @@
             scrollbar-width: none;
         }
 
-        /* Gold Food Pattern Dynamic Background */
+        /* Gold Food Pattern Background */
         .bg-gold-food-pattern {
             background-color: #faf9f5;
             background-image: radial-gradient(rgba(217, 119, 6, 0.12) 1px, transparent 1px), radial-gradient(rgba(217, 119, 6, 0.08) 1px, #faf9f5 1px);
@@ -69,31 +69,31 @@
 
         /* Pure Glassmorphism Styling */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.7);
-            border-color: rgba(217, 119, 6, 0.35);
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(245, 158, 11, 0.4);
         }
 
-        /* Smooth Accordion Transition */
+        /* Smooth Accordion Grid Transition */
         .accordion-content {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease-in-out;
+            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
             opacity: 0;
         }
 
@@ -142,9 +142,8 @@
             </div>
 
             <div class="relative z-10 space-y-5">
-                <!-- 1. Top Action Row (Logo, Socials, Language, Cart) -->
+                <!-- Top Action Row -->
                 <div class="flex items-center justify-between gap-2 pb-3 border-b border-brand-800/80">
-                    <!-- Brand Logo & Title -->
                     <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                         <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
                             <i class="fa-solid fa-leaf"></i>
@@ -157,7 +156,6 @@
                         </div>
                     </div>
 
-                    <!-- Actions -->
                     <div class="flex items-center gap-1.5 shrink-0">
                         <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center border border-white/10 text-xs">
                             <i class="fa-solid fa-location-dot"></i>
@@ -177,7 +175,7 @@
                     </div>
                 </div>
 
-                <!-- 2. Restaurant Profile & Quick Stats -->
+                <!-- Restaurant Profile -->
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right rtl:sm:text-right">
                     <div class="flex flex-col sm:flex-row items-center gap-3">
                         <div class="w-16 h-16 rounded-full border-2 border-white/30 shadow-xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
@@ -192,7 +190,6 @@
                         </div>
                     </div>
 
-                    <!-- Quick Stats -->
                     <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-2.5 flex gap-4 text-xs text-center shrink-0">
                         <div>
                             <div class="text-brand-300 text-[10px]" data-i18n="deliveryTime">التوصيل</div>
@@ -206,17 +203,15 @@
                     </div>
                 </div>
 
-                <!-- 3. The 6 Main Categories Navigation Grid -->
+                <!-- Main Categories Selector -->
                 <div class="pt-2">
                     <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
                         <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية
                     </h3>
-                    <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid">
-                        <!-- Dynamically populated main categories buttons -->
-                    </div>
+                    <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid"></div>
                 </div>
 
-                <!-- 4. Integrated Search Bar -->
+                <!-- Search Input -->
                 <div class="pt-1">
                     <div class="relative w-full">
                         <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-9 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
@@ -237,10 +232,8 @@
             <div id="searchResultsGrid" class="space-y-2"></div>
         </div>
 
-        <!-- Isolated Active Category Container (Glassmorphism Styled) -->
-        <div id="isolatedCategoryContainer" class="space-y-6">
-            <!-- Rendered dynamically -->
-        </div>
+        <!-- Isolated Active Category Container -->
+        <div id="isolatedCategoryContainer" class="space-y-6"></div>
 
     </main>
 
@@ -289,7 +282,7 @@
 
     <!-- Shopping Cart Modal Sidebar -->
     <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
-        <div class="absolute inset-y-0 right-0 rtl:right-0 ltr:left-0 ltr:right-auto max-w-md w-full bg-white/90 backdrop-blur-xl shadow-2xl flex flex-col transform transition-transform border-l border-white/50">
+        <div class="absolute inset-y-0 right-0 rtl:right-0 ltr:left-0 ltr:right-auto max-w-md w-full bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col transform transition-transform border-l border-white/50">
             <div class="p-4 sm:p-5 bg-brand-900 text-white flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-basket-shopping text-brand-400 text-lg"></i>
@@ -338,7 +331,7 @@
             </div>
             <p class="text-xs text-gray-500" data-i18n="locationAddress">شارع الصحة والجمال، طريق الملك فهد، الرياض، المملكة العربية السعودية</p>
             <div class="w-full h-60 bg-gray-200 rounded-2xl overflow-hidden relative border border-gray-200 shadow-inner">
-                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzg5LjAiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa" allowfullscreen="" loading="lazy"></iframe>
+                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzg5LjAiTiA0NsKwNDAnMzElevenE!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <a href="https://maps.google.com" target="_blank" rel="noopener" class="w-full block text-center bg-brand-50 hover:bg-brand-100 text-brand-800 text-xs font-bold py-2.5 rounded-xl border border-brand-200 transition">
                 <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
@@ -640,15 +633,12 @@
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.",
                 deliveryTime: "التوصيل",
                 rating: "التقييم",
-                addBtn: "إضافة للطلب",
+                addBtn: "اضافه",
                 macroCal: "سعرات",
                 macroProt: "بروتين",
                 macroCarb: "كارب",
                 macroFat: "دهون",
                 totalPrice: "الإجمالي",
-                customizationTitle: "تخصيص الوجبة",
-                selectBase: "اختر الكارب الجانبي:",
-                extraProtein: "إضافة 50 جم بروتين إضافي (+8 ر.س)",
                 cartTitle: "سلة الوجبات المختارة",
                 totalCalSummary: "مجموع السعرات الحرارية:",
                 deliveryFee: "رسوم التوصيل:",
@@ -677,15 +667,12 @@
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
                 deliveryTime: "Delivery",
                 rating: "Rating",
-                addBtn: "Add to Order",
+                addBtn: "Add",
                 macroCal: "Calories",
                 macroProt: "Protein",
                 macroCarb: "Carbs",
                 macroFat: "Fats",
                 totalPrice: "Total",
-                customizationTitle: "Meal Customization",
-                selectBase: "Choose Side Carbs:",
-                extraProtein: "Add Extra 50g Protein (+8 SAR)",
                 cartTitle: "Your Selected Items",
                 totalCalSummary: "Total Calories:",
                 deliveryFee: "Delivery Fee:",
@@ -802,7 +789,7 @@
                     </div>
                     <div>
                         <h3 class="text-sm font-extrabold text-brand-950">${currentCat.title[currentLang]}</h3>
-                        <span class="text-[10px] text-gray-500">انقر على أي طبق لاستعراض تفاصيله بوضع المستطيل الأفقي</span>
+                        <span class="text-[10px] text-gray-500">انقر على الطبق لفتحه وفق النمط المصمم</span>
                     </div>
                 </div>
             `;
@@ -815,9 +802,8 @@
                             ${sub.title[currentLang]}
                         </h4>
 
-                        <!-- Vertical List of Glassmorphism Dish Bars -->
                         <div class="space-y-2">
-                            ${sub.dishes.map(dish => createHorizontalRectangleDishBarHTML(dish)).join('')}
+                            ${sub.dishes.map(dish => createCustomImageMatchedCardHTML(dish)).join('')}
                         </div>
                     </div>
                 `;
@@ -827,78 +813,73 @@
             container.appendChild(section);
         }
 
-        /* Create Glassmorphism Dish Bar with Clear Titles (60% Clarity) & Pure Horizontal Layout (Image Left / Info Right) */
-        function createHorizontalRectangleDishBarHTML(dish) {
+        /* Matches Image Design Perfectly: Name & Description & Green Add Button on Right, Image with Golden Frame & Price Banner on Left */
+        function createCustomImageMatchedCardHTML(dish) {
             const currency = i18nText[currentLang].currency;
 
             return `
-                <div id="accordion-${dish.id}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs">
+                <div id="accordion-${dish.id}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
                     
-                    <!-- Dish Bar Header with 60% Clear Font Weight (font-medium text-xs sm:text-sm) -->
-                    <div onclick="toggleAccordion('${dish.id}')" class="px-3.5 py-2.5 sm:px-4 sm:py-3 flex items-center justify-between cursor-pointer select-none">
+                    <!-- Header Bar (Name + Price Badge) -->
+                    <div onclick="toggleAccordion('${dish.id}')" class="px-4 py-2.5 flex items-center justify-between cursor-pointer select-none">
                         <div class="flex items-center gap-2.5">
                             <span class="w-2 h-2 rounded-full bg-brand-500/80 shrink-0"></span>
-                            <!-- 60% Visually Clear Dish Title -->
-                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90 tracking-normal">${dish.name[currentLang]}</span>
+                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90">${dish.name[currentLang]}</span>
                         </div>
                         <div class="flex items-center gap-2.5 shrink-0">
-                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2.5 py-0.5 rounded-lg border border-white/80 shadow-2xs">${dish.price} ${currency}</span>
+                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2.5 py-0.5 rounded-lg border border-white/80">${dish.price} ${currency}</span>
                             <i class="fa-solid fa-chevron-down text-brand-700 text-xs transition-transform duration-400 accordion-chevron"></i>
                         </div>
                     </div>
 
-                    <!-- Pure Horizontal Expansion (Rectangle Layout: Image on Left / Info on Right) -->
+                    <!-- Open Layout Exactly Matching Uploaded Mockup Layout -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
-                            <div class="p-3 sm:p-4 border-t border-white/50 bg-white/50 backdrop-blur-md">
+                            <div class="p-4 sm:p-5 border-t border-white/60 bg-white/60 backdrop-blur-md">
                                 
-                                <!-- Horizontal Flex/Grid Layout -->
-                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch">
+                                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
                                     
-                                    <!-- Dish Details Block on RIGHT (Order First in RTL) -->
-                                    <div class="flex-1 flex flex-col justify-between space-y-2.5 text-right rtl:text-right ltr:text-left order-2 sm:order-1">
-                                        <div>
-                                            <h5 class="font-extrabold text-xs sm:text-sm text-gray-900">${dish.name[currentLang]}</h5>
-                                            <p class="text-[11px] text-gray-600 mt-1 leading-relaxed">${dish.desc[currentLang]}</p>
+                                    <!-- RIGHT SIDE: Dish Name, Description, and Green Pill Button -->
+                                    <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between h-full space-y-4 w-full">
+                                        <div class="space-y-2">
+                                            <!-- Very Big Clear Dish Title -->
+                                            <h4 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight leading-tight">${dish.name[currentLang]}</h4>
                                             
-                                            <!-- Macros Stats Row -->
-                                            <div class="flex items-center justify-around mt-2.5 text-[10px] font-bold text-brand-900 bg-white/60 p-1.5 rounded-xl border border-white/80">
-                                                <span><span class="text-brand-600 font-semibold">${i18nText[currentLang].macroCal}:</span> ${dish.cal}</span>
-                                                <span><span class="text-brand-600 font-semibold">${i18nText[currentLang].macroProt}:</span> ${dish.prot}</span>
-                                                <span><span class="text-brand-600 font-semibold">${i18nText[currentLang].macroCarb}:</span> ${dish.carb}</span>
-                                                <span><span class="text-brand-600 font-semibold">${i18nText[currentLang].macroFat}:</span> ${dish.fat}</span>
-                                            </div>
+                                            <!-- Clear Subtitle Description -->
+                                            <p class="text-base sm:text-lg text-gray-700 font-normal leading-relaxed opacity-90">${dish.desc[currentLang]}</p>
                                         </div>
 
-                                        <!-- Options & Action Button -->
-                                        <div class="space-y-2 pt-1">
-                                            <div class="flex gap-2">
-                                                <select id="base-${dish.id}" class="w-full text-xs bg-white/80 border border-white/90 rounded-xl p-2 focus:ring-1 focus:ring-brand-500 focus:outline-none shadow-2xs">
+                                        <!-- Customization & Green "اضافه" Button Exactly like Image -->
+                                        <div class="pt-2 space-y-3">
+                                            <div class="max-w-xs">
+                                                <select id="base-${dish.id}" class="w-full text-xs bg-white/90 border border-brand-200/60 rounded-xl p-2 focus:ring-1 focus:ring-brand-500 focus:outline-none shadow-2xs">
                                                     <option value="ارز أبيض بستماتي">أرز أبيض بسمتي (Standard)</option>
                                                     <option value="ارز بني صحي">أرز بني عضوي (+0 SAR)</option>
                                                     <option value="بطاطس مهروسة">بطاطس مهروسة (+3 SAR)</option>
                                                     <option value="كينوا عضوي">كينوا (+5 SAR)</option>
                                                     <option value="بدون كارب">بدون كارب (خضار سوتيه)</option>
                                                 </select>
-                                                
-                                                <button onclick="addDishToCartDirect('${dish.id}')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold py-2 px-3.5 rounded-xl text-xs shadow-sm transition shrink-0 flex items-center gap-1.5">
-                                                    <i class="fa-solid fa-plus text-[10px]"></i> ${i18nText[currentLang].addBtn}
+                                            </div>
+
+                                            <div class="flex items-center gap-3">
+                                                <button onclick="addDishToCartDirect('${dish.id}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-base sm:text-lg px-8 py-2.5 rounded-2xl shadow-md transition-all duration-200">
+                                                    ${i18nText[currentLang].addBtn}
                                                 </button>
                                             </div>
-
-                                            <div class="flex items-center justify-between p-1.5 px-2.5 border border-white/80 rounded-xl bg-white/50 text-[10px]">
-                                                <span class="text-gray-700 font-medium">${i18nText[currentLang].extraProtein}</span>
-                                                <input type="checkbox" id="extra-${dish.id}" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500 h-4 w-4">
-                                            </div>
                                         </div>
-
                                     </div>
 
-                                    <!-- Image Block on LEFT (Order Second in RTL) -->
-                                    <div class="w-full sm:w-2/5 h-36 sm:h-auto min-h-[140px] rounded-2xl overflow-hidden relative border border-white/70 shrink-0 shadow-2xs order-1 sm:order-2">
-                                        <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
-                                        <div class="absolute top-2 right-2 rtl:right-2 ltr:left-2 ltr:right-auto bg-brand-950/80 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-sm">
-                                            <i class="fa-solid fa-fire-flame-curved text-amber-400 mr-0.5"></i> ${dish.cal} cal
+                                    <!-- LEFT SIDE: Dish Image with Golden Border + Gold Price Badge inside Image -->
+                                    <div class="w-full sm:w-1/2 md:w-5/12 shrink-0">
+                                        <div class="p-1 rounded-3xl bg-amber-400 border-2 border-amber-500/80 shadow-md relative overflow-hidden group">
+                                            <div class="w-full h-44 sm:h-52 rounded-2xl overflow-hidden relative">
+                                                <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
+                                                
+                                                <!-- Gold Price Tag inside Bottom Left of Image -->
+                                                <div class="absolute bottom-2.5 left-2.5 rtl:left-2.5 ltr:right-2.5 ltr:left-auto bg-amber-400/90 text-amber-950 font-black text-xs sm:text-sm px-4 py-1.5 rounded-xl shadow-lg border border-amber-300 backdrop-blur-xs">
+                                                    ${dish.price} ${currency}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -939,22 +920,13 @@
             if (!foundDish) return;
 
             const baseChoice = document.getElementById(`base-${dishId}`)?.value || 'أرز بسمتي';
-            const extraProtein = document.getElementById(`extra-${dishId}`)?.checked || false;
-
-            let finalPrice = foundDish.price;
-            let addedCal = foundDish.cal;
-
-            if (extraProtein) {
-                finalPrice += 8;
-                addedCal += 60;
-            }
 
             const item = {
                 id: foundDish.id + '_' + Date.now(),
                 name: foundDish.name[currentLang],
-                basePrice: finalPrice,
-                cal: addedCal,
-                customization: `${baseChoice} ${extraProtein ? ' + 50g Protein' : ''}`,
+                basePrice: foundDish.price,
+                cal: foundDish.cal,
+                customization: baseChoice,
                 img: foundDish.img
             };
 
@@ -1078,7 +1050,7 @@
             }
 
             matchedDishes.forEach(dish => {
-                resultsGrid.innerHTML += createHorizontalRectangleDishBarHTML(dish);
+                resultsGrid.innerHTML += createCustomImageMatchedCardHTML(dish);
             });
         }
 
