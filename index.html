@@ -130,6 +130,41 @@
         .badge-pulse {
             animation: pulse-subtle 3s infinite ease-in-out;
         }
+
+        /* Keyframes for Intro Welcome Screen (Fade & Slide Up) */
+        @keyframes slideUpFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(35px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideUpFadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-25px) scale(0.95);
+            }
+        }
+
+        .animate-welcome-in {
+            animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-welcome-out {
+            animation: slideUpFadeOut 0.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+        }
+
+        .animate-content-reveal {
+            animation: slideUpFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="bg-gold-food-pattern text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative">
@@ -151,7 +186,7 @@
     <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6 relative z-10">
 
         <!-- Unified Green Main Hero Box with Responsive Cover Images -->
-        <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
+        <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5 min-h-[360px] sm:min-h-[420px] flex flex-col justify-between">
             
             <!-- Cover Image Layer with Dual Green Gradient Fades & Responsive Images -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -165,40 +200,52 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/40 to-brand-950/95"></div>
             </div>
 
-            <div class="relative z-10 space-y-5">
-                <!-- Top Action Row (شريط اللغة والمواقع) -->
-                <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/15 backdrop-blur-xs">
-                    <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                        <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
-                            <i class="fa-solid fa-leaf"></i>
-                        </div>
-                        <div>
-                            <h1 class="text-sm font-black tracking-tight text-white leading-none drop-shadow-sm">
-                                <span data-i18n="navTitle">دايت فود</span>
-                            </h1>
-                            <span class="text-[9px] font-semibold text-brand-300 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Diet Food Restaurant</span>
-                        </div>
+            <!-- Top Action Row (شريط اللغة والمواقع) -->
+            <div class="relative z-20 flex items-center justify-between gap-2 pb-3 border-b border-white/15 backdrop-blur-xs">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
+                        <i class="fa-solid fa-leaf"></i>
                     </div>
-
-                    <div class="flex items-center gap-1.5 shrink-0">
-                        <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </button>
-                        <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <button onclick="toggleLanguage()" id="langBtn" class="px-2.5 py-1 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
-                            <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
-                            <span id="langLabel">English</span>
-                        </button>
-                        <button onclick="toggleCartModal()" class="relative px-3 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
-                            <i class="fa-solid fa-basket-shopping text-xs"></i>
-                            <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
-                            <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
-                        </button>
+                    <div>
+                        <h1 class="text-sm font-black tracking-tight text-white leading-none drop-shadow-sm">
+                            <span data-i18n="navTitle">دايت فود</span>
+                        </h1>
+                        <span class="text-[9px] font-semibold text-brand-300 tracking-wider uppercase block mt-0.5" data-i18n="navSubtitle">Diet Food Restaurant</span>
                     </div>
                 </div>
 
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </button>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <button onclick="toggleLanguage()" id="langBtn" class="px-2.5 py-1 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
+                        <span id="langLabel">English</span>
+                    </button>
+                    <button onclick="toggleCartModal()" class="relative px-3 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
+                        <i class="fa-solid fa-basket-shopping text-xs"></i>
+                        <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
+                        <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 1. Smooth Animated Welcome Screen Overlay (Visible for 2 Seconds) -->
+            <div id="heroWelcomeContainer" class="relative z-10 flex flex-col items-center justify-center text-center my-auto py-10 animate-welcome-in space-y-3">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white/50 shadow-2xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Logo" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div class="space-y-1">
+                    <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-lg">أهلاً بكم</h2>
+                    <p class="text-lg sm:text-2xl font-bold text-brand-300 font-en tracking-wider drop-shadow-md">WELCOME</p>
+                </div>
+            </div>
+
+            <!-- 2. Main Hero Dynamic Body Content (Hidden initially, reveals smoothly after 2s) -->
+            <div id="heroMainBody" class="relative z-10 space-y-5 hidden">
                 <!-- Restaurant Profile: Logo on Right, Name & Description on Left -->
                 <div class="flex flex-row items-center gap-4 text-right rtl:text-right py-1">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/40 shadow-2xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
@@ -705,8 +752,29 @@
         let cart = [];
 
         window.addEventListener('DOMContentLoaded', () => {
+            initWelcomeHeaderTransition();
             renderApp();
         });
+
+        // Intro welcome transition timing script
+        function initWelcomeHeaderTransition() {
+            const welcomeContainer = document.getElementById('heroWelcomeContainer');
+            const mainBody = document.getElementById('heroMainBody');
+
+            if (!welcomeContainer || !mainBody) return;
+
+            // Display welcome screen for 2 seconds then smoothly transition
+            setTimeout(() => {
+                welcomeContainer.classList.remove('animate-welcome-in');
+                welcomeContainer.classList.add('animate-welcome-out');
+
+                setTimeout(() => {
+                    welcomeContainer.style.display = 'none';
+                    mainBody.classList.remove('hidden');
+                    mainBody.classList.add('animate-content-reveal');
+                }, 450); // Fade out duration match
+            }, 2000); // 2 Seconds presentation duration
+        }
 
         function renderApp() {
             renderI18nTexts();
