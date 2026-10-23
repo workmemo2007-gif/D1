@@ -89,6 +89,23 @@
             border-color: rgba(245, 158, 11, 0.4);
         }
 
+        /* Header Background Animation Effect */
+        @keyframes headerZoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.07); }
+        }
+        .header-bg-effect {
+            animation: headerZoom 18s infinite ease-in-out;
+        }
+
+        /* Category Button Interactive Click Effect */
+        .category-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .category-btn:active {
+            transform: scale(0.92);
+        }
+
         /* Accordion Transition */
         .accordion-content {
             display: grid;
@@ -133,11 +150,11 @@
     <!-- Main Content Container -->
     <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6 relative z-10">
 
-        <!-- Unified Green Main Hero Box -->
+        <!-- Unified Green Main Hero Box with Background Effect -->
         <section class="relative bg-brand-900 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5">
-            <div class="absolute inset-0 z-0 pointer-events-none">
-                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Background" class="w-full h-full object-cover opacity-15">
-                <div class="absolute inset-0 bg-gradient-to-b from-brand-950/90 via-brand-900/95 to-brand-950"></div>
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1200&q=80" alt="Background" class="w-full h-full object-cover opacity-20 header-bg-effect">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-950/90 via-brand-900/90 to-brand-950/95"></div>
             </div>
 
             <div class="relative z-10 space-y-5">
@@ -210,11 +227,14 @@
                     <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid"></div>
                 </div>
 
-                <!-- Search Input -->
+                <!-- Search Input with Microphone Feature -->
                 <div class="pt-1">
-                    <div class="relative w-full">
-                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-9 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
-                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 rtl:right-3.5 ltr:left-3.5 ltr:right-auto top-2.5 text-brand-300 text-xs"></i>
+                    <div class="relative w-full flex items-center">
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-white/10 border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-10 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950/80 transition">
+                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 text-brand-300 text-xs pointer-events-none"></i>
+                        <button onclick="startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-3.5 text-brand-300 hover:text-white hover:scale-110 transition text-xs p-1">
+                            <i class="fa-solid fa-microphone text-sm"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -737,12 +757,12 @@
                 
                 const isLastItem = (index === 12);
 
-                btn.className = `flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
+                btn.className = `category-btn flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
                     isLastItem ? 'col-span-3' : ''
                 } ${
                     isActive 
-                    ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30" 
-                    : "bg-white/10 hover:bg-white/20 text-white/90 border-white/15"
+                    ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30 scale-[1.02]" 
+                    : "bg-white/10 hover:bg-white/20 hover:scale-[1.02] text-white/90 border-white/15"
                 }`;
                 btn.onclick = () => selectCategory(cat.id);
 
@@ -760,7 +780,6 @@
             renderIsolatedActiveCategory();
             clearSearch();
 
-            // Smooth scroll down to the active category dishes container
             const containerEl = document.getElementById('isolatedCategoryContainer');
             if (containerEl) {
                 containerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -960,7 +979,7 @@
                     <div class="flex-1">
                         <h6 class="text-xs font-bold text-gray-900 truncate">${item.name}</h6>
                         <span class="text-[10px] text-gray-400 block">${item.customization}</span>
-                        <span class="text-xs font-weight text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
+                        <span class="text-xs font-black text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
                     </div>
                     <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
                         <i class="fa-solid fa-trash-can"></i>
@@ -995,7 +1014,7 @@
             window.open(`https://wa.me/966501234567?text=${msg}`, '_blank');
         }
 
-    function openMapModal() {
+        function openMapModal() {
             document.getElementById('mapModal').classList.remove('hidden');
         }
         function closeMapModal() {
@@ -1043,6 +1062,54 @@
         function clearSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('searchResultsSection').classList.add('hidden');
+        }
+
+        /* Voice Search Feature Using Web Speech API */
+        function startVoiceSearch() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert('عذراً، متصفحك الحالي لا يدعم ميزة البحث الصوتي.');
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = currentLang === 'ar' ? 'ar-SA' : 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const micBtn = document.getElementById('micBtn');
+
+            recognition.onstart = () => {
+                micBtn.classList.add('text-red-400', 'animate-pulse');
+                document.getElementById('searchInput').placeholder = currentLang === 'ar' ? 'جاري الاستماع...' : 'Listening...';
+            };
+
+            recognition.onresult = (event) => {
+                const speechResult = event.results[0][0].transcript;
+                document.getElementById('searchInput').value = speechResult;
+                handleSearch();
+            };
+
+            recognition.onerror = () => {
+                resetMicState();
+            };
+
+            recognition.onend = () => {
+                resetMicState();
+            };
+
+            recognition.start();
+        }
+
+        function resetMicState() {
+            const micBtn = document.getElementById('micBtn');
+            if (micBtn) {
+                micBtn.classList.remove('text-red-400', 'animate-pulse');
+            }
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = i18nText[currentLang].searchPlaceholder;
+            }
         }
     </script>
 </body>
