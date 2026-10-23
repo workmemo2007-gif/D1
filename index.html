@@ -202,10 +202,10 @@
                     </div>
                 </div>
 
-                <!-- Main Categories Selector -->
+                <!-- Main Categories Selector (13 Categories Layout) -->
                 <div class="pt-2">
                     <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية
+                        <i class="fa-solid fa-layer-group text-brand-400"></i> الأقسام الرئيسية (13 قسماً)
                     </h3>
                     <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid"></div>
                 </div>
@@ -252,10 +252,10 @@
                 <div>
                     <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerQuickLinks">الأقسام الرئيسية</h5>
                     <ul class="space-y-1.5 text-brand-200">
-                        <li><a href="#" onclick="selectCategory('cat-meats'); return false;" class="hover:text-white transition" data-i18n="catMeats">قسم اللحوم</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-seafood'); return false;" class="hover:text-white transition" data-i18n="catSeafood">قسم الأسماك</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-salads'); return false;" class="hover:text-white transition" data-i18n="catSalads">قسم السلطات</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-combos'); return false;" class="hover:text-white transition" data-i18n="catCombos">الوجبات المتكاملة</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-chicken'); return false;" class="hover:text-white transition">دجاج</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-meat'); return false;" class="hover:text-white transition">لحم</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-fish'); return false;" class="hover:text-white transition">سمك</a></li>
+                        <li><a href="#" onclick="selectCategory('cat-salads'); return false;" class="hover:text-white transition">سلطات</a></li>
                     </ul>
                 </div>
                 <div>
@@ -340,13 +340,13 @@
     <script>
         const menuData = [
             {
-                id: "cat-meats",
+                id: "cat-chicken",
                 icon: "fa-drumstick-bite",
-                title: { ar: "قسم اللحوم", en: "Meat Section" },
+                title: { ar: "دجاج", en: "Chicken" },
                 subCategories: [
                     {
-                        id: "sub-chicken",
-                        title: { ar: "تفرع الدجاج الصحّي", en: "Healthy Chicken Specials" },
+                        id: "sub-chicken-specials",
+                        title: { ar: "أطباق الدجاج الصحية", en: "Healthy Chicken Dishes" },
                         dishes: [
                             {
                                 id: "d1",
@@ -354,9 +354,6 @@
                                 desc: { ar: "صدور دجاج طرية متبلة بالأعشاب البرية وزيت الزيتون البكر مع أرز بسمتي وخضار.", en: "Tender chicken breast marinated in wild herbs & olive oil with basmati rice." },
                                 price: 34,
                                 cal: 380,
-                                prot: "42g",
-                                carb: "35g",
-                                fat: "6g",
                                 img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80"
                             },
                             {
@@ -365,147 +362,70 @@
                                 desc: { ar: "شرائح دجاج مع صوص الترياكي الصحي الخالي من السكر وبذور السمسم.", en: "Sliced chicken with sugar-free teriyaki sauce and sesame seeds." },
                                 price: 36,
                                 cal: 410,
-                                prot: "40g",
-                                carb: "42g",
-                                fat: "7g",
                                 img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d3",
-                                name: { ar: "شيش طاووق صحي", en: "Healthy Shish Tawook" },
-                                desc: { ar: "مكعبات دجاج متبلة بالزبادي خفيف الدسم والبهارات العثمانية مشوية على الفحم.", en: "Grilled yogurt-marinated chicken skewers with light spices." },
-                                price: 38,
-                                cal: 395,
-                                prot: "44g",
-                                carb: "28g",
-                                fat: "8g",
-                                img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                id: "cat-meat",
+                icon: "fa-bacon",
+                title: { ar: "لحم", en: "Meat" },
+                subCategories: [
                     {
-                        id: "sub-beef",
-                        title: { ar: "تفرع اللحم البقري الصافي", en: "Lean Beef Specials" },
+                        id: "sub-meat-specials",
+                        title: { ar: "أطباق اللحم الصافي", en: "Lean Meat Dishes" },
                         dishes: [
                             {
-                                id: "d4",
+                                id: "d3",
                                 name: { ar: "ستيك بيف بلاك أنجوس", en: "Black Angus Lean Steak" },
                                 desc: { ar: "شريحة ستيك أنجوس صافية بدون دهون مع صوص الفطر الصحي وبطاطس مهروسة.", en: "Lean Angus steak with healthy mushroom sauce & mashed potatoes." },
                                 price: 48,
                                 cal: 460,
-                                prot: "48g",
-                                carb: "25g",
-                                fat: "12g",
                                 img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d5",
-                                name: { ar: "كفتة لحم بالفرن", en: "Oven Baked Beef Kofta" },
-                                desc: { ar: "لحم بقري مفروم خالي من الدهون مع خضروات مشوية وأرز بني.", en: "Lean minced beef kofta baked with roasted veggies & brown rice." },
-                                price: 42,
-                                cal: 430,
-                                prot: "41g",
-                                carb: "32g",
-                                fat: "11g",
-                                img: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
                 ]
             },
             {
-                id: "cat-seafood",
+                id: "cat-fish",
                 icon: "fa-fish",
-                title: { ar: "قسم الأسماك", en: "Seafood Section" },
+                title: { ar: "سمك", en: "Fish" },
                 subCategories: [
                     {
-                        id: "sub-fish",
-                        title: { ar: "تفرع الأسماك الطازجة", en: "Fresh Fish Choices" },
+                        id: "sub-fish-specials",
+                        title: { ar: "أطباق الأسماك الطازجة", en: "Fresh Fish Dishes" },
                         dishes: [
                             {
-                                id: "d6",
+                                id: "d4",
                                 name: { ar: "سلمون مشوي بالليمون", en: "Grilled Lemon Salmon" },
                                 desc: { ar: "فيليه سلمون نرويجي غني بأوميغا 3 مشوي بصلصة الليمون والشبت.", en: "Norwegian salmon fillet with lemon dill sauce & steamed quinoa." },
                                 price: 54,
                                 cal: 450,
-                                prot: "38g",
-                                carb: "18g",
-                                fat: "16g",
                                 img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d7",
-                                name: { ar: "فيليه سي باس مشوي", en: "Grilled Sea Bass Fillet" },
-                                desc: { ar: "سمك سي باس طازج خفيف ومقرمش يقدم مع خضروات التبخير.", en: "Fresh sea bass fillet served with steamed garden vegetables." },
-                                price: 49,
-                                cal: 340,
-                                prot: "36g",
-                                carb: "12g",
-                                fat: "8g",
-                                img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    },
-                    {
-                        id: "sub-kumpir",
-                        title: { ar: "تفرع سمك وكمبير صحي", en: "Seafood & Healthy Kumpir" },
-                        dishes: [
-                            {
-                                id: "d8",
-                                name: { ar: "كمبير الروبيان الصحي", en: "Healthy Shrimp Kumpir" },
-                                desc: { ar: "بطاطس مشوية بالفرن محشوة بالروبيان المشوي والجبن الدايت وخضار.", en: "Oven-baked potato stuffed with grilled shrimp & light cheese." },
-                                price: 44,
-                                cal: 420,
-                                prot: "32g",
-                                carb: "48g",
-                                fat: "7g",
-                                img: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d9",
-                                name: { ar: "روبيان مشوي بصوص الأعشاب", en: "Herb Grilled Shrimp" },
-                                desc: { ar: "جامبو روبيان مشوي بتتبيلة الثوم والليمون والأعشاب الطازجة.", en: "Jumbo shrimp grilled with garlic, lemon, and fresh herbs." },
-                                price: 52,
-                                cal: 310,
-                                prot: "35g",
-                                carb: "8g",
-                                fat: "5g",
-                                img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
                 ]
             },
             {
-                id: "cat-salads",
-                icon: "fa-carrot",
-                title: { ar: "قسم السلطات", en: "Salads Section" },
+                id: "cat-kumpir",
+                icon: "fa-utensils",
+                title: { ar: "الكومبير", en: "Kumpir" },
                 subCategories: [
                     {
-                        id: "sub-fresh-salads",
-                        title: { ar: "تفرع السلطات والبروتين", en: "Protein Salads" },
+                        id: "sub-kumpir-specials",
+                        title: { ar: "الكومبير الصحي المشوي", en: "Healthy Kumpir Specials" },
                         dishes: [
                             {
-                                id: "d10",
-                                name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" },
-                                desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي، الخيار، الطماطم وصوص الليمون.", en: "Organic quinoa with grilled chicken, avocado slices & lemon dressing." },
-                                price: 29,
-                                cal: 320,
-                                prot: "28g",
-                                carb: "26g",
-                                fat: "9g",
-                                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d11",
-                                name: { ar: "سلطة قيصر الدايت", en: "Diet Caesar Salad" },
-                                desc: { ar: "خس رومان طازج مع شرائح الدجاج المشوي ودرسنج قيصر لايت وخبز محمص.", en: "Romaine lettuce, grilled chicken, light caesar dressing & croutons." },
-                                price: 28,
-                                cal: 290,
-                                prot: "30g",
-                                carb: "14g",
-                                fat: "8g",
-                                img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80"
+                                id: "d5",
+                                name: { ar: "كمبير الروبيان الصحي", en: "Healthy Shrimp Kumpir" },
+                                desc: { ar: "بطاطس مشوية بالفرن محشوة بالروبيان المشوي والجبن الدايت وخضار.", en: "Oven-baked potato stuffed with grilled shrimp & light cheese." },
+                                price: 44,
+                                cal: 420,
+                                img: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -514,32 +434,18 @@
             {
                 id: "cat-sandwiches",
                 icon: "fa-burger",
-                title: { ar: "قسم الساندويتشات", en: "Healthy Sandwiches" },
+                title: { ar: "السندويجات", en: "Sandwiches" },
                 subCategories: [
                     {
-                        id: "sub-wraps",
-                        title: { ar: "تفرع بروتين راب وساندويتش", en: "Protein Wraps & Sandwiches" },
+                        id: "sub-sandwiches-specials",
+                        title: { ar: "سندويتشات صحية", en: "Healthy Sandwiches" },
                         dishes: [
                             {
-                                id: "d12",
-                                name: { ar: "راب الدجاج بالبروتين", en: "High Protein Chicken Wrap" },
-                                desc: { ar: "خبز الشوفان المحمص المحشو بالدجاج المشوي، صوص الخردل، والخس.", en: "Oat wrap stuffed with grilled chicken, honey mustard & greens." },
-                                price: 26,
-                                cal: 360,
-                                prot: "34g",
-                                carb: "30g",
-                                fat: "7g",
-                                img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d13",
+                                id: "d6",
                                 name: { ar: "برجر دايت دجاج الشوفان", en: "Oat Chicken Diet Burger" },
                                 desc: { ar: "قرص دجاج صحي بخبز الشوفان الكامل مع جبن لايت وصوص خاص.", en: "Lean chicken patty in whole oat bun with light cheese & tomato." },
                                 price: 31,
                                 cal: 390,
-                                prot: "36g",
-                                carb: "32g",
-                                fat: "8g",
                                 img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
@@ -547,34 +453,146 @@
                 ]
             },
             {
-                id: "cat-drinks",
-                icon: "fa-glass-water",
-                title: { ar: "قسم المشروبات", en: "Drinks & Smoothies" },
+                id: "cat-saj",
+                icon: "fa-bread-slice",
+                title: { ar: "صاج", en: "Saj Wraps" },
                 subCategories: [
                     {
-                        id: "sub-smoothies",
-                        title: { ar: "تفرع العصائر والسموذي", en: "Detox & Protein Smoothies" },
+                        id: "sub-saj-specials",
+                        title: { ar: "سندويتشات الصاج الرقيق", en: "Saj Wrap Specials" },
                         dishes: [
                             {
-                                id: "d14",
-                                name: { ar: "سموذي البروتين بالأفوكادو", en: "Avocado Protein Smoothie" },
-                                desc: { ar: "أفوكادو طازج مع واي بروتين وحليب اللوز وعسل عضوي.", en: "Fresh avocado, whey protein, almond milk & organic honey." },
-                                price: 22,
-                                cal: 240,
-                                prot: "20g",
-                                carb: "18g",
-                                fat: "8g",
-                                img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=500&q=80"
-                            },
+                                id: "d7",
+                                name: { ar: "صاج دجاج بروتين راب", en: "Chicken Protein Saj Wrap" },
+                                desc: { ar: "خبز صاج أسرار الدايت المحشو بالدجاج المشوي والجرجير.", en: "Whole wheat saj wrap stuffed with grilled chicken and rocca." },
+                                price: 27,
+                                cal: 350,
+                                img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-salads",
+                icon: "fa-carrot",
+                title: { ar: "سلطات", en: "Salads" },
+                subCategories: [
+                    {
+                        id: "sub-salads-specials",
+                        title: { ar: "سلطات طازجة وغنية بالبروتين", en: "Fresh Protein Salads" },
+                        dishes: [
                             {
-                                id: "d15",
+                                id: "d8",
+                                name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" },
+                                desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي، الخيار، الطماطم وصوص الليمون.", en: "Organic quinoa with grilled chicken, avocado slices & lemon dressing." },
+                                price: 29,
+                                cal: 320,
+                                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-soup",
+                icon: "fa-bowl-food",
+                title: { ar: "الحساء", en: "Soup" },
+                subCategories: [
+                    {
+                        id: "sub-soup-specials",
+                        title: { ar: "شوربة ساخنة ومغذية", en: "Warm & Nourishing Soups" },
+                        dishes: [
+                            {
+                                id: "d9",
+                                name: { ar: "شوربة العدس الدايت", en: "Diet Lentil Soup" },
+                                desc: { ar: "شوربة عدس غنية بالبهارات الطبيعية وزيت الزيتون والليمون.", en: "Nourishing traditional lentil soup with natural spices and olive oil." },
+                                price: 16,
+                                cal: 210,
+                                img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-breakfast",
+                icon: "fa-egg",
+                title: { ar: "وجبات الفطور", en: "Breakfast" },
+                subCategories: [
+                    {
+                        id: "sub-breakfast-specials",
+                        title: { ar: "فطور صحي ومفعم بالطاقة", en: "Energizing Healthy Breakfast" },
+                        dishes: [
+                            {
+                                id: "d10",
+                                name: { ar: "أومليت بياض البيض والخضار", en: "Egg White Veggie Omelette" },
+                                desc: { ar: "أومليت بياض بيض مع السبانخ والمشروم وجبن قريش.", en: "Fluffy egg white omelette with spinach, mushrooms and low-fat cheese." },
+                                price: 22,
+                                cal: 250,
+                                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-pasta",
+                icon: "fa-bowl-rice",
+                title: { ar: "المعكرونه", en: "Pasta" },
+                subCategories: [
+                    {
+                        id: "sub-pasta-specials",
+                        title: { ar: "معكرونة الحبوب الكاملة", en: "Whole Wheat Pasta" },
+                        dishes: [
+                            {
+                                id: "d11",
+                                name: { ar: "باستا القمح الكامل بالدجاج", en: "Whole Wheat Chicken Pasta" },
+                                desc: { ar: "معكرونة حبوب كاملة مع قطع الدجاج وصوص الطماطم العضوي والريحان.", en: "Whole wheat pasta with grilled chicken, organic tomato sauce and fresh basil." },
+                                price: 38,
+                                cal: 410,
+                                img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-keto",
+                icon: "fa-fire",
+                title: { ar: "كيتو دايت", en: "Keto Diet" },
+                subCategories: [
+                    {
+                        id: "sub-keto-specials",
+                        title: { ar: "وجبات قليلة الكربوهيدرات", en: "Low-Carb Keto Meals" },
+                        dishes: [
+                            {
+                                id: "d12",
+                                name: { ar: "طبق الكيتو بالافوكادو واللحم", en: "Keto Beef & Avocado Bowl" },
+                                desc: { ar: "شرائح لحم مشوية مع أفوكادو طازج، زبدة طبيعية وخضار ورقية.", en: "Grilled beef slices with fresh avocado, natural butter and leafy greens." },
+                                price: 49,
+                                cal: 530,
+                                img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cat-juices",
+                icon: "fa-glass-water",
+                title: { ar: "عصائر", en: "Juices" },
+                subCategories: [
+                    {
+                        id: "sub-juices-specials",
+                        title: { ar: "عصائر طبيعية وديتوكس", en: "Fresh & Detox Juices" },
+                        dishes: [
+                            {
+                                id: "d13",
                                 name: { ar: "عصير الديتوكس الأخضر", en: "Green Detox Juice" },
                                 desc: { ar: "تفاح أخضر، خيار، كرفس، زنجبيل، وليمون حارق للدهون.", en: "Green apple, cucumber, celery, ginger & lemon." },
                                 price: 18,
                                 cal: 95,
-                                prot: "2g",
-                                carb: "20g",
-                                fat: "0g",
                                 img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
@@ -582,35 +600,21 @@
                 ]
             },
             {
-                id: "cat-combos",
-                icon: "fa-box-tissue",
-                title: { ar: "قسم الوجبات المتكاملة", en: "Combo Meals" },
+                id: "cat-desserts",
+                icon: "fa-ice-cream",
+                title: { ar: "حلويات", en: "Desserts" },
                 subCategories: [
                     {
-                        id: "sub-box-combos",
-                        title: { ar: "تفرع بوكسات التنشيف والتضخيم", en: "Fitness Box Combos" },
+                        id: "sub-desserts-specials",
+                        title: { ar: "حلويات صحية خالية من السكر", en: "Sugar-Free Healthy Desserts" },
                         dishes: [
                             {
-                                id: "d18",
-                                name: { ar: "بوكس التنشيف الشامل", en: "Shredding Combo Box" },
-                                desc: { ar: "صدر دجاج 200جم + أرز بسمتي 150جم + سلطة خضراء + عصير ديتوكس.", en: "200g Chicken breast + 150g Basmati rice + Salad + Detox Juice." },
-                                price: 49,
-                                cal: 520,
-                                prot: "52g",
-                                carb: "45g",
-                                fat: "8g",
-                                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d19",
-                                name: { ar: "بوكس البناء العضلي (تضخيم)", en: "Bulking Muscle Combo Box" },
-                                desc: { ar: "ستيك أنجوس 250جم + بطاطس وودجز بالفرن + سلطة كينوا + سموذي بروتين.", en: "250g Angus Steak + Baked Potato + Quinoa Salad + Protein Smoothie." },
-                                price: 65,
-                                cal: 740,
-                                prot: "68g",
-                                carb: "65g",
-                                fat: "16g",
-                                img: "https://images.unsplash.com/photo-1547496582-1770475f0f10?auto=format&fit=crop&w=500&q=80"
+                                id: "d14",
+                                name: { ar: "تشيز كيك الشوفان الدايت", en: "Diet Oat Cheesecake" },
+                                desc: { ar: "تشيز كيك خفيف بقاعدة الشوفان والعسل الطبيعي بدون سكر مضاف.", en: "Light cheesecake with oat crust and natural honey, zero added sugar." },
+                                price: 20,
+                                cal: 230,
+                                img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -642,10 +646,6 @@
                 footerAbout: "وجهتك الأولى للوجبات الصحية المتوازنة. نمط حياة صحي بدون الحرمان من النكهات اللذيذة.",
                 footerQuickLinks: "روابط سريعة",
                 footerContact: "التواصل والموقع",
-                catMeats: "قسم اللحوم",
-                catSeafood: "قسم الأسماك",
-                catSalads: "قسم السلطات",
-                catCombos: "الوجبات المتكاملة",
                 currency: "ر.س",
                 emptyCart: "السلة فارغة حالياً. أضف بعض الوجبات الشهية!"
             },
@@ -672,17 +672,13 @@
                 footerAbout: "Your premier destination for balanced healthy meals without compromising on flavor.",
                 footerQuickLinks: "Quick Links",
                 footerContact: "Contact & Location",
-                catMeats: "Meat Section",
-                catSeafood: "Seafood Section",
-                catSalads: "Salads Section",
-                catCombos: "Combo Meals",
                 currency: "SAR",
                 emptyCart: "Your cart is empty right now. Add some delicious healthy meals!"
             }
         };
 
         let currentLang = "ar";
-        let activeCategoryId = "cat-meats";
+        let activeCategoryId = "cat-chicken";
         let cart = [];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -735,11 +731,16 @@
             if (!container) return;
             container.innerHTML = '';
 
-            menuData.forEach(cat => {
+            menuData.forEach((cat, index) => {
                 const isActive = cat.id === activeCategoryId;
                 const btn = document.createElement('button');
                 
+                // If it is the 13th item (index 12), make it span all 3 columns (col-span-3)
+                const isLastItem = (index === 12);
+
                 btn.className = `flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
+                    isLastItem ? 'col-span-3' : ''
+                } ${
                     isActive 
                     ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30" 
                     : "bg-white/10 hover:bg-white/20 text-white/90 border-white/15"
@@ -777,7 +778,7 @@
                     </div>
                     <div>
                         <h3 class="text-sm font-extrabold text-brand-950">${currentCat.title[currentLang]}</h3>
-                        <span class="text-[10px] text-gray-500">انقر على الطبق لفتحه أفقياً على الهاتف المحمول</span>
+                        <span class="text-[10px] text-gray-500">انقر على الطبق لعرض تفاصيله</span>
                     </div>
                 </div>
             `;
@@ -801,7 +802,7 @@
             container.appendChild(section);
         }
 
-        /* Strictly Horizontal Expand Layout for Mobile & Desktop (Image RIGHT / Text & Button LEFT) */
+        /* Strictly Horizontal Expand Layout for Mobile & Desktop */
         function createResponsiveHorizontalCardHTML(dish) {
             const currency = i18nText[currentLang].currency;
 
@@ -820,15 +821,14 @@
                         </div>
                     </div>
 
-                    <!-- Strictly Horizontal Accordion Layout -->
+                    <!-- Accordion Content -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
                             <div class="p-3 sm:p-4 border-t border-white/60 bg-white/60 backdrop-blur-md">
                                 
-                                <!-- Flex Row Always Maintained (Image Right / Details Left) -->
                                 <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-5">
                                     
-                                    <!-- RIGHT SIDE: Dish Name, Description, and Green "اضافه" Button -->
+                                    <!-- RIGHT SIDE: Details & Button -->
                                     <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0">
                                         <div class="space-y-1">
                                             <h4 class="text-base sm:text-2xl font-black text-gray-900 tracking-tight leading-snug truncate">${dish.name[currentLang]}</h4>
@@ -837,8 +837,8 @@
 
                                         <div class="pt-2 space-y-2">
                                             <select id="base-${dish.id}" class="w-full text-[11px] sm:text-xs bg-white/90 border border-brand-200/60 rounded-xl p-1.5 focus:ring-1 focus:ring-brand-500 focus:outline-none">
-                                                <option value="ارز أبيض بستماتي">أرز أبيض بسمتي</option>
-                                                <option value="ارز بني صحي">أرز بني عضوي</option>
+                                                <option value="أرز أبيض بسمتي">أرز أبيض بسمتي</option>
+                                                <option value="أرز بني صحي">أرز بني عضوي</option>
                                                 <option value="بطاطس مهروسة">بطاطس مهروسة</option>
                                                 <option value="كينوا عضوي">كينوا</option>
                                             </select>
@@ -851,7 +851,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- LEFT SIDE: Image with Golden Frame & Integrated Price Badge -->
+                                    <!-- LEFT SIDE: Image -->
                                     <div class="w-2/5 sm:w-1/3 shrink-0">
                                         <div class="p-1 rounded-2xl bg-amber-400 border-2 border-amber-500/80 shadow-sm relative overflow-hidden h-full">
                                             <div class="w-full h-full min-h-[120px] sm:min-h-[160px] rounded-xl overflow-hidden relative">
