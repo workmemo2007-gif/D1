@@ -232,7 +232,7 @@
         </div>
 
         <!-- Isolated Active Category Container -->
-        <div id="isolatedCategoryContainer" class="space-y-6"></div>
+        <div id="isolatedCategoryContainer" class="space-y-6 scroll-mt-6"></div>
 
     </main>
 
@@ -735,7 +735,6 @@
                 const isActive = cat.id === activeCategoryId;
                 const btn = document.createElement('button');
                 
-                // If it is the 13th item (index 12), make it span all 3 columns (col-span-3)
                 const isLastItem = (index === 12);
 
                 btn.className = `flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
@@ -760,6 +759,12 @@
             renderHeaderCategoriesGrid();
             renderIsolatedActiveCategory();
             clearSearch();
+
+            // Smooth scroll down to the active category dishes container
+            const containerEl = document.getElementById('isolatedCategoryContainer');
+            if (containerEl) {
+                containerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         function renderIsolatedActiveCategory() {
@@ -955,7 +960,7 @@
                     <div class="flex-1">
                         <h6 class="text-xs font-bold text-gray-900 truncate">${item.name}</h6>
                         <span class="text-[10px] text-gray-400 block">${item.customization}</span>
-                        <span class="text-xs font-black text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
+                        <span class="text-xs font-weight text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
                     </div>
                     <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
                         <i class="fa-solid fa-trash-can"></i>
@@ -990,7 +995,7 @@
             window.open(`https://wa.me/966501234567?text=${msg}`, '_blank');
         }
 
-        function openMapModal() {
+    function openMapModal() {
             document.getElementById('mapModal').classList.remove('hidden');
         }
         function closeMapModal() {
