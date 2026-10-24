@@ -185,8 +185,8 @@
     <!-- Main Content Container -->
     <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6 relative z-10">
 
-        <!-- Unified Green Main Hero Box with Responsive Cover Images -->
-        <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-xl p-4 sm:p-6 border border-brand-800/80 space-y-5 min-h-[360px] sm:min-h-[420px] flex flex-col justify-between">
+        <!-- Unified Green Main Hero Box - Extended Height & Width Paddings -->
+        <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-2xl p-6 sm:p-10 border border-brand-800/80 space-y-8 min-h-[480px] sm:min-h-[560px] flex flex-col justify-between">
             
             <!-- Cover Image Layer with Dual Green Gradient Fades & Responsive Images -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -201,7 +201,7 @@
             </div>
 
             <!-- Top Action Row (شريط اللغة والمواقع) -->
-            <div class="relative z-20 flex items-center justify-between gap-2 pb-3 border-b border-white/15 backdrop-blur-xs">
+            <div class="relative z-20 flex items-center justify-between gap-2 pb-4 border-b border-white/15 backdrop-blur-xs">
                 <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                     <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
                         <i class="fa-solid fa-leaf"></i>
@@ -215,28 +215,29 @@
                 </div>
 
                 <div class="flex items-center gap-1.5 shrink-0">
-                    <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-solid fa-location-dot"></i>
                     </button>
-                    <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-7.5 h-7.5 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <button onclick="toggleLanguage()" id="langBtn" class="px-2.5 py-1 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
+                    <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
                         <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
                         <span id="langLabel">English</span>
                     </button>
-                    <button onclick="toggleCartModal()" class="relative px-3 py-1 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1">
+                    <button onclick="toggleCartModal()" class="relative px-3.5 py-1.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
                         <i class="fa-solid fa-basket-shopping text-xs"></i>
                         <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
-                        <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
+                        <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
                     </button>
                 </div>
             </div>
 
             <!-- 1. Smooth Animated Welcome Screen Overlay (Visible for 2 Seconds) -->
-            <div id="heroWelcomeContainer" class="relative z-10 flex flex-col items-center justify-center text-center my-auto py-10 animate-welcome-in space-y-3">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white/50 shadow-2xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse">
-                    <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-cover rounded-full">
+            <div id="heroWelcomeContainer" class="relative z-10 flex flex-col items-center justify-center text-center my-auto py-12 animate-welcome-in space-y-4">
+                <!-- Enlarged Transparent Logo Without White Circle Wrapper -->
+                <div class="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-2xl badge-pulse">
+                    <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-contain">
                 </div>
                 <div class="space-y-1">
                     <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-lg">أهلاً بكم</h2>
@@ -244,37 +245,37 @@
                 </div>
             </div>
 
-            <!-- 2. Main Hero Dynamic Body Content (Hidden initially, reveals smoothly after 2s) -->
-            <div id="heroMainBody" class="relative z-10 space-y-5 hidden">
-                <!-- Restaurant Profile: Logo on Right, Name & Description on Left -->
-                <div class="flex flex-row items-center gap-4 text-right rtl:text-right py-1">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/40 shadow-2xl overflow-hidden bg-white flex items-center justify-center p-0.5 badge-pulse shrink-0">
-                        <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-cover rounded-full">
+            <!-- 2. Main Hero Dynamic Body Content (With generous vertical spacing) -->
+            <div id="heroMainBody" class="relative z-10 space-y-8 my-auto pt-4 hidden">
+                <!-- Restaurant Profile: Enlarged Transparent Logo on Right & Generous Spacing -->
+                <div class="flex flex-row items-center gap-5 sm:gap-7 text-right rtl:text-right py-2">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 drop-shadow-2xl badge-pulse shrink-0">
+                        <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-contain">
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-950/70 backdrop-blur-md border border-brand-500/50 text-brand-200 text-[10px] font-bold mb-1 shadow-xs">
+                    <div class="flex-1 min-w-0 space-y-1.5">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-950/70 backdrop-blur-md border border-brand-500/50 text-brand-200 text-[11px] sm:text-xs font-bold shadow-xs">
                             <i class="fa-solid fa-seedling text-brand-400"></i> <span data-i18n="heroBadge">نمط حياة صحي ولذيذ</span>
                         </span>
-                        <h2 class="text-sm sm:text-xl font-black text-white tracking-tight drop-shadow-md truncate" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
-                        <p class="text-brand-100 text-[11px] sm:text-xs mt-0.5 leading-relaxed drop-shadow-xs line-clamp-2" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
+                        <h2 class="text-base sm:text-2xl font-black text-white tracking-tight drop-shadow-md truncate" data-i18n="heroTitle">مطعم دايت فود - Diet Food</h2>
+                        <p class="text-brand-100 text-xs sm:text-sm leading-relaxed drop-shadow-xs line-clamp-2" data-i18n="heroDescription">وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.</p>
                     </div>
                 </div>
 
-                <!-- Main Categories Selector (13 Categories Layout) -->
-                <div class="pt-2">
-                    <h3 class="text-xs font-bold text-brand-200 mb-2 flex items-center gap-1.5">
+                <!-- Spacing Before Main Categories -->
+                <div class="pt-4 border-t border-white/10">
+                    <h3 class="text-xs sm:text-sm font-bold text-brand-200 mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-layer-group text-brand-400"></i> القوائم الرئيسية (13 قسماً)
                     </h3>
-                    <div class="grid grid-cols-3 gap-2" id="headerCategoriesGrid"></div>
+                    <div class="grid grid-cols-3 gap-2.5" id="headerCategoriesGrid"></div>
                 </div>
 
                 <!-- Search Input with Microphone Feature (At bottom of Hero Section) -->
-                <div class="pt-2">
+                <div class="pt-3">
                     <div class="relative w-full flex items-center">
-                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-950/80 backdrop-blur-md border border-white/20 text-white placeholder-brand-200 rounded-full py-2 px-10 text-xs focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950 transition shadow-inner">
-                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 text-brand-300 text-xs pointer-events-none"></i>
-                        <button onclick="startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-3.5 text-brand-300 hover:text-white hover:scale-110 transition text-xs p-1">
-                            <i class="fa-solid fa-microphone text-sm"></i>
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-950/85 backdrop-blur-md border border-white/25 text-white placeholder-brand-200 rounded-full py-2.5 px-10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950 transition shadow-inner">
+                        <i class="fa-solid fa-magnifying-glass absolute right-4 text-brand-300 text-xs sm:text-sm pointer-events-none"></i>
+                        <button onclick="startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-4 text-brand-300 hover:text-white hover:scale-110 transition text-xs sm:text-sm p-1">
+                            <i class="fa-solid fa-microphone text-sm sm:text-base"></i>
                         </button>
                     </div>
                 </div>
@@ -406,7 +407,7 @@
                 id: "cat-chicken",
                 icon: "fa-drumstick-bite",
                 title: { ar: "دجاج", en: "Chicken" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-chicken-specials",
@@ -436,7 +437,7 @@
                 id: "cat-meat",
                 icon: "fa-bacon",
                 title: { ar: "لحم", en: "Meat" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-meat-specials",
@@ -458,7 +459,7 @@
                 id: "cat-fish",
                 icon: "fa-fish",
                 title: { ar: "سمك", en: "Fish" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-fish-specials",
@@ -480,7 +481,7 @@
                 id: "cat-kumpir",
                 icon: "fa-utensils",
                 title: { ar: "الكومبير", en: "Kumpir" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-kumpir-specials",
@@ -502,7 +503,7 @@
                 id: "cat-sandwiches",
                 icon: "fa-burger",
                 title: { ar: "السندويجات", en: "Sandwiches" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-sandwiches-specials",
@@ -524,7 +525,7 @@
                 id: "cat-saj",
                 icon: "fa-bread-slice",
                 title: { ar: "صاج", en: "Saj Wraps" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-saj-specials",
@@ -546,7 +547,7 @@
                 id: "cat-salads",
                 icon: "fa-carrot",
                 title: { ar: "سلطات", en: "Salads" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-salads-specials",
@@ -568,7 +569,7 @@
                 id: "cat-soup",
                 icon: "fa-bowl-food",
                 title: { ar: "الحساء", en: "Soup" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-soup-specials",
@@ -590,7 +591,7 @@
                 id: "cat-breakfast",
                 icon: "fa-egg",
                 title: { ar: "وجبات الفطور", en: "Breakfast" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-breakfast-specials",
@@ -612,7 +613,7 @@
                 id: "cat-pasta",
                 icon: "fa-bowl-rice",
                 title: { ar: "المعكرونه", en: "Pasta" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-pasta-specials",
@@ -634,7 +635,7 @@
                 id: "cat-keto",
                 icon: "fa-fire",
                 title: { ar: "كيتو دايت", en: "Keto Diet" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-keto-specials",
@@ -656,7 +657,7 @@
                 id: "cat-juices",
                 icon: "fa-glass-water",
                 title: { ar: "عصائر", en: "Juices" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-juices-specials",
@@ -678,7 +679,7 @@
                 id: "cat-desserts",
                 icon: "fa-ice-cream",
                 title: { ar: "حلويات", en: "Desserts" },
-                headerImg: "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png",
+                headerImg: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1000&q=80",
                 subCategories: [
                     {
                         id: "sub-desserts-specials",
@@ -869,11 +870,11 @@
             section.className = "glass-panel rounded-3xl overflow-hidden p-4 sm:p-6 space-y-5";
 
             let html = `
-                <!-- Category Banner Image with White Overlay Text -->
+                <!-- Category Banner Image with Restored Original Backgrounds & Logo on the Left -->
                 <div class="relative w-full h-36 sm:h-48 rounded-2xl overflow-hidden shadow-md mb-4 border border-white/60">
                     <img src="${currentCat.headerImg}" alt="${currentCat.title[currentLang]}" class="w-full h-full object-cover">
                     <!-- Soft Light White Overlay Banner -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent backdrop-blur-[2px] flex items-end justify-start p-4">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent backdrop-blur-[2px] flex items-end justify-between p-4">
                         <div class="flex items-center gap-2.5">
                             <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md">
                                 <i class="fa-solid ${currentCat.icon}"></i>
@@ -882,6 +883,11 @@
                                 <h3 class="text-lg sm:text-2xl font-black text-gray-900 drop-shadow-sm">${currentCat.title[currentLang]}</h3>
                                 <span class="text-xs font-semibold text-brand-800">قائمة ${currentCat.title[currentLang]} الصحية</span>
                             </div>
+                        </div>
+
+                        <!-- Brand Logo Positioned on Left Side -->
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 drop-shadow-md">
+                            <img src="${customLogoUrl}" alt="Diet Food Logo" class="w-full h-full object-contain">
                         </div>
                     </div>
                 </div>
