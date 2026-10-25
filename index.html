@@ -185,22 +185,17 @@
     <!-- Main Content Container -->
     <main class="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-12 flex-1 w-full space-y-6 relative z-10">
 
-        <!-- Unified Green Main Hero Box - Extended Height & Width Paddings -->
+        <!-- Unified Green Main Hero Box -->
         <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-2xl p-6 sm:p-10 border border-brand-800/80 space-y-8 min-h-[480px] sm:min-h-[560px] flex flex-col justify-between">
             
-            <!-- Cover Image Layer with Dual Green Gradient Fades & Responsive Images -->
+            <!-- Cover Image Layer -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <!-- Wide Screen / Desktop / Tablet Cover Image -->
                 <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/4d1aad1b44a32f79ae266ac1d7e4b18bcb91b97b/IMG_2852.jpeg" alt="Wide Cover Header" class="w-full h-full object-cover header-bg-effect opacity-80 hidden sm:block">
-                
-                <!-- Small Screen / Mobile Cover Image -->
                 <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/4d1aad1b44a32f79ae266ac1d7e4b18bcb91b97b/IMG_2853.jpeg" alt="Mobile Cover Header" class="w-full h-full object-cover header-bg-effect opacity-80 block sm:hidden">
-                
-                <!-- Masking Gradient: Starts green at bottom, clear/visible in middle, fades green to top -->
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/40 to-brand-950/95"></div>
             </div>
 
-            <!-- Top Action Row (شريط اللغة والمواقع) -->
+            <!-- Top Action Row -->
             <div class="relative z-20 flex items-center justify-between gap-2 pb-4 border-b border-white/15 backdrop-blur-xs">
                 <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                     <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
@@ -233,9 +228,8 @@
                 </div>
             </div>
 
-            <!-- 1. Smooth Animated Welcome Screen Overlay (Visible for 2 Seconds) -->
+            <!-- 1. Smooth Animated Welcome Screen Overlay -->
             <div id="heroWelcomeContainer" class="relative z-10 flex flex-col items-center justify-center text-center my-auto py-12 animate-welcome-in space-y-4">
-                <!-- Enlarged Transparent Logo Without White Circle Wrapper -->
                 <div class="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-2xl badge-pulse">
                     <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-contain">
                 </div>
@@ -245,9 +239,8 @@
                 </div>
             </div>
 
-            <!-- 2. Main Hero Dynamic Body Content (With generous vertical spacing) -->
+            <!-- 2. Main Hero Dynamic Body Content -->
             <div id="heroMainBody" class="relative z-10 space-y-8 my-auto pt-4 hidden">
-                <!-- Restaurant Profile: Enlarged Transparent Logo on Right & Generous Spacing -->
                 <div class="flex flex-row items-center gap-5 sm:gap-7 text-right rtl:text-right py-2">
                     <div class="w-24 h-24 sm:w-32 sm:h-32 drop-shadow-2xl badge-pulse shrink-0">
                         <img src="https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png" alt="Logo" class="w-full h-full object-contain">
@@ -261,7 +254,6 @@
                     </div>
                 </div>
 
-                <!-- Spacing Before Main Categories -->
                 <div class="pt-4 border-t border-white/10">
                     <h3 class="text-xs sm:text-sm font-bold text-brand-200 mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-layer-group text-brand-400"></i> القوائم الرئيسية (13 قسماً)
@@ -269,7 +261,6 @@
                     <div class="grid grid-cols-3 gap-2.5" id="headerCategoriesGrid"></div>
                 </div>
 
-                <!-- Search Input with Microphone Feature (At bottom of Hero Section) -->
                 <div class="pt-3">
                     <div class="relative w-full flex items-center">
                         <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-950/85 backdrop-blur-md border border-white/25 text-white placeholder-brand-200 rounded-full py-2.5 px-10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950 transition shadow-inner">
@@ -398,7 +389,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT APP LOGIC -->
+    <!-- JAVASCRIPT APP LOGIC WITH POPULATED DISHES -->
     <script>
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png";
 
@@ -428,6 +419,14 @@
                                 price: 36,
                                 cal: 410,
                                 img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d15",
+                                name: { ar: "كبسة دجاج صحية بروان", en: "Healthy Brown Rice Chicken Kabsa" },
+                                desc: { ar: "دجاج طري مطهو بالبهارات العربية الأصيلة مع الأرز البني الصحي.", en: "Tender chicken cooked with authentic Arabian spices and healthy brown rice." },
+                                price: 38,
+                                cal: 430,
+                                img: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -450,6 +449,14 @@
                                 price: 48,
                                 cal: 460,
                                 img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d16",
+                                name: { ar: "شرائح اللحم المكسيكي الصحي", en: "Healthy Mexican Beef Strips" },
+                                desc: { ar: "شرائح لحم طرية مع الفلفل الملون والبصل المشوي على الطريقة المكسيكية.", en: "Tender beef strips with bell peppers and grilled onions Mexican style." },
+                                price: 45,
+                                cal: 420,
+                                img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -472,6 +479,14 @@
                                 price: 54,
                                 cal: 450,
                                 img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d17",
+                                name: { ar: "فيليه سمك الهامور المشوي", en: "Grilled Hammour Fillet" },
+                                desc: { ar: "فيليه هامور طازج مشوي بالفرن مع خضار سوتيه وصلصة الأعشاب.", en: "Fresh hammour fillet baked with sautéed vegetables and herb sauce." },
+                                price: 46,
+                                cal: 360,
+                                img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -494,6 +509,14 @@
                                 price: 44,
                                 cal: 420,
                                 img: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d18",
+                                name: { ar: "كمبير الدجاج بالجبن الخفيف", en: "Light Cheese Chicken Kumpir" },
+                                desc: { ar: "بطاطس مشوية ملساء ممزوجة بالزبدة النباتية والجبن قليل الدسم وقطع الدجاج.", en: "Smooth baked potato blended with plant butter, low-fat cheese and chicken." },
+                                price: 39,
+                                cal: 400,
+                                img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -516,6 +539,14 @@
                                 price: 31,
                                 cal: 390,
                                 img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d19",
+                                name: { ar: "سندويتش التونة الصحي بالخبز الأسمر", en: "Healthy Tuna Brown Bread Sandwich" },
+                                desc: { ar: "تونة طازجة مع الخس والذرة الحلوة ومايونيز قليل السعرات في خبز أسمر.", en: "Fresh tuna with lettuce, sweet corn and light mayo in whole wheat bread." },
+                                price: 26,
+                                cal: 310,
+                                img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -538,6 +569,14 @@
                                 price: 27,
                                 cal: 350,
                                 img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d20",
+                                name: { ar: "صاج الحلوم بالأعشاب والزعتر", en: "Halloumi Herb & Thyme Saj" },
+                                desc: { ar: "جبنة حلوم قليلة الدسم مع شرائح الطماطم الطازجة وأوراق النعناع الطازجة.", en: "Low-fat halloumi cheese with fresh tomato slices and fresh mint leaves." },
+                                price: 25,
+                                cal: 330,
+                                img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -560,6 +599,14 @@
                                 price: 29,
                                 cal: 320,
                                 img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d21",
+                                name: { ar: "سلطة سيزر الدايت بالدجاج", en: "Diet Chicken Caesar Salad" },
+                                desc: { ar: "خس روماني طازج، قطع دجاج مشوية، جبنة پارميزان خفيفة وخبز محمص بالفرن.", en: "Fresh romaine lettuce, grilled chicken pieces, light parmesan and baked croutons." },
+                                price: 28,
+                                cal: 290,
+                                img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -582,6 +629,14 @@
                                 price: 16,
                                 cal: 210,
                                 img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d22",
+                                name: { ar: "شوربة البروكلي الصحية بالقشطة النباتية", en: "Healthy Broccoli Soup" },
+                                desc: { ar: "بروكلي طازج مطهو بلطف مع حليب قليل الدسم وبهارات خفيفة.", en: "Fresh broccoli gently cooked with low-fat milk and light spices." },
+                                price: 18,
+                                cal: 180,
+                                img: "https://images.unsplash.com/photo-1548943482-a2e14db0043c?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -604,6 +659,14 @@
                                 price: 22,
                                 cal: 250,
                                 img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d23",
+                                name: { ar: "بان كيك الشوفان الصحي بالموز", en: "Healthy Oat Banana Pancakes" },
+                                desc: { ar: "بان كيك محضر من دقيق الشوفان والموز الطبيعي بدون سكر مع عسل نحل.", en: "Pancakes made from oat flour and natural banana, zero sugar with honey." },
+                                price: 24,
+                                cal: 310,
+                                img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -626,6 +689,14 @@
                                 price: 38,
                                 cal: 410,
                                 img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d24",
+                                name: { ar: "باستا البيستو الصحي بالروبيان", en: "Healthy Shrimp Pesto Pasta" },
+                                desc: { ar: "معكرونة صحية مغطاة بصوص البيستو الطازج المصنوع من الريحان وزيت الزيتون.", en: "Healthy pasta tossed in fresh basil and olive oil pesto sauce with shrimp." },
+                                price: 42,
+                                cal: 440,
+                                img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -648,6 +719,14 @@
                                 price: 49,
                                 cal: 530,
                                 img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d25",
+                                name: { ar: "دجاج الكيتو بالكريمة وجبن الشيدر", en: "Keto Creamy Cheddar Chicken" },
+                                desc: { ar: "صدور دجاج في صوص الكريمة الثقيلة وجبن الشيدر العضوي مع السبانخ.", en: "Chicken breasts in rich heavy cream and organic cheddar sauce with spinach." },
+                                price: 46,
+                                cal: 510,
+                                img: "https://images.unsplash.com/photo-1604908176997-125f2596f37c?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -670,6 +749,14 @@
                                 price: 18,
                                 cal: 95,
                                 img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d26",
+                                name: { ar: "عصير البرتقال الطازج الطبيعي", en: "Fresh Natural Orange Juice" },
+                                desc: { ar: "برتقال بلدي معصور طازجاً بدون أي إضافات أو سكر مطحون.", en: "Freshly squeezed local oranges with zero additives or added sugar." },
+                                price: 16,
+                                cal: 110,
+                                img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -692,6 +779,14 @@
                                 price: 20,
                                 cal: 230,
                                 img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
+                            },
+                            {
+                                id: "d27",
+                                name: { ar: "حلى التمر وزبدة الفول السوداني الصحية", en: "Healthy Peanut Butter Date Bites" },
+                                desc: { ar: "كرات التمر العضوي بزبدة الفول السوداني الطبيعية ورقائق الشوفان المقرمشة.", en: "Organic date balls with natural peanut butter and crunchy oat flakes." },
+                                price: 18,
+                                cal: 190,
+                                img: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=500&q=80"
                             }
                         ]
                     }
@@ -759,14 +854,12 @@
             renderApp();
         });
 
-        // Intro welcome transition timing script
         function initWelcomeHeaderTransition() {
             const welcomeContainer = document.getElementById('heroWelcomeContainer');
             const mainBody = document.getElementById('heroMainBody');
 
             if (!welcomeContainer || !mainBody) return;
 
-            // Display welcome screen for 2 seconds then smoothly transition
             setTimeout(() => {
                 welcomeContainer.classList.remove('animate-welcome-in');
                 welcomeContainer.classList.add('animate-welcome-out');
@@ -775,8 +868,8 @@
                     welcomeContainer.style.display = 'none';
                     mainBody.classList.remove('hidden');
                     mainBody.classList.add('animate-content-reveal');
-                }, 450); // Fade out duration match
-            }, 2000); // 2 Seconds presentation duration
+                }, 450);
+            }, 2000);
         }
 
         function renderApp() {
@@ -828,7 +921,6 @@
             menuData.forEach((cat, index) => {
                 const isActive = cat.id === activeCategoryId;
                 const btn = document.createElement('button');
-                
                 const isLastItem = (index === 12);
 
                 btn.className = `category-btn flex items-center justify-center gap-1.5 border rounded-xl py-2 px-2 transition-all duration-200 text-xs font-bold shadow-sm truncate backdrop-blur-sm ${
@@ -870,10 +962,8 @@
             section.className = "glass-panel rounded-3xl overflow-hidden p-4 sm:p-6 space-y-5";
 
             let html = `
-                <!-- Category Banner Image with Restored Original Backgrounds & Logo on the Left -->
                 <div class="relative w-full h-36 sm:h-48 rounded-2xl overflow-hidden shadow-md mb-4 border border-white/60">
                     <img src="${currentCat.headerImg}" alt="${currentCat.title[currentLang]}" class="w-full h-full object-cover">
-                    <!-- Soft Light White Overlay Banner -->
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent backdrop-blur-[2px] flex items-end justify-between p-4">
                         <div class="flex items-center gap-2.5">
                             <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md">
@@ -885,7 +975,6 @@
                             </div>
                         </div>
 
-                        <!-- Brand Logo Positioned on Left Side -->
                         <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 drop-shadow-md">
                             <img src="${customLogoUrl}" alt="Diet Food Logo" class="w-full h-full object-contain">
                         </div>
@@ -917,8 +1006,6 @@
 
             return `
                 <div id="accordion-${dish.id}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
-                    
-                    <!-- Header Bar -->
                     <div onclick="toggleAccordion('${dish.id}')" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer select-none">
                         <div class="flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-brand-500/80 shrink-0"></span>
@@ -930,14 +1017,10 @@
                         </div>
                     </div>
 
-                    <!-- Accordion Content -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
                             <div class="p-3 sm:p-4 border-t border-white/60 bg-white/60 backdrop-blur-md">
-                                
                                 <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-5">
-                                    
-                                    <!-- RIGHT SIDE: Details & Button -->
                                     <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0">
                                         <div class="space-y-1">
                                             <h4 class="text-base sm:text-2xl font-black text-gray-900 tracking-tight leading-snug truncate">${dish.name[currentLang]}</h4>
@@ -960,25 +1043,20 @@
                                         </div>
                                     </div>
 
-                                    <!-- LEFT SIDE: Image -->
                                     <div class="w-2/5 sm:w-1/3 shrink-0">
                                         <div class="p-1 rounded-2xl bg-amber-400 border-2 border-amber-500/80 shadow-sm relative overflow-hidden h-full">
                                             <div class="w-full h-full min-h-[120px] sm:min-h-[160px] rounded-xl overflow-hidden relative">
                                                 <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
-                                                
                                                 <div class="absolute bottom-1.5 left-1.5 rtl:left-1.5 ltr:right-1.5 ltr:left-auto bg-amber-400/95 text-amber-950 font-black text-[10px] sm:text-xs px-2.5 py-1 rounded-lg shadow-md border border-amber-300">
                                                     ${dish.price} ${currency}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             `;
         }
