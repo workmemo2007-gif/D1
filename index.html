@@ -394,405 +394,2104 @@
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png";
 
         const menuData = [
-            {
-                id: "cat-chicken",
-                icon: "fa-drumstick-bite",
-                title: { ar: "دجاج", en: "Chicken" },
-                headerImg: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-chicken-specials",
-                        title: { ar: "أطباق الدجاج الصحية", en: "Healthy Chicken Dishes" },
-                        dishes: [
-                            {
-                                id: "d1",
-                                name: { ar: "صدر دجاج مشوي بالأعشاب", en: "Grilled Herb Chicken Breast" },
-                                desc: { ar: "صدور دجاج طرية متبلة بالأعشاب البرية وزيت الزيتون البكر مع أرز بسمتي وخضار.", en: "Tender chicken breast marinated in wild herbs & olive oil with basmati rice." },
-                                price: 34,
-                                cal: 380,
-                                img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d2",
-                                name: { ar: "دجاج ترياكي دايت", en: "Diet Chicken Teriyaki" },
-                                desc: { ar: "شرائح دجاج مع صوص الترياكي الصحي الخالي من السكر وبذور السمسم.", en: "Sliced chicken with sugar-free teriyaki sauce and sesame seeds." },
-                                price: 36,
-                                cal: 410,
-                                img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d15",
-                                name: { ar: "كبسة دجاج صحية بروان", en: "Healthy Brown Rice Chicken Kabsa" },
-                                desc: { ar: "دجاج طري مطهو بالبهارات العربية الأصيلة مع الأرز البني الصحي.", en: "Tender chicken cooked with authentic Arabian spices and healthy brown rice." },
-                                price: 38,
-                                cal: 430,
-                                img: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-meat",
-                icon: "fa-bacon",
-                title: { ar: "لحم", en: "Meat" },
-                headerImg: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-meat-specials",
-                        title: { ar: "أطباق اللحم الصافي", en: "Lean Meat Dishes" },
-                        dishes: [
-                            {
-                                id: "d3",
-                                name: { ar: "ستيك بيف بلاك أنجوس", en: "Black Angus Lean Steak" },
-                                desc: { ar: "شريحة ستيك أنجوس صافية بدون دهون مع صوص الفطر الصحي وبطاطس مهروسة.", en: "Lean Angus steak with healthy mushroom sauce & mashed potatoes." },
-                                price: 48,
-                                cal: 460,
-                                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d16",
-                                name: { ar: "شرائح اللحم المكسيكي الصحي", en: "Healthy Mexican Beef Strips" },
-                                desc: { ar: "شرائح لحم طرية مع الفلفل الملون والبصل المشوي على الطريقة المكسيكية.", en: "Tender beef strips with bell peppers and grilled onions Mexican style." },
-                                price: 45,
-                                cal: 420,
-                                img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-fish",
-                icon: "fa-fish",
-                title: { ar: "سمك", en: "Fish" },
-                headerImg: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-fish-specials",
-                        title: { ar: "أطباق الأسماك الطازجة", en: "Fresh Fish Dishes" },
-                        dishes: [
-                            {
-                                id: "d4",
-                                name: { ar: "سلمون مشوي بالليمون", en: "Grilled Lemon Salmon" },
-                                desc: { ar: "فيليه سلمون نرويجي غني بأوميغا 3 مشوي بصلصة الليمون والشبت.", en: "Norwegian salmon fillet with lemon dill sauce & steamed quinoa." },
-                                price: 54,
-                                cal: 450,
-                                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d17",
-                                name: { ar: "فيليه سمك الهامور المشوي", en: "Grilled Hammour Fillet" },
-                                desc: { ar: "فيليه هامور طازج مشوي بالفرن مع خضار سوتيه وصلصة الأعشاب.", en: "Fresh hammour fillet baked with sautéed vegetables and herb sauce." },
-                                price: 46,
-                                cal: 360,
-                                img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-kumpir",
-                icon: "fa-utensils",
-                title: { ar: "الكومبير", en: "Kumpir" },
-                headerImg: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-kumpir-specials",
-                        title: { ar: "الكومبير الصحي المشوي", en: "Healthy Kumpir Specials" },
-                        dishes: [
-                            {
-                                id: "d5",
-                                name: { ar: "كمبير الروبيان الصحي", en: "Healthy Shrimp Kumpir" },
-                                desc: { ar: "بطاطس مشوية بالفرن محشوة بالروبيان المشوي والجبن الدايت وخضار.", en: "Oven-baked potato stuffed with grilled shrimp & light cheese." },
-                                price: 44,
-                                cal: 420,
-                                img: "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d18",
-                                name: { ar: "كمبير الدجاج بالجبن الخفيف", en: "Light Cheese Chicken Kumpir" },
-                                desc: { ar: "بطاطس مشوية ملساء ممزوجة بالزبدة النباتية والجبن قليل الدسم وقطع الدجاج.", en: "Smooth baked potato blended with plant butter, low-fat cheese and chicken." },
-                                price: 39,
-                                cal: 400,
-                                img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-sandwiches",
-                icon: "fa-burger",
-                title: { ar: "السندويجات", en: "Sandwiches" },
-                headerImg: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-sandwiches-specials",
-                        title: { ar: "سندويتشات صحية", en: "Healthy Sandwiches" },
-                        dishes: [
-                            {
-                                id: "d6",
-                                name: { ar: "برجر دايت دجاج الشوفان", en: "Oat Chicken Diet Burger" },
-                                desc: { ar: "قرص دجاج صحي بخبز الشوفان الكامل مع جبن لايت وصوص خاص.", en: "Lean chicken patty in whole oat bun with light cheese & tomato." },
-                                price: 31,
-                                cal: 390,
-                                img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d19",
-                                name: { ar: "سندويتش التونة الصحي بالخبز الأسمر", en: "Healthy Tuna Brown Bread Sandwich" },
-                                desc: { ar: "تونة طازجة مع الخس والذرة الحلوة ومايونيز قليل السعرات في خبز أسمر.", en: "Fresh tuna with lettuce, sweet corn and light mayo in whole wheat bread." },
-                                price: 26,
-                                cal: 310,
-                                img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-saj",
-                icon: "fa-bread-slice",
-                title: { ar: "صاج", en: "Saj Wraps" },
-                headerImg: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-saj-specials",
-                        title: { ar: "سندويتشات الصاج الرقيق", en: "Saj Wrap Specials" },
-                        dishes: [
-                            {
-                                id: "d7",
-                                name: { ar: "صاج دجاج بروتين راب", en: "Chicken Protein Saj Wrap" },
-                                desc: { ar: "خبز صاج أسرار الدايت المحشو بالدجاج المشوي والجرجير.", en: "Whole wheat saj wrap stuffed with grilled chicken and rocca." },
-                                price: 27,
-                                cal: 350,
-                                img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d20",
-                                name: { ar: "صاج الحلوم بالأعشاب والزعتر", en: "Halloumi Herb & Thyme Saj" },
-                                desc: { ar: "جبنة حلوم قليلة الدسم مع شرائح الطماطم الطازجة وأوراق النعناع الطازجة.", en: "Low-fat halloumi cheese with fresh tomato slices and fresh mint leaves." },
-                                price: 25,
-                                cal: 330,
-                                img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-salads",
-                icon: "fa-carrot",
-                title: { ar: "سلطات", en: "Salads" },
-                headerImg: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-salads-specials",
-                        title: { ar: "سلطات طازجة وغنية بالبروتين", en: "Fresh Protein Salads" },
-                        dishes: [
-                            {
-                                id: "d8",
-                                name: { ar: "سلطة الكينوا والدجاج", en: "Quinoa Chicken Salad" },
-                                desc: { ar: "كينوا عضوي مع قطع الدجاج المشوي، الخيار، الطماطم وصوص الليمون.", en: "Organic quinoa with grilled chicken, avocado slices & lemon dressing." },
-                                price: 29,
-                                cal: 320,
-                                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d21",
-                                name: { ar: "سلطة سيزر الدايت بالدجاج", en: "Diet Chicken Caesar Salad" },
-                                desc: { ar: "خس روماني طازج، قطع دجاج مشوية، جبنة پارميزان خفيفة وخبز محمص بالفرن.", en: "Fresh romaine lettuce, grilled chicken pieces, light parmesan and baked croutons." },
-                                price: 28,
-                                cal: 290,
-                                img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-soup",
-                icon: "fa-bowl-food",
-                title: { ar: "الحساء", en: "Soup" },
-                headerImg: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-soup-specials",
-                        title: { ar: "شوربة ساخنة ومغذية", en: "Warm & Nourishing Soups" },
-                        dishes: [
-                            {
-                                id: "d9",
-                                name: { ar: "شوربة العدس الدايت", en: "Diet Lentil Soup" },
-                                desc: { ar: "شوربة عدس غنية بالبهارات الطبيعية وزيت الزيتون والليمون.", en: "Nourishing traditional lentil soup with natural spices and olive oil." },
-                                price: 16,
-                                cal: 210,
-                                img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d22",
-                                name: { ar: "شوربة البروكلي الصحية بالقشطة النباتية", en: "Healthy Broccoli Soup" },
-                                desc: { ar: "بروكلي طازج مطهو بلطف مع حليب قليل الدسم وبهارات خفيفة.", en: "Fresh broccoli gently cooked with low-fat milk and light spices." },
-                                price: 18,
-                                cal: 180,
-                                img: "https://images.unsplash.com/photo-1548943482-a2e14db0043c?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-breakfast",
-                icon: "fa-egg",
-                title: { ar: "وجبات الفطور", en: "Breakfast" },
-                headerImg: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-breakfast-specials",
-                        title: { ar: "فطور صحي ومفعم بالطاقة", en: "Energizing Healthy Breakfast" },
-                        dishes: [
-                            {
-                                id: "d10",
-                                name: { ar: "أومليت بياض البيض والخضار", en: "Egg White Veggie Omelette" },
-                                desc: { ar: "أومليت بياض بيض مع السبانخ والمشروم وجبن قريش.", en: "Fluffy egg white omelette with spinach, mushrooms and low-fat cheese." },
-                                price: 22,
-                                cal: 250,
-                                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d23",
-                                name: { ar: "بان كيك الشوفان الصحي بالموز", en: "Healthy Oat Banana Pancakes" },
-                                desc: { ar: "بان كيك محضر من دقيق الشوفان والموز الطبيعي بدون سكر مع عسل نحل.", en: "Pancakes made from oat flour and natural banana, zero sugar with honey." },
-                                price: 24,
-                                cal: 310,
-                                img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-pasta",
-                icon: "fa-bowl-rice",
-                title: { ar: "المعكرونه", en: "Pasta" },
-                headerImg: "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-pasta-specials",
-                        title: { ar: "معكرونة الحبوب الكاملة", en: "Whole Wheat Pasta" },
-                        dishes: [
-                            {
-                                id: "d11",
-                                name: { ar: "باستا القمح الكامل بالدجاج", en: "Whole Wheat Chicken Pasta" },
-                                desc: { ar: "معكرونة حبوب كاملة مع قطع الدجاج وصوص الطماطم العضوي والريحان.", en: "Whole wheat pasta with grilled chicken, organic tomato sauce and fresh basil." },
-                                price: 38,
-                                cal: 410,
-                                img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d24",
-                                name: { ar: "باستا البيستو الصحي بالروبيان", en: "Healthy Shrimp Pesto Pasta" },
-                                desc: { ar: "معكرونة صحية مغطاة بصوص البيستو الطازج المصنوع من الريحان وزيت الزيتون.", en: "Healthy pasta tossed in fresh basil and olive oil pesto sauce with shrimp." },
-                                price: 42,
-                                cal: 440,
-                                img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-keto",
-                icon: "fa-fire",
-                title: { ar: "كيتو دايت", en: "Keto Diet" },
-                headerImg: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-keto-specials",
-                        title: { ar: "وجبات قليلة الكربوهيدرات", en: "Low-Carb Keto Meals" },
-                        dishes: [
-                            {
-                                id: "d12",
-                                name: { ar: "طبق الكيتو بالافوكادو واللحم", en: "Keto Beef & Avocado Bowl" },
-                                desc: { ar: "شرائح لحم مشوية مع أفوكادو طازج، زبدة طبيعية وخضار ورقية.", en: "Grilled beef slices with fresh avocado, natural butter and leafy greens." },
-                                price: 49,
-                                cal: 530,
-                                img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d25",
-                                name: { ar: "دجاج الكيتو بالكريمة وجبن الشيدر", en: "Keto Creamy Cheddar Chicken" },
-                                desc: { ar: "صدور دجاج في صوص الكريمة الثقيلة وجبن الشيدر العضوي مع السبانخ.", en: "Chicken breasts in rich heavy cream and organic cheddar sauce with spinach." },
-                                price: 46,
-                                cal: 510,
-                                img: "https://images.unsplash.com/photo-1604908176997-125f2596f37c?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-juices",
-                icon: "fa-glass-water",
-                title: { ar: "عصائر", en: "Juices" },
-                headerImg: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-juices-specials",
-                        title: { ar: "عصائر طبيعية وديتوكس", en: "Fresh & Detox Juices" },
-                        dishes: [
-                            {
-                                id: "d13",
-                                name: { ar: "عصير الديتوكس الأخضر", en: "Green Detox Juice" },
-                                desc: { ar: "تفاح أخضر، خيار، كرفس، زنجبيل، وليمون حارق للدهون.", en: "Green apple, cucumber, celery, ginger & lemon." },
-                                price: 18,
-                                cal: 95,
-                                img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d26",
-                                name: { ar: "عصير البرتقال الطازج الطبيعي", en: "Fresh Natural Orange Juice" },
-                                desc: { ar: "برتقال بلدي معصور طازجاً بدون أي إضافات أو سكر مطحون.", en: "Freshly squeezed local oranges with zero additives or added sugar." },
-                                price: 16,
-                                cal: 110,
-                                img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: "cat-desserts",
-                icon: "fa-ice-cream",
-                title: { ar: "حلويات", en: "Desserts" },
-                headerImg: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1000&q=80",
-                subCategories: [
-                    {
-                        id: "sub-desserts-specials",
-                        title: { ar: "حلويات صحية خالية من السكر", en: "Sugar-Free Healthy Desserts" },
-                        dishes: [
-                            {
-                                id: "d14",
-                                name: { ar: "تشيز كيك الشوفان الدايت", en: "Diet Oat Cheesecake" },
-                                desc: { ar: "تشيز كيك خفيف بقاعدة الشوفان والعسل الطبيعي بدون سكر مضاف.", en: "Light cheesecake with oat crust and natural honey, zero added sugar." },
-                                price: 20,
-                                cal: 230,
-                                img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
-                            },
-                            {
-                                id: "d27",
-                                name: { ar: "حلى التمر وزبدة الفول السوداني الصحية", en: "Healthy Peanut Butter Date Bites" },
-                                desc: { ar: "كرات التمر العضوي بزبدة الفول السوداني الطبيعية ورقائق الشوفان المقرمشة.", en: "Organic date balls with natural peanut butter and crunchy oat flakes." },
-                                price: 18,
-                                cal: 190,
-                                img: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=500&q=80"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
+          {
+                    "id": "cat-chicken",
+                    "icon": "fa-drumstick-bite",
+                    "title": {
+                              "ar": "دجاج",
+                              "en": "Chicken"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-chicken-specials",
+                                        "title": {
+                                                  "ar": "أطباق الدجاج الصحية",
+                                                  "en": "Healthy Chicken Dishes"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-001",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج الكاري",
+                                                                      "en": "وجبة دجاج الكاري"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-002",
+                                                            "name": {
+                                                                      "ar": "ستيك دجاج",
+                                                                      "en": "ستيك دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-003",
+                                                            "name": {
+                                                                      "ar": "صدر دجاج محشي بالخضار",
+                                                                      "en": "صدر دجاج محشي بالخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-004",
+                                                            "name": {
+                                                                      "ar": "وجبة فاهيتا دجاج",
+                                                                      "en": "وجبة فاهيتا دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-005",
+                                                            "name": {
+                                                                      "ar": "وجبة شيش طاووق",
+                                                                      "en": "وجبة شيش طاووق"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-006",
+                                                            "name": {
+                                                                      "ar": "وجبة بيكاتا دجاج",
+                                                                      "en": "وجبة بيكاتا دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-007",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج صيني بالخضار",
+                                                                      "en": "وجبة دجاج صيني بالخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-008",
+                                                            "name": {
+                                                                      "ar": "نودلز بالدجاج والخضار",
+                                                                      "en": "نودلز بالدجاج والخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-009",
+                                                            "name": {
+                                                                      "ar": "وجبة عرايس دجاج دايت",
+                                                                      "en": "وجبة عرايس دجاج دايت"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-010",
+                                                            "name": {
+                                                                      "ar": "كاساديا دجاج",
+                                                                      "en": "كاساديا دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-011",
+                                                            "name": {
+                                                                      "ar": "ريزو دجاج",
+                                                                      "en": "ريزو دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-012",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج بالترياكي",
+                                                                      "en": "وجبة دجاج بالترياكي"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-013",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج بالصلصة الحمراء (سبايسي)",
+                                                                      "en": "وجبة دجاج بالصلصة الحمراء (سبايسي)"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-014",
+                                                            "name": {
+                                                                      "ar": "بوبيت دجاج",
+                                                                      "en": "بوبيت دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 10000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-015",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج بصلصة الباربكيو",
+                                                                      "en": "وجبة دجاج بصلصة الباربكيو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-016",
+                                                            "name": {
+                                                                      "ar": "وجبة ستيك دجاج بصلصة الحامض والثوم",
+                                                                      "en": "وجبة ستيك دجاج بصلصة الحامض والثوم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-017",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج بصلصة الليمون",
+                                                                      "en": "وجبة دجاج بصلصة الليمون"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-018",
+                                                            "name": {
+                                                                      "ar": "وجبة دجاج بالصلصة الخاصة",
+                                                                      "en": "وجبة دجاج بالصلصة الخاصة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-019",
+                                                            "name": {
+                                                                      "ar": "وجبه شكن ماسالا",
+                                                                      "en": "وجبه شكن ماسالا"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-020",
+                                                            "name": {
+                                                                      "ar": "دجاج الكيف",
+                                                                      "en": "دجاج الكيف"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 10000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%AF%D8%AC%D8%A7%D8%AC%20%D8%A7%D9%84%D9%83%D9%8A%D9%81_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-021",
+                                                            "name": {
+                                                                      "ar": "دجاج كرتان",
+                                                                      "en": "دجاج كرتان"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-022",
+                                                            "name": {
+                                                                      "ar": "برياني دجاج",
+                                                                      "en": "برياني دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%A8%D8%B1%D9%8A%D8%A7%D9%86%D9%8A%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-023",
+                                                            "name": {
+                                                                      "ar": "وجبه بركر دجاج دايت فود",
+                                                                      "en": "وجبه بركر دجاج دايت فود"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-024",
+                                                            "name": {
+                                                                      "ar": "كبسة دجاج",
+                                                                      "en": "كبسة دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-025",
+                                                            "name": {
+                                                                      "ar": "كفتة دجاج بالخضار",
+                                                                      "en": "كفتة دجاج بالخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D9%81%D8%AA%D8%A9%20%D8%AF%D8%AC%D8%A7%D8%AC%20%D8%A8%D8%A7%D9%84%D8%AE%D8%B6%D8%A7%D8%B1_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-026",
+                                                            "name": {
+                                                                      "ar": "كباب دجاج",
+                                                                      "en": "كباب دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D8%A8%D8%A7%D8%A8%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-027",
+                                                            "name": {
+                                                                      "ar": "وجبة شاورما دجاج",
+                                                                      "en": "وجبة شاورما دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%88%D8%AC%D8%A8%D8%A9%20%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-028",
+                                                            "name": {
+                                                                      "ar": "وجبه ايمانسيه دجاج",
+                                                                      "en": "وجبه ايمانسيه دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-029",
+                                                            "name": {
+                                                                      "ar": "كروكيت دجاج",
+                                                                      "en": "كروكيت دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D8%B1%D9%88%D9%83%D9%8A%D8%AA%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-030",
+                                                            "name": {
+                                                                      "ar": "معجوقة دجاج",
+                                                                      "en": "معجوقة دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%85%D8%B9%D8%AC%D9%88%D9%82%D8%A9%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-031",
+                                                            "name": {
+                                                                      "ar": "دجاج بصلصة الفريدو",
+                                                                      "en": "دجاج بصلصة الفريدو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%AF%D8%AC%D8%A7%D8%AC%20%D8%A8%D8%B5%D9%84%D8%B5%D8%A9%20%D8%A7%D9%84%D9%81%D8%B1%D9%8A%D8%AF%D9%88_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-032",
+                                                            "name": {
+                                                                      "ar": "دجاج السبانخ",
+                                                                      "en": "دجاج السبانخ"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-033",
+                                                            "name": {
+                                                                      "ar": "دجاج سويت اند سور",
+                                                                      "en": "دجاج سويت اند سور"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%AF%D8%AC%D8%A7%D8%AC%20%D8%B3%D9%88%D9%8A%D8%AA%20%D8%A7%D9%86%D8%AF%20%D8%B3%D9%88%D8%B1_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-034",
+                                                            "name": {
+                                                                      "ar": "فتة دجاج",
+                                                                      "en": "فتة دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%81%D8%AA%D8%A9%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-meat",
+                    "icon": "fa-bacon",
+                    "title": {
+                              "ar": "لحم",
+                              "en": "Meat"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-meat-specials",
+                                        "title": {
+                                                  "ar": "أطباق اللحم الصافي",
+                                                  "en": "Lean Meat Dishes"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-035",
+                                                            "name": {
+                                                                      "ar": "وجبة لحم مشوي",
+                                                                      "en": "وجبة لحم مشوي"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-036",
+                                                            "name": {
+                                                                      "ar": "وجبة لحم مشوي بصلصة الفطر",
+                                                                      "en": "وجبة لحم مشوي بصلصة الفطر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-037",
+                                                            "name": {
+                                                                      "ar": "وجبة لحم مشوي بالليمون",
+                                                                      "en": "وجبة لحم مشوي بالليمون"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-038",
+                                                            "name": {
+                                                                      "ar": "وجبة لحم مشوي بالفلفل سبايسي",
+                                                                      "en": "وجبة لحم مشوي بالفلفل سبايسي"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-039",
+                                                            "name": {
+                                                                      "ar": "وجبة لحم مشوي بصلصة الباربكيو",
+                                                                      "en": "وجبة لحم مشوي بصلصة الباربكيو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-040",
+                                                            "name": {
+                                                                      "ar": "وجبة كفتة لحم",
+                                                                      "en": "وجبة كفتة لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-041",
+                                                            "name": {
+                                                                      "ar": "فيلاديلفيا لحم مع فلفل الوان والفطر",
+                                                                      "en": "فيلاديلفيا لحم مع فلفل الوان والفطر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-042",
+                                                            "name": {
+                                                                      "ar": "وجبة شرائح لحم",
+                                                                      "en": "وجبة شرائح لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-043",
+                                                            "name": {
+                                                                      "ar": "كاري لحم",
+                                                                      "en": "كاري لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-044",
+                                                            "name": {
+                                                                      "ar": "بيف ستراكانوف",
+                                                                      "en": "بيف ستراكانوف"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 12000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%A8%D9%8A%D9%81%20%D8%B3%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D9%86%D9%88%D9%81_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-045",
+                                                            "name": {
+                                                                      "ar": "وجبة ملفوف الباذنجان",
+                                                                      "en": "وجبة ملفوف الباذنجان"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 12000,
+                                                            "img": "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-046",
+                                                            "name": {
+                                                                      "ar": "كباب بالطريقة الهندية",
+                                                                      "en": "كباب بالطريقة الهندية"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D8%A8%D8%A7%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B7%D8%B1%D9%8A%D9%82%D8%A9%20%D8%A7%D9%84%D9%87%D9%86%D8%AF%D9%8A%D8%A9_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-047",
+                                                            "name": {
+                                                                      "ar": "كباب اسكندر",
+                                                                      "en": "كباب اسكندر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D8%A8%D8%A7%D8%A8%20%D8%A7%D8%B3%D9%83%D9%86%D8%AF%D8%B1_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-048",
+                                                            "name": {
+                                                                      "ar": "عرايس لحم",
+                                                                      "en": "عرايس لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 10000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B9%D8%B1%D8%A7%D9%8A%D8%B3%20%D9%84%D8%AD%D9%85_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-049",
+                                                            "name": {
+                                                                      "ar": "بيف كولاش",
+                                                                      "en": "بيف كولاش"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%A8%D9%8A%D9%81%20%D9%83%D9%88%D9%84%D8%A7%D8%B4_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-050",
+                                                            "name": {
+                                                                      "ar": "كفتة بالبطاطا",
+                                                                      "en": "كفتة بالبطاطا"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 12000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D9%81%D8%AA%D8%A9%20%D8%A8%D8%A7%D9%84%D8%A8%D8%B7%D8%A7%D8%B7%D8%A7_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-051",
+                                                            "name": {
+                                                                      "ar": "كفتة بالخضار",
+                                                                      "en": "كفتة بالخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D9%81%D8%AA%D8%A9%20%D8%A8%D8%A7%D9%84%D8%AE%D8%B6%D8%A7%D8%B1_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-052",
+                                                            "name": {
+                                                                      "ar": "كفتة بالطحينية",
+                                                                      "en": "كفتة بالطحينية"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%83%D9%81%D8%AA%D8%A9%20%D8%A8%D8%A7%D9%84%D8%B7%D8%AD%D9%8A%D9%86%D9%8A%D8%A9_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-053",
+                                                            "name": {
+                                                                      "ar": "ستيك لحم سويسري",
+                                                                      "en": "ستيك لحم سويسري"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B3%D8%AA%D9%8A%D9%83%20%D9%84%D8%AD%D9%85%20%D8%B3%D9%88%D9%8A%D8%B3%D8%B1%D9%8A_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-054",
+                                                            "name": {
+                                                                      "ar": "ستيك لحم مكسيكي",
+                                                                      "en": "ستيك لحم مكسيكي"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B3%D8%AA%D9%8A%D9%83%20%D9%84%D8%AD%D9%85%20%D9%85%D9%83%D8%B3%D9%8A%D9%83%D9%8A_Maryam.jpg"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-fish",
+                    "icon": "fa-fish",
+                    "title": {
+                              "ar": "سمك",
+                              "en": "Fish"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-fish-specials",
+                                        "title": {
+                                                  "ar": "أطباق الأسماك الطازجة",
+                                                  "en": "Fresh Fish Dishes"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-055",
+                                                            "name": {
+                                                                      "ar": "سمك فيليه",
+                                                                      "en": "سمك فيليه"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-056",
+                                                            "name": {
+                                                                      "ar": "زبيدي محشي بالخضار",
+                                                                      "en": "زبيدي محشي بالخضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 14000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-057",
+                                                            "name": {
+                                                                      "ar": "وجبة روبيان صيني",
+                                                                      "en": "وجبة روبيان صيني"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 11000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-058",
+                                                            "name": {
+                                                                      "ar": "وجبة سمك السلمون",
+                                                                      "en": "وجبة سمك السلمون"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 16000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-059",
+                                                            "name": {
+                                                                      "ar": "روبيان دايت فود",
+                                                                      "en": "روبيان دايت فود"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 14000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-060",
+                                                            "name": {
+                                                                      "ar": "مطبك روبيان",
+                                                                      "en": "مطبك روبيان"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-061",
+                                                            "name": {
+                                                                      "ar": "سمك الكارب",
+                                                                      "en": "سمك الكارب"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-kumpir",
+                    "icon": "fa-utensils",
+                    "title": {
+                              "ar": "الكومبير",
+                              "en": "Kumpir"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-kumpir-specials",
+                                        "title": {
+                                                  "ar": "الكومبير الصحي المشوي",
+                                                  "en": "Healthy Kumpir Specials"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-062",
+                                                            "name": {
+                                                                      "ar": "كومبير لحم",
+                                                                      "en": "كومبير لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-063",
+                                                            "name": {
+                                                                      "ar": "كومبير دجاج",
+                                                                      "en": "كومبير دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-064",
+                                                            "name": {
+                                                                      "ar": "كومبير خضار",
+                                                                      "en": "كومبير خضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-065",
+                                                            "name": {
+                                                                      "ar": "بطاطا مشوية",
+                                                                      "en": "بطاطا مشوية"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-066",
+                                                            "name": {
+                                                                      "ar": "فرايز بطاطا باللحم",
+                                                                      "en": "فرايز بطاطا باللحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-067",
+                                                            "name": {
+                                                                      "ar": "تشيلي فرايز",
+                                                                      "en": "تشيلي فرايز"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1559742811-822863646df8?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-sandwiches",
+                    "icon": "fa-burger",
+                    "title": {
+                              "ar": "السندويجات",
+                              "en": "Sandwiches"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-sandwiches-specials",
+                                        "title": {
+                                                  "ar": "سندويتشات صحية",
+                                                  "en": "Healthy Sandwiches"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-075",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر لحم",
+                                                                      "en": "سندويج همبركر لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-076",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر لحم بالجبن",
+                                                                      "en": "سندويج همبركر لحم بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6500,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-077",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر دجاج",
+                                                                      "en": "سندويج همبركر دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-078",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر دجاج بالجبن",
+                                                                      "en": "سندويج همبركر دجاج بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5500,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-079",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر لحم دايت فود (دبل بركر)",
+                                                                      "en": "سندويج همبركر لحم دايت فود (دبل بركر)"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-080",
+                                                            "name": {
+                                                                      "ar": "سندويج همبركر دجاج دايت فود (دبل بركر)",
+                                                                      "en": "سندويج همبركر دجاج دايت فود (دبل بركر)"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-081",
+                                                            "name": {
+                                                                      "ar": "سندويج بركر لحم محشي بالجبن",
+                                                                      "en": "سندويج بركر لحم محشي بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-082",
+                                                            "name": {
+                                                                      "ar": "سندويج بركر دجاج محشي بالجبن",
+                                                                      "en": "سندويج بركر دجاج محشي بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-083",
+                                                            "name": {
+                                                                      "ar": "سندويج بركر لحم باربيكيو",
+                                                                      "en": "سندويج بركر لحم باربيكيو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-084",
+                                                            "name": {
+                                                                      "ar": "سندويج بركر ميلانو",
+                                                                      "en": "سندويج بركر ميلانو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-085",
+                                                            "name": {
+                                                                      "ar": "سندويج بركر كلاسك",
+                                                                      "en": "سندويج بركر كلاسك"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-086",
+                                                            "name": {
+                                                                      "ar": "ميني بركر دجاج",
+                                                                      "en": "ميني بركر دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%85%D9%8A%D9%86%D9%8A%20%D8%A8%D8%B1%D9%83%D8%B1%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-087",
+                                                            "name": {
+                                                                      "ar": "ميني بركر لحم",
+                                                                      "en": "ميني بركر لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D9%85%D9%8A%D9%86%D9%8A%20%D8%A8%D8%B1%D9%83%D8%B1%20%D9%84%D8%AD%D9%85_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-088",
+                                                            "name": {
+                                                                      "ar": "سندويج فاهيتا دجاج",
+                                                                      "en": "سندويج فاهيتا دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-089",
+                                                            "name": {
+                                                                      "ar": "سندويج ستيك دجاج",
+                                                                      "en": "سندويج ستيك دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-090",
+                                                            "name": {
+                                                                      "ar": "سندويج ستيك لحم",
+                                                                      "en": "سندويج ستيك لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-091",
+                                                            "name": {
+                                                                      "ar": "سندويج شيش طاووق",
+                                                                      "en": "سندويج شيش طاووق"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-092",
+                                                            "name": {
+                                                                      "ar": "سندويج فرنسيسكو",
+                                                                      "en": "سندويج فرنسيسكو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-093",
+                                                            "name": {
+                                                                      "ar": "سندويج صوصج",
+                                                                      "en": "سندويج صوصج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-094",
+                                                            "name": {
+                                                                      "ar": "سندويج حبش",
+                                                                      "en": "سندويج حبش"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-095",
+                                                            "name": {
+                                                                      "ar": "سندويج دجاج هندي",
+                                                                      "en": "سندويج دجاج هندي"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-096",
+                                                            "name": {
+                                                                      "ar": "سندويج فيلاديلفيا لحم بالجبن",
+                                                                      "en": "سندويج فيلاديلفيا لحم بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-097",
+                                                            "name": {
+                                                                      "ar": "سندويج شاورما دجاج",
+                                                                      "en": "سندويج شاورما دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B3%D9%86%D8%AF%D9%88%D9%8A%D8%AC%20%D8%B4%D8%A7%D9%88%D8%B1%D9%85%D8%A7%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-saj",
+                    "icon": "fa-bread-slice",
+                    "title": {
+                              "ar": "صاج",
+                              "en": "Saj Wraps"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-saj-specials",
+                                        "title": {
+                                                  "ar": "سندويتشات الصاج الرقيق",
+                                                  "en": "Saj Wrap Specials"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-098",
+                                                            "name": {
+                                                                      "ar": "صاج دجاج",
+                                                                      "en": "صاج دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-099",
+                                                            "name": {
+                                                                      "ar": "صاج لحم",
+                                                                      "en": "صاج لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B5%D8%A7%D8%AC%20%D9%84%D8%AD%D9%85_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-100",
+                                                            "name": {
+                                                                      "ar": "صاج ايطالي دجاج",
+                                                                      "en": "صاج ايطالي دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B5%D8%A7%D8%AC%20%D8%A7%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%20%D8%AF%D8%AC%D8%A7%D8%AC_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-101",
+                                                            "name": {
+                                                                      "ar": "صاج ايطالي لحم",
+                                                                      "en": "صاج ايطالي لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B5%D8%A7%D8%AC%20%D8%A7%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%20%D9%84%D8%AD%D9%85_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-102",
+                                                            "name": {
+                                                                      "ar": "صاج بركر دجاج",
+                                                                      "en": "صاج بركر دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-103",
+                                                            "name": {
+                                                                      "ar": "صاج بركر لحم",
+                                                                      "en": "صاج بركر لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-salads",
+                    "icon": "fa-carrot",
+                    "title": {
+                              "ar": "سلطات",
+                              "en": "Salads"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-salads-specials",
+                                        "title": {
+                                                  "ar": "سلطات طازجة وغنية بالبروتين",
+                                                  "en": "Fresh Protein Salads"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-104",
+                                                            "name": {
+                                                                      "ar": "سلطة سيزر دايت",
+                                                                      "en": "سلطة سيزر دايت"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-105",
+                                                            "name": {
+                                                                      "ar": "سلطة جرجير",
+                                                                      "en": "سلطة جرجير"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-106",
+                                                            "name": {
+                                                                      "ar": "سلطة تونة دايت",
+                                                                      "en": "سلطة تونة دايت"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-107",
+                                                            "name": {
+                                                                      "ar": "سلطة لهانة",
+                                                                      "en": "سلطة لهانة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-108",
+                                                            "name": {
+                                                                      "ar": "تبولة",
+                                                                      "en": "تبولة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-109",
+                                                            "name": {
+                                                                      "ar": "سلطة يونانية",
+                                                                      "en": "سلطة يونانية"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-110",
+                                                            "name": {
+                                                                      "ar": "سلطة الكينوا",
+                                                                      "en": "سلطة الكينوا"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-111",
+                                                            "name": {
+                                                                      "ar": "سلطة فواكه",
+                                                                      "en": "سلطة فواكه"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-112",
+                                                            "name": {
+                                                                      "ar": "مقبلات صغيرة",
+                                                                      "en": "مقبلات صغيرة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-113",
+                                                            "name": {
+                                                                      "ar": "مقبلات كبيرة",
+                                                                      "en": "مقبلات كبيرة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-114",
+                                                            "name": {
+                                                                      "ar": "سلطة الافوكادو",
+                                                                      "en": "سلطة الافوكادو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-115",
+                                                            "name": {
+                                                                      "ar": "سلطة الافوكادو بالتونة",
+                                                                      "en": "سلطة الافوكادو بالتونة"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 9000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-116",
+                                                            "name": {
+                                                                      "ar": "فتوش سلط",
+                                                                      "en": "فتوش سلط"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-117",
+                                                            "name": {
+                                                                      "ar": "سلطة فول",
+                                                                      "en": "سلطة فول"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 5000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B3%D9%84%D8%B7%D8%A9%20%D9%81%D9%88%D9%84_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-118",
+                                                            "name": {
+                                                                      "ar": "سلطة الشيف",
+                                                                      "en": "سلطة الشيف"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B3%D9%84%D8%B7%D8%A9%20%D8%A7%D9%84%D8%B4%D9%8A%D9%81_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-119",
+                                                            "name": {
+                                                                      "ar": "تبولة بالكينوا",
+                                                                      "en": "تبولة بالكينوا"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-soup",
+                    "icon": "fa-bowl-food",
+                    "title": {
+                              "ar": "الحساء",
+                              "en": "Soup"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-soup-specials",
+                                        "title": {
+                                                  "ar": "شوربة ساخنة ومغذية",
+                                                  "en": "Warm & Nourishing Soups"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-120",
+                                                            "name": {
+                                                                      "ar": "حساء خضار",
+                                                                      "en": "حساء خضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-121",
+                                                            "name": {
+                                                                      "ar": "حساء دجاج",
+                                                                      "en": "حساء دجاج"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-122",
+                                                            "name": {
+                                                                      "ar": "حساء حارق للدهون بالسبانخ",
+                                                                      "en": "حساء حارق للدهون بالسبانخ"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-123",
+                                                            "name": {
+                                                                      "ar": "شوربة عدس حمراء",
+                                                                      "en": "شوربة عدس حمراء"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-breakfast",
+                    "icon": "fa-egg",
+                    "title": {
+                              "ar": "وجبات الفطور",
+                              "en": "Breakfast"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-breakfast-specials",
+                                        "title": {
+                                                  "ar": "فطور صحي ومفعم بالطاقة",
+                                                  "en": "Energizing Healthy Breakfast"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-124",
+                                                            "name": {
+                                                                      "ar": "اومليت بيض كلاسيك",
+                                                                      "en": "اومليت بيض كلاسيك"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-125",
+                                                            "name": {
+                                                                      "ar": "اومليت لحم",
+                                                                      "en": "اومليت لحم"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-126",
+                                                            "name": {
+                                                                      "ar": "اومليت خضار",
+                                                                      "en": "اومليت خضار"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-127",
+                                                            "name": {
+                                                                      "ar": "اومليت فطر",
+                                                                      "en": "اومليت فطر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-128",
+                                                            "name": {
+                                                                      "ar": "اومليت جبن لايت",
+                                                                      "en": "اومليت جبن لايت"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-129",
+                                                            "name": {
+                                                                      "ar": "طبق بيض مسلوك مع الجرجير",
+                                                                      "en": "طبق بيض مسلوك مع الجرجير"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%B7%D8%A8%D9%82%20%D8%A8%D9%8A%D8%B6%20%D9%85%D8%B3%D9%84%D9%88%D9%83%20%D9%85%D8%B9%20%D8%A7%D9%84%D8%AC%D8%B1%D8%AC%D9%8A%D8%B1_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-130",
+                                                            "name": {
+                                                                      "ar": "بان كيك دايت بالشوفان",
+                                                                      "en": "بان كيك دايت بالشوفان"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%A8%D8%A7%D9%86%20%D9%83%D9%8A%D9%83%20%D8%AF%D8%A7%D9%8A%D8%AA%20%D8%A8%D8%A7%D9%84%D8%B4%D9%88%D9%81%D8%A7%D9%86_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-131",
+                                                            "name": {
+                                                                      "ar": "اومليت زعتر بالجبن",
+                                                                      "en": "اومليت زعتر بالجبن"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-pasta",
+                    "icon": "fa-bowl-rice",
+                    "title": {
+                              "ar": "المعكرونه",
+                              "en": "Pasta"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-pasta-specials",
+                                        "title": {
+                                                  "ar": "معكرونة الحبوب الكاملة",
+                                                  "en": "Whole Wheat Pasta"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-068",
+                                                            "name": {
+                                                                      "ar": "فوتشيني دايت",
+                                                                      "en": "فوتشيني دايت"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-069",
+                                                            "name": {
+                                                                      "ar": "باستا ايطالية",
+                                                                      "en": "باستا ايطالية"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-070",
+                                                            "name": {
+                                                                      "ar": "سباكيتي بولونيز",
+                                                                      "en": "سباكيتي بولونيز"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 6000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-071",
+                                                            "name": {
+                                                                      "ar": "سباكيتي ميلانيز",
+                                                                      "en": "سباكيتي ميلانيز"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-072",
+                                                            "name": {
+                                                                      "ar": "باستا ايطالية بصلصة الفريدو",
+                                                                      "en": "باستا ايطالية بصلصة الفريدو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-073",
+                                                            "name": {
+                                                                      "ar": "باستا دجاج الكاجون",
+                                                                      "en": "باستا دجاج الكاجون"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 7000,
+                                                            "img": "https://raw.githubusercontent.com/workmemo2007-gif/M0/main/Diet%20Food_%20%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%20%D8%AF%D8%AC%D8%A7%D8%AC%20%D8%A7%D9%84%D9%83%D8%A7%D8%AC%D9%88%D9%86_Maryam.jpg"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-074",
+                                                            "name": {
+                                                                      "ar": "سباكيتي البيستو",
+                                                                      "en": "سباكيتي البيستو"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 8000,
+                                                            "img": "https://images.unsplash.com/photo-1621996346565-e3d5d6281297?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-keto",
+                    "icon": "fa-fire",
+                    "title": {
+                              "ar": "كيتو دايت",
+                              "en": "Keto Diet"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-keto-specials",
+                                        "title": {
+                                                  "ar": "وجبات قليلة الكربوهيدرات",
+                                                  "en": "Low-Carb Keto Meals"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "d12",
+                                                            "name": {
+                                                                      "ar": "طبق الكيتو بالافوكادو واللحم",
+                                                                      "en": "Keto Beef & Avocado Bowl"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "شرائح لحم مشوية مع أفوكادو طازج، زبدة طبيعية وخضار ورقية.",
+                                                                      "en": "Grilled beef slices with fresh avocado, natural butter and leafy greens."
+                                                            },
+                                                            "price": 49,
+                                                            "cal": 530,
+                                                            "img": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
+                                                  },
+                                                  {
+                                                            "id": "d25",
+                                                            "name": {
+                                                                      "ar": "دجاج الكيتو بالكريمة وجبن الشيدر",
+                                                                      "en": "Keto Creamy Cheddar Chicken"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "صدور دجاج في صوص الكريمة الثقيلة وجبن الشيدر العضوي مع السبانخ.",
+                                                                      "en": "Chicken breasts in rich heavy cream and organic cheddar sauce with spinach."
+                                                            },
+                                                            "price": 46,
+                                                            "cal": 510,
+                                                            "img": "https://images.unsplash.com/photo-1604908176997-125f2596f37c?auto=format&fit=crop&w=500&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-juices",
+                    "icon": "fa-glass-water",
+                    "title": {
+                              "ar": "عصائر",
+                              "en": "Juices"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-juices-specials",
+                                        "title": {
+                                                  "ar": "عصائر طبيعية وديتوكس",
+                                                  "en": "Fresh & Detox Juices"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "xlsx-132",
+                                                            "name": {
+                                                                      "ar": "عصير برتقال طبيعي بدون سكر",
+                                                                      "en": "عصير برتقال طبيعي بدون سكر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-133",
+                                                            "name": {
+                                                                      "ar": "عصير ليمون طبيعي بدون سكر",
+                                                                      "en": "عصير ليمون طبيعي بدون سكر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 3000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-134",
+                                                            "name": {
+                                                                      "ar": "عصير موز حليب خالي الدسم بدون سكر",
+                                                                      "en": "عصير موز حليب خالي الدسم بدون سكر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-135",
+                                                            "name": {
+                                                                      "ar": "عصير تفاح طبيعي بدون سكر",
+                                                                      "en": "عصير تفاح طبيعي بدون سكر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-136",
+                                                            "name": {
+                                                                      "ar": "عصير جزر طبيعي بدون سكر",
+                                                                      "en": "عصير جزر طبيعي بدون سكر"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  },
+                                                  {
+                                                            "id": "xlsx-137",
+                                                            "name": {
+                                                                      "ar": "عصير ليمون - برتقال",
+                                                                      "en": "عصير ليمون - برتقال"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "",
+                                                                      "en": ""
+                                                            },
+                                                            "price": 4000,
+                                                            "img": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1000&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          },
+          {
+                    "id": "cat-desserts",
+                    "icon": "fa-ice-cream",
+                    "title": {
+                              "ar": "حلويات",
+                              "en": "Desserts"
+                    },
+                    "headerImg": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1000&q=80",
+                    "subCategories": [
+                              {
+                                        "id": "sub-desserts-specials",
+                                        "title": {
+                                                  "ar": "حلويات صحية خالية من السكر",
+                                                  "en": "Sugar-Free Healthy Desserts"
+                                        },
+                                        "dishes": [
+                                                  {
+                                                            "id": "d14",
+                                                            "name": {
+                                                                      "ar": "تشيز كيك الشوفان الدايت",
+                                                                      "en": "Diet Oat Cheesecake"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "تشيز كيك خفيف بقاعدة الشوفان والعسل الطبيعي بدون سكر مضاف.",
+                                                                      "en": "Light cheesecake with oat crust and natural honey, zero added sugar."
+                                                            },
+                                                            "price": 20,
+                                                            "cal": 230,
+                                                            "img": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"
+                                                  },
+                                                  {
+                                                            "id": "d27",
+                                                            "name": {
+                                                                      "ar": "حلى التمر وزبدة الفول السوداني الصحية",
+                                                                      "en": "Healthy Peanut Butter Date Bites"
+                                                            },
+                                                            "desc": {
+                                                                      "ar": "كرات التمر العضوي بزبدة الفول السوداني الطبيعية ورقائق الشوفان المقرمشة.",
+                                                                      "en": "Organic date balls with natural peanut butter and crunchy oat flakes."
+                                                            },
+                                                            "price": 18,
+                                                            "cal": 190,
+                                                            "img": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=500&q=80"
+                                                  }
+                                        ]
+                              }
+                    ]
+          }
+];
 
         const i18nText = {
             ar: {
