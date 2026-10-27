@@ -3,13 +3,13 @@ backend:
   repo: workmemo2007-gif/D1
   branch: main
 
-media_folder: ""
+media_folder: "images"
 public_folder: ""
 
 collections:
   - name: menu
     label: القائمة
-    folder: ""
+    folder: "menu"
     create: true
     slug: "{{fields.name}}"
     fields:
