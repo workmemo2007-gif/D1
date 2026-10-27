@@ -1,0 +1,17 @@
+{
+  "name": "d1-restaurant-menu-worker",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create d1-restaurant-menu",
+    "db:migrate": "wrangler d1 migrations apply DB --remote",
+    "images:create": "wrangler r2 bucket create d1-restaurant-menu-images"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261027.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.153.0"
+  }
+}

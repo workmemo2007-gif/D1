@@ -2544,19 +2544,15 @@
             }
         };
 
-        // Public Supabase values only. Configure after deploying Supabase; never put admin secrets here.
-        const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
-        const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+        // Public API URL only. Admin PIN is validated by the Cloudflare Worker and is never stored here.
+        const MENU_API_URL = "https://YOUR-WORKER.your-subdomain.workers.dev";
         async function loadPublishedMenu() {
-            if (SUPABASE_URL.includes("YOUR_PROJECT") || SUPABASE_ANON_KEY.includes("YOUR_")) return;
+            if (MENU_API_URL.includes("YOUR-WORKER")) return;
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/restaurant_menu?id=eq.1&select=menu`, {
-                    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
-                    cache: "no-store"
-                });
+                const response = await fetch(`${MENU_API_URL}/api/menu`, { cache: "no-store" });
                 if (!response.ok) throw new Error(`Menu request failed (${response.status})`);
-                const rows = await response.json();
-                if (Array.isArray(rows?.[0]?.menu) && rows[0].menu.length) menuData = rows[0].menu;
+                const data = await response.json();
+                if (Array.isArray(data?.menu) && data.menu.length) menuData = data.menu;
             } catch (error) { console.warn("Using built-in menu because the online menu could not be loaded.", error); }
         }
         let currentLang = "ar";

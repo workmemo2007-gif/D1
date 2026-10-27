@@ -1,0 +1,16 @@
+name = "d1-restaurant-menu"
+main = "src/index.ts"
+compatibility_date = "2026-10-27"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "d1-restaurant-menu"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "d1-restaurant-menu-images"
+
+[observability]
+enabled = true
