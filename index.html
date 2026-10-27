@@ -393,7 +393,7 @@
     <script>
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png";
 
-        const menuData = [
+        let menuData = [
           {
                     "id": "cat-chicken",
                     "icon": "fa-drumstick-bite",
@@ -2544,12 +2544,24 @@
             }
         };
 
+        // Public API URL only. Admin PIN is validated by the Cloudflare Worker and is never stored here.
+        const MENU_API_URL = "https://YOUR-WORKER.your-subdomain.workers.dev";
+        async function loadPublishedMenu() {
+            if (MENU_API_URL.includes("YOUR-WORKER")) return;
+            try {
+                const response = await fetch(`${MENU_API_URL}/api/menu`, { cache: "no-store" });
+                if (!response.ok) throw new Error(`Menu request failed (${response.status})`);
+                const data = await response.json();
+                if (Array.isArray(data?.menu) && data.menu.length) menuData = data.menu;
+            } catch (error) { console.warn("Using built-in menu because the online menu could not be loaded.", error); }
+        }
         let currentLang = "ar";
         let activeCategoryId = "cat-chicken";
         let cart = [];
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             initWelcomeHeaderTransition();
+            await loadPublishedMenu();
             renderApp();
         });
 
