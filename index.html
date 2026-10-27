@@ -393,6 +393,28 @@
     <script>
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/J/main/images/brand/logo.png";
 
+        const J_IMAGE_PREFIX = "https://raw.githubusercontent.com/workmemo2007-gif/J/main/images/";
+        function escapeHtml(value) {
+            return String(value ?? "").replace(/[&<>\"']/g, character => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+            })[character]);
+        }
+        function safeIdentifier(value) {
+            return typeof value === "string" && /^[A-Za-z0-9_-]{1,80}$/.test(value) ? value : "";
+        }
+        function safeIconClass(value) {
+            return typeof value === "string" && /^fa-[a-z0-9-]{1,60}$/.test(value) ? value : "fa-utensils";
+        }
+        function safeImageUrl(value) {
+            try {
+                const url = new URL(value);
+                if (url.protocol === "https:" && url.hostname === "raw.githubusercontent.com" &&
+                    !url.username && !url.password && url.pathname.startsWith("/workmemo2007-gif/J/main/images/") &&
+                    !url.search && !url.hash) return url.href;
+            } catch (_) { }
+            return customLogoUrl;
+        }
+
         let menuData = [];
 
         const i18nText = {
@@ -552,8 +574,8 @@
                 btn.onclick = () => selectCategory(cat.id);
 
                 btn.innerHTML = `
-                    <i class="fa-solid ${cat.icon} ${isActive ? 'text-white' : 'text-brand-300'} text-xs shrink-0"></i>
-                    <span class="truncate">${cat.title[currentLang]}</span>
+                    <i class="fa-solid ${escapeHtml(safeIconClass(cat.icon))} ${isActive ? 'text-white' : 'text-brand-300'} text-xs shrink-0"></i>
+                    <span class="truncate">${escapeHtml(cat.title?.[currentLang] ?? "")}</span>
                 `;
                 container.appendChild(btn);
             });
@@ -577,24 +599,27 @@
 
             const currentCat = menuData.find(c => c.id === activeCategoryId) || menuData[0];
             if (!currentCat) {
-                container.innerHTML = `<section class="glass-panel rounded-3xl p-8 text-center"><h3 class="text-lg font-bold text-brand-900">تعذّر عرض القائمة</h3><p class="text-sm text-gray-600 mt-2">${menuLoadError || "لا توجد قائمة منشورة حالياً."}</p><button onclick="window.location.reload()" class="mt-4 bg-brand-600 text-white rounded-xl px-5 py-2 text-sm font-bold">إعادة المحاولة</button></section>`;
+                container.innerHTML = `<section class="glass-panel rounded-3xl p-8 text-center"><h3 class="text-lg font-bold text-brand-900">تعذّر عرض القائمة</h3><p class="text-sm text-gray-600 mt-2">${escapeHtml(menuLoadError || "لا توجد قائمة منشورة حالياً.")}</p><button onclick="window.location.reload()" class="mt-4 bg-brand-600 text-white rounded-xl px-5 py-2 text-sm font-bold">إعادة المحاولة</button></section>`;
                 return;
             }
 
             const section = document.createElement('section');
             section.className = "glass-panel rounded-3xl overflow-hidden p-4 sm:p-6 space-y-5";
 
+            const categoryTitle = escapeHtml(currentCat.title?.[currentLang] ?? "");
+            const categoryImage = escapeHtml(safeImageUrl(currentCat.headerImg));
+            const categoryIcon = escapeHtml(safeIconClass(currentCat.icon));
             let html = `
                 <div class="relative w-full h-36 sm:h-48 rounded-2xl overflow-hidden shadow-md mb-4 border border-white/60">
-                    <img src="${currentCat.headerImg}" alt="${currentCat.title[currentLang]}" class="w-full h-full object-cover">
+                    <img src="${categoryImage}" alt="${categoryTitle}" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent backdrop-blur-[2px] flex items-end justify-between p-4">
                         <div class="flex items-center gap-2.5">
                             <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg shadow-md">
-                                <i class="fa-solid ${currentCat.icon}"></i>
+                                <i class="fa-solid ${categoryIcon}"></i>
                             </div>
                             <div>
-                                <h3 class="text-lg sm:text-2xl font-black text-gray-900 drop-shadow-sm">${currentCat.title[currentLang]}</h3>
-                                <span class="text-xs font-semibold text-brand-800">قائمة ${currentCat.title[currentLang]} الصحية</span>
+                                <h3 class="text-lg sm:text-2xl font-black text-gray-900 drop-shadow-sm">${categoryTitle}</h3>
+                                <span class="text-xs font-semibold text-brand-800">قائمة ${categoryTitle} الصحية</span>
                             </div>
                         </div>
 
@@ -610,7 +635,7 @@
                     <div class="space-y-2 pt-1">
                         <h4 class="text-xs font-bold text-amber-800 flex items-center gap-1.5 px-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-gold-500 inline-block"></span>
-                            ${sub.title[currentLang]}
+                            ${escapeHtml(sub.title?.[currentLang] ?? "")}
                         </h4>
 
                         <div class="space-y-2">
@@ -626,16 +651,22 @@
 
         function createResponsiveHorizontalCardHTML(dish) {
             const currency = i18nText[currentLang].currency;
+            const dishId = safeIdentifier(dish?.id);
+            if (!dishId) return "";
+            const dishName = escapeHtml(dish.name?.[currentLang] ?? "");
+            const dishDescription = escapeHtml(dish.desc?.[currentLang] ?? "");
+            const dishImage = escapeHtml(safeImageUrl(dish.img));
+            const price = Number.isFinite(Number(dish.price)) && Number(dish.price) >= 0 ? Number(dish.price) : 0;
 
             return `
-                <div id="accordion-${dish.id}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
-                    <div onclick="toggleAccordion('${dish.id}')" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer select-none">
+                <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
+                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer select-none">
                         <div class="flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-brand-500/80 shrink-0"></span>
-                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90">${dish.name[currentLang]}</span>
+                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90">${dishName}</span>
                         </div>
                         <div class="flex items-center gap-2 shrink-0">
-                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2 py-0.5 rounded-lg border border-white/80">${dish.price} ${currency}</span>
+                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2 py-0.5 rounded-lg border border-white/80">${price} ${currency}</span>
                             <i class="fa-solid fa-chevron-down text-brand-700 text-xs transition-transform duration-400 accordion-chevron"></i>
                         </div>
                     </div>
@@ -646,12 +677,12 @@
                                 <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-5">
                                     <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0">
                                         <div class="space-y-1">
-                                            <h4 class="text-base sm:text-2xl font-black text-gray-900 tracking-tight leading-snug truncate">${dish.name[currentLang]}</h4>
-                                            <p class="text-xs sm:text-base text-gray-700 font-normal leading-relaxed line-clamp-2 opacity-90">${dish.desc[currentLang]}</p>
+                                            <h4 class="text-base sm:text-2xl font-black text-gray-900 tracking-tight leading-snug truncate">${dishName}</h4>
+                                            <p class="text-xs sm:text-base text-gray-700 font-normal leading-relaxed line-clamp-2 opacity-90">${dishDescription}</p>
                                         </div>
 
                                         <div class="pt-2 space-y-2">
-                                            <select id="base-${dish.id}" class="w-full text-[11px] sm:text-xs bg-white/90 border border-brand-200/60 rounded-xl p-1.5 focus:ring-1 focus:ring-brand-500 focus:outline-none">
+                                            <select id="base-${dishId}" class="w-full text-[11px] sm:text-xs bg-white/90 border border-brand-200/60 rounded-xl p-1.5 focus:ring-1 focus:ring-brand-500 focus:outline-none">
                                                 <option value="أرز أبيض بسمتي">أرز أبيض بسمتي</option>
                                                 <option value="أرز بني صحي">أرز بني عضوي</option>
                                                 <option value="بطاطس مهروسة">بطاطس مهروسة</option>
@@ -659,7 +690,7 @@
                                             </select>
 
                                             <div>
-                                                <button onclick="addDishToCartDirect('${dish.id}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-base px-5 sm:px-8 py-2 rounded-xl sm:rounded-2xl shadow-md transition-all">
+                                                <button onclick="addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-base px-5 sm:px-8 py-2 rounded-xl sm:rounded-2xl shadow-md transition-all">
                                                     ${i18nText[currentLang].addBtn}
                                                 </button>
                                             </div>
@@ -669,9 +700,9 @@
                                     <div class="w-2/5 sm:w-1/3 shrink-0">
                                         <div class="p-1 rounded-2xl bg-amber-400 border-2 border-amber-500/80 shadow-sm relative overflow-hidden h-full">
                                             <div class="w-full h-full min-h-[120px] sm:min-h-[160px] rounded-xl overflow-hidden relative">
-                                                <img src="${dish.img}" alt="${dish.name[currentLang]}" class="w-full h-full object-cover">
+                                                <img src="${dishImage}" alt="${dishName}" class="w-full h-full object-cover">
                                                 <div class="absolute bottom-1.5 left-1.5 rtl:left-1.5 ltr:right-1.5 ltr:left-auto bg-amber-400/95 text-amber-950 font-black text-[10px] sm:text-xs px-2.5 py-1 rounded-lg shadow-md border border-amber-300">
-                                                    ${dish.price} ${currency}
+                                                    ${price} ${currency}
                                                 </div>
                                             </div>
                                         </div>
@@ -760,12 +791,17 @@
 
                 const cartRow = document.createElement('div');
                 cartRow.className = "pt-3 flex items-center justify-between gap-3";
+                const itemImage = escapeHtml(safeImageUrl(item.img));
+                const itemName = escapeHtml(item.name);
+                const customization = escapeHtml(item.customization);
+                const basePrice = Number.isFinite(Number(item.basePrice)) ? Number(item.basePrice) : 0;
+                const calories = Number.isFinite(Number(item.cal)) ? Number(item.cal) : 0;
                 cartRow.innerHTML = `
-                    <img src="${item.img}" class="w-11 h-11 rounded-xl object-cover" alt="item">
+                    <img src="${itemImage}" class="w-11 h-11 rounded-xl object-cover" alt="item">
                     <div class="flex-1">
-                        <h6 class="text-xs font-bold text-gray-900 truncate">${item.name}</h6>
-                        <span class="text-[10px] text-gray-400 block">${item.customization}</span>
-                        <span class="text-xs font-black text-brand-700">${item.basePrice} ${i18nText[currentLang].currency} (${item.cal} cal)</span>
+                        <h6 class="text-xs font-bold text-gray-900 truncate">${itemName}</h6>
+                        <span class="text-[10px] text-gray-400 block">${customization}</span>
+                        <span class="text-xs font-black text-brand-700">${basePrice} ${i18nText[currentLang].currency} (${calories} cal)</span>
                     </div>
                     <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
                         <i class="fa-solid fa-trash-can"></i>
@@ -786,18 +822,19 @@
         function checkoutWhatsApp() {
             if (cart.length === 0) return;
 
-            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*%0A%0A`;
+            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*\n\n`;
             let total = 0;
             cart.forEach((item, i) => {
-                msg += `${i+1}. *${item.name}* (${item.customization}) - ${item.basePrice} SAR%0A`;
-                total += item.basePrice;
+                const price = Number.isFinite(Number(item.basePrice)) ? Number(item.basePrice) : 0;
+                msg += `${i+1}. *${String(item.name ?? "").replace(/[\r\n]+/g, " ")}* (${String(item.customization ?? "").replace(/[\r\n]+/g, " ")}) - ${price} SAR\n`;
+                total += price;
             });
 
-            msg += `%0A*رسوم التوصيل:* 10 SAR`;
-            msg += `%0A*المجموع الكلي:* ${total + 10} SAR`;
-            msg += `%0A%0Aيرجى تأكيد الطلب وتحديد الموقع.`;
+            msg += `\n*رسوم التوصيل:* 10 SAR`;
+            msg += `\n*المجموع الكلي:* ${total + 10} SAR`;
+            msg += `\n\nيرجى تأكيد الطلب وتحديد الموقع.`;
 
-            window.open(`https://wa.me/966501234567?text=${msg}`, '_blank');
+            window.open(`https://wa.me/966501234567?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
         }
 
         function openMapModal() {
