@@ -393,7 +393,7 @@
     <script>
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/D1/0c0d3955fae4d3e211d67875c4103076b75975bd/IMG_2871.png";
 
-        const menuData = [
+        let menuData = [
           {
                     "id": "cat-chicken",
                     "icon": "fa-drumstick-bite",
@@ -2544,12 +2544,28 @@
             }
         };
 
+        // Public Supabase values only. Configure after deploying Supabase; never put admin secrets here.
+        const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
+        const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+        async function loadPublishedMenu() {
+            if (SUPABASE_URL.includes("YOUR_PROJECT") || SUPABASE_ANON_KEY.includes("YOUR_")) return;
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/restaurant_menu?id=eq.1&select=menu`, {
+                    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+                    cache: "no-store"
+                });
+                if (!response.ok) throw new Error(`Menu request failed (${response.status})`);
+                const rows = await response.json();
+                if (Array.isArray(rows?.[0]?.menu) && rows[0].menu.length) menuData = rows[0].menu;
+            } catch (error) { console.warn("Using built-in menu because the online menu could not be loaded.", error); }
+        }
         let currentLang = "ar";
         let activeCategoryId = "cat-chicken";
         let cart = [];
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             initWelcomeHeaderTransition();
+            await loadPublishedMenu();
             renderApp();
         });
 
