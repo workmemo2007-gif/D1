@@ -91,6 +91,19 @@
             border-color: rgba(245, 158, 11, 0.4);
         }
 
+        /* Active Accordion Glassmorphic Highlight Background */
+        .accordion-item.active {
+            background: rgba(242, 252, 243, 0.85);
+            border-color: rgba(60, 179, 76, 0.4);
+            box-shadow: 0 4px 20px rgba(60, 179, 76, 0.1);
+        }
+
+        /* Glass Dividers Between Items */
+        .glass-divider {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 1px 0 rgba(217, 119, 6, 0.05);
+        }
+
         /* Header Background Animation Effect */
         @keyframes headerZoom {
             0%, 100% { transform: scale(1); }
@@ -113,7 +126,7 @@
         .accordion-content {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in-out;
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
             opacity: 0;
             will-change: grid-template-rows, opacity;
         }
@@ -335,8 +348,8 @@
                 <div>
                     <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerContact">التواصل والموقع</h5>
                     <div class="space-y-1.5 text-brand-200">
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+966 50 123 4567</span></p>
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> <span data-i18n="locationAddress">شارع الصحة والجمال، الرياض، المملكة العربية السعودية</span></p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+964 770 123 4567</span></p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> <span data-i18n="locationAddress">شارع الصحة والجمال، بغداد، العراق</span></p>
                     </div>
                 </div>
             </div>
@@ -374,11 +387,11 @@
                     </div>
                     <div class="flex justify-between text-gray-600">
                         <span data-i18n="deliveryFee">رسوم التوصيل:</span>
-                        <span class="font-bold text-brand-900">10 SAR</span>
+                        <span class="font-bold text-brand-900">5,000 د.ع</span>
                     </div>
                     <div class="flex justify-between text-base font-black text-brand-950 pt-2 border-t border-brand-200">
                         <span data-i18n="grandTotal">المجموع النهائي:</span>
-                        <span id="cartTotalPrice" class="text-brand-700">0 SAR</span>
+                        <span id="cartTotalPrice" class="text-brand-700">0 د.ع</span>
                     </div>
                 </div>
 
@@ -400,9 +413,9 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <p class="text-xs text-gray-500" data-i18n="locationAddress">شارع الصحة والجمال، طريق الملك فهد، الرياض، المملكة العربية السعودية</p>
+            <p class="text-xs text-gray-500" data-i18n="locationAddress">شارع الصحة والجمال، بغداد، العراق</p>
             <div class="w-full h-60 bg-gray-200 rounded-2xl overflow-hidden relative border border-gray-200 shadow-inner">
-                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzg5LjAiTiA0NsKwNDAnMzElevenE!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa" allowfullscreen="" loading="lazy"></iframe>
+                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d44.3661!3d33.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE4JzU0LjciTiA0NMKwMjEnNTguMCJF!5e0!3m2!1sen!2siq!4v1620000000000!5m2!1sen!2siq" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <a href="https://maps.google.com" target="_blank" rel="noopener" class="w-full block text-center bg-brand-50 hover:bg-brand-100 text-brand-800 text-xs font-bold py-2.5 rounded-xl border border-brand-200 transition">
                 <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
@@ -435,6 +448,15 @@
             return customLogoUrl;
         }
 
+        // تحويل السعر إلى الدينار العراقي (افتراض ضرب السعر بـ 1000 إذا كان مخزناً برقم صغير، أو إبقاؤه إذا كان بالدينار)
+        function formatIQDPrice(price) {
+            const num = Number(price);
+            if (!Number.isFinite(num) || num < 0) return "0 د.ع";
+            // إذا كان السعر أقل من 100 نفترض أنه بالدولار أو الفئة المختصرة ونحوله لدينار، أو نعرضه مباشرة منسقاً
+            const iqdValue = num < 200 ? num * 1000 : num;
+            return iqdValue.toLocaleString('en-US') + " د.ع";
+        }
+
         let menuData = [];
         let isLoadingMenu = true;
 
@@ -455,12 +477,12 @@
                 grandTotal: "المجموع النهائي:",
                 sendOrderWA: "إرسال الطلب عبر الواتساب",
                 locationTitle: "موقع مطعم دايت فود",
-                locationAddress: "شارع الصحة والجمال، الرياض، المملكة العربية السعودية",
+                locationAddress: "شارع الصحة والجمال، بغداد، العراق",
                 openGoogleMaps: "فتح في خرائط جوجل",
                 footerAbout: "وجهتك الأولى للوجبات الصحية المتوازنة. نمط حياة صحي بدون الحرمان من النكهات اللذيذة.",
                 footerQuickLinks: "روابط سريعة",
                 footerContact: "التواصل والموقع",
-                currency: "ر.س",
+                currency: "د.ع",
                 emptyCart: "السلة فارغة حالياً. أضف بعض الوجبات الشهية!"
             },
             en: {
@@ -479,12 +501,12 @@
                 grandTotal: "Grand Total:",
                 sendOrderWA: "Send Order via WhatsApp",
                 locationTitle: "Diet Food Location",
-                locationAddress: "Health & Beauty Street, Riyadh, Saudi Arabia",
+                locationAddress: "Health & Beauty Street, Baghdad, Iraq",
                 openGoogleMaps: "Open in Google Maps",
                 footerAbout: "Your premier destination for balanced healthy meals without compromising on flavor.",
                 footerQuickLinks: "Quick Links",
                 footerContact: "Contact & Location",
-                currency: "SAR",
+                currency: "IQD",
                 emptyCart: "Your cart is empty right now. Add some delicious healthy meals!"
             }
         };
@@ -687,13 +709,13 @@
 
             currentCat.subCategories.forEach(sub => {
                 html += `
-                    <div class="space-y-2 pt-1">
+                    <div class="space-y-3 pt-1">
                         <h4 class="text-xs font-bold text-amber-800 flex items-center gap-1.5 px-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-gold-500 inline-block"></span>
                             ${escapeHtml(sub.title?.[currentLang] ?? "")}
                         </h4>
 
-                        <div class="space-y-2">
+                        <div class="space-y-2.5">
                             ${sub.dishes.map(dish => createResponsiveHorizontalCardHTML(dish)).join('')}
                         </div>
                     </div>
@@ -706,53 +728,61 @@
         }
 
         function createResponsiveHorizontalCardHTML(dish) {
-            const currency = i18nText[currentLang].currency;
             const dishId = safeIdentifier(dish?.id);
             if (!dishId) return "";
             const dishName = escapeHtml(dish.name?.[currentLang] ?? "");
             const dishDescription = escapeHtml(dish.desc?.[currentLang] ?? "");
             const dishImage = escapeHtml(safeImageUrl(dish.img));
-            const price = Number.isFinite(Number(dish.price)) && Number(dish.price) >= 0 ? Number(dish.price) : 0;
+            const rawPrice = Number.isFinite(Number(dish.price)) && Number(dish.price) >= 0 ? Number(dish.price) : 0;
+            const formattedPrice = formatIQDPrice(rawPrice);
 
             return `
-                <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
-                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer select-none">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-brand-500/80 shrink-0"></span>
-                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90">${dishName}</span>
+                <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs glass-divider">
+                    <!-- Top Row: Order: (Image, Name, Price) from Right to Left -->
+                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-3 flex items-center justify-between cursor-pointer select-none">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <!-- Small Square Image on the Right -->
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 border border-white shadow-sm bg-white">
+                                <img src="${dishImage}" alt="${dishName}" loading="eager" class="w-full h-full object-cover">
+                            </div>
+                            <!-- Dish Name in the Middle -->
+                            <span class="font-bold text-xs sm:text-sm text-gray-900 truncate">${dishName}</span>
                         </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2 py-0.5 rounded-lg border border-white/80">${price} ${currency}</span>
+                        
+                        <!-- Price on the Left -->
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <span class="text-xs sm:text-sm font-black text-amber-800 bg-white/80 px-2.5 py-1 rounded-lg border border-white shadow-xs">${formattedPrice}</span>
                             <i class="fa-solid fa-chevron-down text-brand-700 text-xs accordion-chevron"></i>
                         </div>
                     </div>
 
+                    <!-- Accordion Details Container with Glassmorphic Background -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
-                            <div class="p-2.5 sm:p-3 border-t border-white/60 bg-white/60 backdrop-blur-md">
-                                <div class="flex flex-row items-stretch justify-between gap-2.5 sm:gap-4">
+                            <div class="p-3.5 sm:p-5 border-t border-brand-200/50 bg-gradient-to-br from-white/80 via-brand-50/50 to-white/90 backdrop-blur-md">
+                                <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-6">
                                     
-                                    <!-- Image on the Right -->
-                                    <div class="w-28 sm:w-36 shrink-0">
-                                        <div class="p-0.5 rounded-xl bg-amber-50 border border-amber-300/60 shadow-[0_0_10px_rgba(245,158,11,0.5)] relative overflow-hidden h-full">
-                                            <div class="w-full h-full min-h-[90px] sm:min-h-[110px] rounded-lg overflow-hidden relative">
+                                    <!-- Image on the Right inside Expanded View -->
+                                    <div class="w-32 sm:w-40 shrink-0">
+                                        <div class="p-1 rounded-2xl bg-white border border-amber-300/80 shadow-[0_0_12px_rgba(245,158,11,0.4)] relative overflow-hidden h-full">
+                                            <div class="w-full h-full min-h-[110px] sm:min-h-[140px] rounded-xl overflow-hidden relative">
                                                 <img src="${dishImage}" alt="${dishName}" loading="eager" class="w-full h-full object-cover">
-                                                <div class="absolute bottom-1 right-1 bg-amber-400/95 text-amber-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded shadow-sm border border-amber-300">
-                                                    ${price} ${currency}
+                                                <div class="absolute bottom-1 right-1 bg-amber-400/95 text-amber-950 font-black text-[10px] px-2 py-0.5 rounded shadow-sm border border-amber-300">
+                                                    ${formattedPrice}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Name and Description on the Left -->
+                                    <!-- Name and Description on the Left with expanded spacing -->
                                     <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0">
-                                        <div class="space-y-0.5">
-                                            <h4 class="text-xs sm:text-sm font-black text-gray-900 tracking-tight leading-snug truncate">${dishName}</h4>
-                                            <p class="text-[11px] sm:text-xs text-gray-700 font-normal leading-relaxed line-clamp-2 opacity-90">${dishDescription}</p>
+                                        <div class="space-y-1">
+                                            <h4 class="text-sm sm:text-lg font-black text-gray-900 tracking-tight leading-snug truncate">${dishName}</h4>
+                                            <p class="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed line-clamp-3 opacity-95">${dishDescription}</p>
                                         </div>
 
-                                        <div class="pt-1.5 space-y-1.5">
-                                            <select id="base-${dishId}" class="w-full text-[10px] sm:text-[11px] bg-white/90 border border-brand-200/60 rounded-lg p-1 focus:ring-1 focus:ring-brand-500 focus:outline-none">
+                                        <div class="pt-2.5 space-y-2">
+                                            <select id="base-${dishId}" class="w-full text-xs bg-white/95 border border-brand-200 rounded-xl p-2 focus:ring-1 focus:ring-brand-500 focus:outline-none shadow-xs">
                                                 <option value="أرز أبيض بسمتي">أرز أبيض بسمتي</option>
                                                 <option value="أرز بني صحي">أرز بني عضوي</option>
                                                 <option value="بطاطس مهروسة">بطاطس مهروسة</option>
@@ -760,7 +790,7 @@
                                             </select>
 
                                             <div>
-                                                <button onclick="addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-[11px] sm:text-xs px-4 py-1.5 rounded-lg shadow-sm transition-all">
+                                                <button onclick="addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
                                                     ${i18nText[currentLang].addBtn}
                                                 </button>
                                             </div>
@@ -802,11 +832,13 @@
             if (!foundDish) return;
 
             const baseChoice = document.getElementById(`base-${dishId}`)?.value || 'أرز بسمتي';
+            const rawPrice = Number.isFinite(Number(foundDish.price)) ? Number(foundDish.price) : 0;
+            const calculatedPrice = rawPrice < 200 ? rawPrice * 1000 : rawPrice;
 
             const item = {
                 id: foundDish.id + '_' + Date.now(),
                 name: foundDish.name[currentLang],
-                basePrice: foundDish.price,
+                basePrice: calculatedPrice,
                 cal: foundDish.cal,
                 customization: baseChoice,
                 img: foundDish.img
@@ -862,7 +894,7 @@
                     <div class="flex-1 min-w-0">
                         <h6 class="text-xs font-bold text-gray-900 truncate">${itemName}</h6>
                         <span class="text-[10px] text-gray-400 block">${customization}</span>
-                        <span class="text-xs font-black text-brand-700">${basePrice} ${i18nText[currentLang].currency} (${calories} cal)</span>
+                        <span class="text-xs font-black text-brand-700">${basePrice.toLocaleString('en-US')} ${i18nText[currentLang].currency} (${calories} cal)</span>
                     </div>
                     <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
                         <i class="fa-solid fa-trash-can"></i>
@@ -875,7 +907,7 @@
             cartItemsContainer.appendChild(fragment);
 
             cartTotalCalories.innerText = `${totalCal} kcal`;
-            cartTotalPrice.innerText = `${totalPrice + 10} ${i18nText[currentLang].currency}`;
+            cartTotalPrice.innerText = `${(totalPrice + 5000).toLocaleString('en-US')} ${i18nText[currentLang].currency}`;
         }
 
         function removeFromCart(index) {
@@ -886,19 +918,19 @@
         function checkoutWhatsApp() {
             if (cart.length === 0) return;
 
-            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*\n\n`;
+            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food (العراق)*\n\n`;
             let total = 0;
             cart.forEach((item, i) => {
                 const price = Number.isFinite(Number(item.basePrice)) ? Number(item.basePrice) : 0;
-                msg += `${i+1}. *${String(item.name ?? "").replace(/[\r\n]+/g, " ")}* (${String(item.customization ?? "").replace(/[\r\n]+/g, " ")}) - ${price} SAR\n`;
+                msg += `${i+1}. *${String(item.name ?? "").replace(/[\r\n]+/g, " ")}* (${String(item.customization ?? "").replace(/[\r\n]+/g, " ")}) - ${price.toLocaleString('en-US')} د.ع\n`;
                 total += price;
             });
 
-            msg += `\n*رسوم التوصيل:* 10 SAR`;
-            msg += `\n*المجموع الكلي:* ${total + 10} SAR`;
-            msg += `\n\nيرجى تأكيد الطلب وتحديد الموقع.`;
+            msg += `\n*رسوم التوصيل:* 5,000 د.ع`;
+            msg += `\n*المجموع الكلي:* ${(total + 5000).toLocaleString('en-US')} د.ع`;
+            msg += `\n\nيرجى تأكيد الطلب وتحديد العنوان في العراق.`;
 
-            window.open(`https://wa.me/966501234567?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+            window.open(`https://wa.me/9647701234567?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
         }
 
         function openMapModal() {
