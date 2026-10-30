@@ -231,7 +231,7 @@
 
             <!-- Top Action Row -->
             <div class="relative z-20 flex items-center justify-between gap-2 pb-4 border-b border-white/15 backdrop-blur-xs">
-                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="playClickSound(); window.scrollTo({top: 0, behavior: 'smooth'})">
                     <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
                         <i class="fa-solid fa-leaf"></i>
                     </div>
@@ -244,7 +244,7 @@
                 </div>
 
                 <div class="flex items-center gap-1.5 shrink-0">
-                    <button onclick="openMapModal()" title="الفروع ومواقعنا" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <button onclick="playClickSound(); openMapModal()" title="الفروع ومواقعنا" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-solid fa-location-dot"></i>
                     </button>
                     <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
@@ -253,11 +253,11 @@
                     <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" title="فيسبوك" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
+                    <button onclick="playClickSound(); toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
                         <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
                         <span id="langLabel">English</span>
                     </button>
-                    <button onclick="toggleCartModal()" class="relative px-3.5 py-1.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
+                    <button onclick="playClickSound(); toggleCartModal()" class="relative px-3.5 py-1.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
                         <i class="fa-solid fa-basket-shopping text-xs"></i>
                         <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
                         <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
@@ -302,7 +302,7 @@
                     <div class="relative w-full flex items-center">
                         <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ابحث عن وجبتك الصحية المفضلة..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-brand-950/85 backdrop-blur-md border border-white/25 text-white placeholder-brand-200 rounded-full py-2.5 px-10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:bg-brand-950 transition shadow-inner">
                         <i class="fa-solid fa-magnifying-glass absolute right-4 text-brand-300 text-xs sm:text-sm pointer-events-none"></i>
-                        <button onclick="startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-4 text-brand-300 hover:text-white hover:scale-110 transition text-xs sm:text-sm p-1">
+                        <button onclick="playClickSound(); startVoiceSearch()" id="micBtn" title="بحث صوتي" class="absolute left-4 text-brand-300 hover:text-white hover:scale-110 transition text-xs sm:text-sm p-1">
                             <i class="fa-solid fa-microphone text-sm sm:text-base"></i>
                         </button>
                     </div>
@@ -314,7 +314,7 @@
         <div id="searchResultsSection" class="hidden glass-panel rounded-3xl p-5 shadow-sm animate-fade-in">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-sm font-bold text-brand-900" id="searchResultTitle">نتائج البحث</h3>
-                <button onclick="clearSearch()" class="text-xs text-red-600 hover:underline font-bold flex items-center gap-1">
+                <button onclick="playClickSound(); clearSearch()" class="text-xs text-red-600 hover:underline font-bold flex items-center gap-1">
                     <i class="fa-solid fa-xmark"></i> إلغاء البحث
                 </button>
             </div>
@@ -342,14 +342,14 @@
                 <div>
                     <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerQuickLinks">الأقسام الرئيسية</h5>
                     <ul class="space-y-1.5 text-brand-200">
-                        <li><a href="#" onclick="selectCategory('cat-chicken'); return false;" class="hover:text-white transition">دجاج</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-meat'); return false;" class="hover:text-white transition">لحم</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-fish'); return false;" class="hover:text-white transition">سمك</a></li>
-                        <li><a href="#" onclick="selectCategory('cat-salads'); return false;" class="hover:text-white transition">سلطات</a></li>
+                        <li><a href="#" onclick="playClickSound(); selectCategory('cat-chicken'); return false;" class="hover:text-white transition">دجاج</a></li>
+                        <li><a href="#" onclick="playClickSound(); selectCategory('cat-meat'); return false;" class="hover:text-white transition">لحم</a></li>
+                        <li><a href="#" onclick="playClickSound(); selectCategory('cat-fish'); return false;" class="hover:text-white transition">سمك</a></li>
+                        <li><a href="#" onclick="playClickSound(); selectCategory('cat-salads'); return false;" class="hover:text-white transition">سلطات</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerContact">التواصل والموقع</h5>
+                    <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerContact">التواصل والفروع</h5>
                     <div class="space-y-2 text-brand-200">
                         <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+964 770 123 4567</span></p>
                         <p class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-1"></i> <span><strong>فرع المنصور:</strong> شارع أبو جعفر المنصور - مقابيل دائرة الجوازات</span></p>
@@ -377,7 +377,7 @@
                     <i class="fa-solid fa-basket-shopping text-brand-400 text-lg"></i>
                     <h3 class="font-bold text-base" data-i18n="cartTitle">سلة الوجبات المختارة</h3>
                 </div>
-                <button onclick="toggleCartModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                <button onclick="playClickSound(); toggleCartModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -400,7 +400,7 @@
                     </div>
                 </div>
 
-                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
+                <button onclick="playAddSound(); checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="sendOrderWA">إرسال الطلب عبر الواتساب</span>
                 </button>
             </div>
@@ -414,7 +414,7 @@
                 <h3 class="text-base font-bold text-brand-950 flex items-center gap-2">
                     <i class="fa-solid fa-location-dot text-brand-600"></i> <span data-i18n="locationTitle">فروع مطعم دايت فود في بغداد</span>
                 </h3>
-                <button onclick="closeMapModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition">
+                <button onclick="playClickSound(); closeMapModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -426,7 +426,7 @@
                         <i class="fa-solid fa-store text-brand-600"></i> فرع المنصور الأول
                     </h4>
                     <p class="text-xs text-gray-600">بغداد - المنصور - شارع أبو جعفر المنصور - مقابيل دائرة الجوازات</p>
-                    <a href="https://maps.apple.com/place?coordinate=33.324521,44.351678&name=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%8A%D9%88%D9%86%D8%B3%20%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%88%D9%8A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                    <a href="https://maps.apple.com/place?coordinate=33.324521,44.351678&name=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%8A%D9%88%D9%86%D8%B3%20%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D8%B1%D8%A7%D9%8A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
                         <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع المنصور في الخريطة
                     </a>
                 </div>
@@ -437,7 +437,7 @@
                         <i class="fa-solid fa-store text-brand-600"></i> فرع الكرادة الثاني
                     </h4>
                     <p class="text-xs text-gray-600">الكرادة - ساحة الواثق - شارع 42 - قرب شركة ميتسوبيشي</p>
-                    <a href="https://maps.apple.com/place?address=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%87%D8%AF%D9%8A%20%D9%83%D8%A8%D8%A9%D8%8ícios%20%E2%80%8F%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF%D8%8C%20%E2%80%8F%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82&coordinate=33.309951,44.436320&name=Diet%20food&place-id=I707D22D53449510A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                    <a href="https://maps.apple.com/place?address=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%87%D8%AF%D9%8A%20%D9%83%D8%A8%D8%A9%D8%8cios%20%E2%80%8F%D8%A8%D8%BA%D8%AF%D8%A7%D8%AD%D8%8C%20%E2%80%8F%D8%A7%D9%84%D8%B9%D8%B5%D8%B1&coordinate=33.309951,44.436320&name=Diet%20food&place-id=I707D22D53449510A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
                         <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع الكرادة في الخريطة
                     </a>
                 </div>
@@ -447,6 +447,69 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
+        // Web Audio API Sound Generator (No external files needed)
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        // 1. Light click sound for categories & accordions
+        function playClickSound() {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch (_) {}
+        }
+
+        // 2. Delightful success/add sound when adding a dish to cart
+        function playAddSound() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc1.type = 'triangle';
+                osc2.type = 'sine';
+
+                osc1.frequency.setValueAtTime(440, now); // A4
+                osc1.frequency.setValueAtTime(659.25, now + 0.08); // E5
+
+                osc2.frequency.setValueAtTime(554.37, now); // C#5
+                osc2.frequency.setValueAtTime(880, now + 0.08); // A5
+
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + 0.25);
+                osc2.stop(now + 0.25);
+            } catch (_) {}
+        }
+
         const customLogoUrl = "https://raw.githubusercontent.com/workmemo2007-gif/J/main/images/brand/logo.png";
 
         function escapeHtml(value) {
@@ -590,6 +653,7 @@
         }
 
         function toggleLanguage() {
+            playClickSound();
             currentLang = currentLang === "ar" ? "en" : "ar";
             const htmlEl = document.documentElement;
             
@@ -647,7 +711,10 @@
                     ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30 scale-[1.02]" 
                     : "bg-brand-950/60 hover:bg-brand-900 text-white/90 border-white/15"
                 }`;
-                btn.onclick = () => selectCategory(cat.id);
+                btn.onclick = () => {
+                    playClickSound();
+                    selectCategory(cat.id);
+                };
 
                 btn.innerHTML = `
                     <i class="fa-solid ${escapeHtml(safeIconClass(cat.icon))} ${isActive ? 'text-white' : 'text-brand-300'} text-xs shrink-0"></i>
@@ -693,7 +760,7 @@
 
             const currentCat = menuData.find(c => c.id === activeCategoryId) || menuData[0];
             if (!currentCat) {
-                container.innerHTML = `<section class="glass-panel rounded-3xl p-8 text-center"><h3 class="text-lg font-bold text-brand-900">تعذّر عرض القائمة</h3><p class="text-sm text-gray-600 mt-2">${escapeHtml(menuLoadError || "لا توجد قائمة منشورة حالياً.")}</p><button onclick="loadPublishedMenu()" class="mt-4 bg-brand-600 text-white rounded-xl px-5 py-2 text-sm font-bold">إعادة المحاولة</button></section>`;
+                container.innerHTML = `<section class="glass-panel rounded-3xl p-8 text-center"><h3 class="text-lg font-bold text-brand-900">تعذّر عرض القائمة</h3><p class="text-sm text-gray-600 mt-2">${escapeHtml(menuLoadError || "لا توجد قائمة منشورة حالياً.")}</p><button onclick="playClickSound(); loadPublishedMenu()" class="mt-4 bg-brand-600 text-white rounded-xl px-5 py-2 text-sm font-bold">إعادة المحاولة</button></section>`;
                 return;
             }
 
@@ -757,7 +824,7 @@
             return `
                 <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs glass-divider">
                     <!-- Top Row: Order: (Image, Name, Price) from Right to Left -->
-                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-3 flex items-center justify-between cursor-pointer select-none">
+                    <div onclick="playClickSound(); toggleAccordion('${dishId}')" class="px-3.5 py-3 flex items-center justify-between cursor-pointer select-none">
                         <div class="flex items-center gap-3 min-w-0">
                             <!-- Small Square Image on the Right -->
                             <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 border border-white shadow-sm bg-white">
@@ -808,7 +875,7 @@
                                             </select>
 
                                             <div>
-                                                <button onclick="addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
+                                                <button onclick="playAddSound(); addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
                                                     ${i18nText[currentLang].addBtn}
                                                 </button>
                                             </div>
@@ -914,7 +981,7 @@
                         <span class="text-[10px] text-gray-400 block">${customization}</span>
                         <span class="text-xs font-black text-brand-700">${basePrice.toLocaleString('en-US')} ${i18nText[currentLang].currency} (${calories} cal)</span>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
+                    <button onclick="playClickSound(); removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 `;
