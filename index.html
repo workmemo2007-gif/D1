@@ -59,7 +59,7 @@
             scrollbar-width: none;
         }
 
-        /* Gold Food Pattern Background */
+        /* Gold Food Pattern Background with soft gradient overlay */
         .bg-gold-food-pattern {
             background-color: #faf9f5;
             background-image: radial-gradient(rgba(217, 119, 6, 0.12) 1px, transparent 1px), radial-gradient(rgba(217, 119, 6, 0.08) 1px, #faf9f5 1px);
@@ -67,58 +67,60 @@
             background-position: 0 0, 12px 12px;
         }
 
-        /* Glassmorphism Styling with hardware acceleration */
+        /* Glassmorphism Styling with Hardware Acceleration & Depth */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.07);
             transform: translateZ(0);
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateZ(0);
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.85);
-            border-color: rgba(245, 158, 11, 0.4);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(60, 179, 76, 0.4);
+            box-shadow: 0 8px 25px rgba(60, 179, 76, 0.12);
+            transform: translateY(-2px);
         }
 
         /* Active Accordion Glassmorphic Highlight Background */
         .accordion-item.active {
-            background: rgba(242, 252, 243, 0.85);
-            border-color: rgba(60, 179, 76, 0.4);
-            box-shadow: 0 4px 20px rgba(60, 179, 76, 0.1);
+            background: rgba(242, 252, 243, 0.95);
+            border-color: rgba(60, 179, 76, 0.6);
+            box-shadow: 0 10px 30px rgba(60, 179, 76, 0.15);
         }
 
         /* Glass Dividers Between Items */
         .glass-divider {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 1px 0 rgba(217, 119, 6, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 1px 0 rgba(60, 179, 76, 0.04);
         }
 
         /* Glowing Bottom Floating Bar Animation */
         @keyframes floatGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(60, 179, 76, 0.5), 0 0 30px rgba(60, 179, 76, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(60, 179, 76, 0.8), 0 0 45px rgba(60, 179, 76, 0.4); }
+            0%, 100% { box-shadow: 0 0 20px rgba(60, 179, 76, 0.6), 0 0 40px rgba(60, 179, 76, 0.3); }
+            50% { box-shadow: 0 0 35px rgba(60, 179, 76, 0.9), 0 0 60px rgba(60, 179, 76, 0.5); }
         }
         .glowing-floating-bar {
             animation: floatGlow 3s infinite ease-in-out;
         }
 
         @keyframes slideUpBottomBar {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(120px) scale(0.95); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
         .animate-slide-up-bar {
-            animation: slideUpBottomBar 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: slideUpBottomBar 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Header Background Animation Effect */
@@ -132,18 +134,18 @@
 
         /* Category Button Interactive Click Effect */
         .category-btn {
-            transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform;
         }
         .category-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.94);
         }
 
         /* Smooth Accordion Transition */
         .accordion-content {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease-in-out;
             opacity: 0;
             will-change: grid-template-rows, opacity;
         }
@@ -157,22 +159,22 @@
             transform: rotate(180deg);
         }
         .accordion-chevron {
-            transition: transform 0.3s ease;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes pulse-subtle {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.06); }
         }
         .badge-pulse {
             animation: pulse-subtle 3s infinite ease-in-out;
         }
 
-        /* Smooth Fade In for Section Switching (No Visual Stuttering) */
+        /* Smooth Fade In for Section Switching */
         @keyframes fadeInSmooth {
             from {
                 opacity: 0;
-                transform: translateY(8px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -181,17 +183,17 @@
         }
 
         .animate-fade-in {
-            animation: fadeInSmooth 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeInSmooth 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes slideUpFadeIn {
-            0% { opacity: 0; transform: translateY(25px) scale(0.97); }
+            0% { opacity: 0; transform: translateY(30px) scale(0.96); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes slideUpFadeOut {
             0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-15px) scale(0.97); }
+            100% { opacity: 0; transform: translateY(-20px) scale(0.96); }
         }
 
         .animate-welcome-in {
@@ -218,7 +220,7 @@
         }
     </style>
 </head>
-<body class="bg-gold-food-pattern text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative pb-24">
+<body class="bg-gold-food-pattern text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative pb-28">
 
     <!-- Soft Golden Overlay Background Pattern -->
     <div class="fixed inset-0 pointer-events-none z-0 opacity-10 flex items-center justify-center overflow-hidden">
@@ -239,7 +241,7 @@
         <!-- Unified Green Main Hero Box -->
         <section class="relative bg-brand-950 text-white overflow-hidden rounded-3xl shadow-2xl p-6 sm:p-10 border border-brand-800/80 space-y-8 min-h-[480px] sm:min-h-[560px] flex flex-col justify-between">
             
-            <!-- Cover Image Layer (Loaded on Entry) -->
+            <!-- Cover Image Layer -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <img src="https://raw.githubusercontent.com/workmemo2007-gif/J/main/images/brand/cover-desktop.jpeg" alt="Wide Cover Header" loading="eager" class="w-full h-full object-cover header-bg-effect opacity-80 hidden sm:block">
                 <img src="https://raw.githubusercontent.com/workmemo2007-gif/J/main/images/brand/cover-mobile.jpeg" alt="Mobile Cover Header" loading="eager" class="w-full h-full object-cover header-bg-effect opacity-80 block sm:hidden">
@@ -248,7 +250,7 @@
 
             <!-- Top Action Row -->
             <div class="relative z-20 flex items-center justify-between gap-2 pb-4 border-b border-white/15 backdrop-blur-xs">
-                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="flex items-center gap-2 cursor-pointer hover:opacity-90 transition" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                     <div class="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white shadow-md font-bold text-sm border-2 border-white/20 shrink-0">
                         <i class="fa-solid fa-leaf"></i>
                     </div>
@@ -261,16 +263,16 @@
                 </div>
 
                 <div class="flex items-center gap-1.5 shrink-0">
-                    <button onclick="openMapModal()" title="الفروع ومواقعنا" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <button onclick="openMapModal()" title="الفروع ومواقعنا" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition hover:scale-105 flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-solid fa-location-dot"></i>
                     </button>
-                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition hover:scale-105 flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" title="فيسبوك" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" title="فيسبوك" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition hover:scale-105 flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
+                    <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition hover:scale-105 border border-white/20 flex items-center gap-1 shadow-sm">
                         <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
                         <span id="langLabel">English</span>
                     </button>
@@ -340,7 +342,7 @@
 
     <!-- Glowing Floating Bottom Cart Bar -->
     <div id="floatingCartBar" class="fixed bottom-4 inset-x-3 sm:inset-x-auto sm:right-1/2 sm:translate-x-1/2 max-w-lg w-full z-40 hidden">
-        <div onclick="toggleCartModal()" class="bg-brand-950/90 text-white backdrop-blur-xl px-5 py-3.5 rounded-2xl border border-brand-500/50 shadow-2xl glowing-floating-bar flex items-center justify-between cursor-pointer animate-slide-up-bar transition-transform hover:scale-[1.02]">
+        <div onclick="toggleCartModal()" class="bg-brand-950/95 text-white backdrop-blur-xl px-5 py-3.5 rounded-2xl border border-brand-500/60 shadow-2xl glowing-floating-bar flex items-center justify-between cursor-pointer animate-slide-up-bar transition-transform hover:scale-[1.02]">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-base shadow-md relative">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -392,9 +394,9 @@
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-brand-300">
                 <p>&copy; 2026 دايت فود - جميع الحقوق محفوظة.</p>
                 <div class="flex items-center gap-4 text-base">
-                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" class="hover:text-white transition" title="انستغرام"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" class="hover:text-white transition" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://wa.me/9647701234567" target="_blank" rel="noopener" class="hover:text-white transition" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" class="hover:text-white transition hover:scale-110" title="انستغرام"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" class="hover:text-white transition hover:scale-110" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/9647701234567" target="_blank" rel="noopener" class="hover:text-white transition hover:scale-110" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -402,7 +404,7 @@
 
     <!-- MODALS & OVERLAYS -->
     <!-- Shopping Cart Modal (Centered Glass Card in Light Green Theme) -->
-    <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity">
         <div class="bg-brand-50/90 backdrop-blur-2xl rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-brand-200 flex flex-col max-h-[85vh] animate-fade-in">
             <div class="p-4 sm:p-5 bg-brand-900 text-white flex items-center justify-between">
                 <div class="flex items-center gap-2">
@@ -432,7 +434,7 @@
                     </div>
                 </div>
 
-                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
+                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-brand-600/30 transition hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="sendOrderWA">إرسال الطلب عبر الواتساب</span>
                 </button>
             </div>
@@ -441,7 +443,7 @@
 
     <!-- Branches & Maps Modal -->
     <div id="mapModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-panel bg-white/95 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl p-6 space-y-5">
+        <div class="glass-panel bg-white/95 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl p-6 space-y-5 animate-fade-in">
             <div class="flex items-center justify-between border-b pb-3">
                 <h3 class="text-base font-bold text-brand-950 flex items-center gap-2">
                     <i class="fa-solid fa-location-dot text-brand-600"></i> <span data-i18n="locationTitle">فروع مطعم دايت فود في بغداد</span>
@@ -458,7 +460,7 @@
                         <i class="fa-solid fa-store text-brand-600"></i> فرع المنصور الأول
                     </h4>
                     <p class="text-xs text-gray-600">بغداد - المنصور - شارع أبو جعفر المنصور - مقابيل دائرة الجوازات</p>
-                    <a href="https://maps.apple.com/place?coordinate=33.324521,44.351678&name=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%8A%D9%88%D9%86%D8%B3%20%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%88%D9%8A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                    <a href="https://maps.apple.com/place?coordinate=33.324521,44.351678&name=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%8A%D9%88%D9%86%D8%B3%20%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%88%D9%8A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow-sm">
                         <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع المنصور في الخريطة
                     </a>
                 </div>
@@ -469,7 +471,7 @@
                         <i class="fa-solid fa-store text-brand-600"></i> فرع الكرادة الثاني
                     </h4>
                     <p class="text-xs text-gray-600">الكرادة - ساحة الواثق - شارع 42 - قرب شركة ميتسوبيشي</p>
-                    <a href="https://maps.apple.com/place?address=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%87%D8%AF%D9%8A%20%D9%83%D8%A8%D8%A9%D8%8ícios%20%E2%80%8F%D8%A8%D8%BA%D8%AF%D8%A7%D8%_8C%20%E2%80%8F%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82&coordinate=33.309951,44.436320&name=Diet%20food&place-id=I707D22D53449510A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                    <a href="https://maps.apple.com/place?address=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%87%D8%AF%D9%8A%20%D9%83%D8%A8%D8%A9%20%E2%80%8F%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF%2C%20%E2%80%8F%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82&coordinate=33.309951,44.436320&name=Diet%20food&place-id=I707D22D53449510A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow-sm">
                         <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع الكرادة في الخريطة
                     </a>
                 </div>
@@ -511,9 +513,6 @@
 
         let menuData = [];
         let isLoadingMenu = true;
-        let baseMenuData = [];
-        let scheduledReleases = [];
-        let releaseTimer = null;
 
         const i18nText = {
             ar: {
@@ -525,11 +524,6 @@
                 heroTitle: "مطعم دايت فود - Diet Food",
                 heroDescription: "وجبات صحية محسوبة السعرات والماكروز، محضرة من أجود المكونات الطازجة يومياً.",
                 addBtn: "اضافه",
-                available: "متاح",
-                unavailable: "غير متاح",
-                seasonal: "موسمي",
-                seasonalUnavailable: "خارج الموسم",
-                unavailableOrder: "أحد الأصناف في سلتك لم يعد متاحاً. احذفه أو اختر صنفاً آخر.",
                 totalPrice: "الإجمالي",
                 cartTitle: "سلة الوجبات المختارة",
                 totalCalSummary: "مجموع السعرات الحرارية:",
@@ -553,11 +547,6 @@
                 heroTitle: "Diet Food Restaurant",
                 heroDescription: "Calorie-counted and macro-calculated healthy meals prepared from the freshest ingredients.",
                 addBtn: "Add",
-                available: "Available",
-                unavailable: "Unavailable",
-                seasonal: "Seasonal",
-                seasonalUnavailable: "Out of season",
-                unavailableOrder: "An item in your cart is no longer available. Remove it or choose another item.",
                 totalPrice: "Total",
                 cartTitle: "Your Selected Items",
                 totalCalSummary: "Total Calories:",
@@ -587,11 +576,8 @@
                 const data = await response.json();
                 if (!Array.isArray(data?.menu) || data.menu.length === 0) throw new Error("The published menu is empty or invalid.");
                 
-                baseMenuData = JSON.parse(JSON.stringify(data.menu));
-                scheduledReleases = Array.isArray(data.scheduledReleases) ? data.scheduledReleases.slice() : [];
-                applyDueReleases();
-                activeCategoryId = menuData[0]?.id || "";
-                scheduleNextRelease();
+                menuData = data.menu;
+                activeCategoryId = menuData[0].id;
                 menuLoadError = "";
             } catch (error) {
                 menuLoadError = "تعذّر تحميل القائمة المنشورة. تحقق من الاتصال ثم أعد المحاولة.";
@@ -600,129 +586,6 @@
                 isLoadingMenu = false;
                 renderApp();
             }
-        }
-
-        function findDishLocation(menu, categoryId, subCategoryId, dishId) {
-            const category = menu.find(item => item.id === categoryId);
-            const sub = category?.subCategories?.find(item => item.id === subCategoryId);
-            const index = sub?.dishes?.findIndex(item => item.id === dishId) ?? -1;
-            return index >= 0 ? { category, sub, index, dish: sub.dishes[index] } : null;
-        }
-
-        function applyReleaseAtomically(source, release) {
-            if (!release || !Array.isArray(release.changes)) return null;
-            const candidate = JSON.parse(JSON.stringify(source));
-            for (const change of release.changes) {
-                if (change?.type === "add") {
-                    const target = change.after;
-                    const targetSub = target && candidate.find(category => category.id === target.categoryId)
-                        ?.subCategories?.find(subcategory => subcategory.id === target.subCategoryId);
-                    const dish = target?.dish;
-                    if (!targetSub?.dishes || !dish || !safeIdentifier(dish.id) ||
-                        candidate.some(category => category.subCategories?.some(subcategory => subcategory.dishes?.some(item => item.id === dish.id)))) return null;
-                    const index = Number.isInteger(target.index) ? Math.max(0, Math.min(target.index, targetSub.dishes.length)) : targetSub.dishes.length;
-                    targetSub.dishes.splice(index, 0, JSON.parse(JSON.stringify(dish)));
-                } else if (change?.type === "update" || change?.type === "delete") {
-                    const before = change.before;
-                    const location = before && findDishLocation(candidate, before.categoryId, before.subCategoryId, before.dish?.id);
-                    if (!location || JSON.stringify(location.dish) !== JSON.stringify(before.dish)) return null;
-                    if (change.type === "delete") {
-                        location.sub.dishes.splice(location.index, 1);
-                    } else {
-                        const after = change.after;
-                        const targetSub = after && candidate.find(category => category.id === after.categoryId)
-                            ?.subCategories?.find(subcategory => subcategory.id === after.subCategoryId);
-                        if (!targetSub?.dishes || !after?.dish || !safeIdentifier(after.dish.id)) return null;
-                        if (after.dish.id !== before.dish.id && candidate.some(category => category.subCategories?.some(subcategory => subcategory.dishes?.some(item => item.id === after.dish.id)))) return null;
-                        location.sub.dishes.splice(location.index, 1);
-                        const index = Number.isInteger(after.index) ? Math.max(0, Math.min(after.index, targetSub.dishes.length)) : targetSub.dishes.length;
-                        targetSub.dishes.splice(index, 0, JSON.parse(JSON.stringify(after.dish)));
-                    }
-                } else return null;
-            }
-            return candidate;
-        }
-
-        function applyDueReleases() {
-            let working = JSON.parse(JSON.stringify(baseMenuData));
-            const due = scheduledReleases
-                .filter(release => Number.isFinite(Date.parse(release?.effectiveAt)) && Date.parse(release.effectiveAt) <= Date.now())
-                .slice()
-                .sort((a, b) => Date.parse(a.effectiveAt) - Date.parse(b.effectiveAt));
-            due.forEach(release => {
-                const next = applyReleaseAtomically(working, release);
-                if (next) working = next;
-                else console.warn("Rejected conflicting scheduled menu release:", release.id);
-            });
-            menuData = working;
-            if (!menuData.some(category => category.id === activeCategoryId)) activeCategoryId = menuData[0]?.id || "";
-        }
-
-        function scheduleNextRelease() {
-            if (releaseTimer) clearTimeout(releaseTimer);
-            const releaseTimes = scheduledReleases
-                .map(release => Date.parse(release?.effectiveAt))
-                .filter(time => Number.isFinite(time) && time > Date.now());
-            const allDishes = [...baseMenuData, ...menuData].flatMap(category =>
-                category.subCategories.flatMap(subcategory => subcategory.dishes));
-            const seasonTimes = allDishes.flatMap(dish => dish?.status === "seasonal"
-                ? [dish.seasonalFrom, dish.seasonalUntil].map(value => Date.parse(value)).filter(time => Number.isFinite(time) && time > Date.now())
-                : []);
-            const nextTime = [...releaseTimes, ...seasonTimes].sort((a, b) => a - b)[0];
-            if (!nextTime) return;
-            releaseTimer = setTimeout(() => {
-                applyDueReleases();
-                renderApp();
-                scheduleNextRelease();
-            }, Math.min(nextTime - Date.now() + 25, 2147483647));
-        }
-
-        function dishAvailability(dish, now = Date.now()) {
-            const status = ["available", "unavailable", "seasonal"].includes(dish?.status) ? dish.status : "available";
-            const from = dish?.seasonalFrom ? Date.parse(dish.seasonalFrom) : NaN;
-            const until = dish?.seasonalUntil ? Date.parse(dish.seasonalUntil) : NaN;
-            const inSeason = (!Number.isFinite(from) || now >= from) && (!Number.isFinite(until) || now <= until);
-            return { status, inSeason, orderable: status === "available" || (status === "seasonal" && inSeason) };
-        }
-
-        function availabilityLabel(availability) {
-            if (availability.status === "unavailable") return i18nText[currentLang].unavailable;
-            if (availability.status === "seasonal") return availability.inSeason ? i18nText[currentLang].seasonal : i18nText[currentLang].seasonalUnavailable;
-            return i18nText[currentLang].available;
-        }
-
-        function availabilityBadgeClass(availability) {
-            if (availability.status === "unavailable") return "bg-red-100 text-red-700";
-            if (availability.status === "seasonal") return availability.inSeason ? "bg-amber-100 text-amber-800" : "bg-gray-100 text-gray-600";
-            return "bg-emerald-100 text-emerald-800";
-        }
-
-        function createDishActionHTML(dish, dishId, quantity) {
-            const availability = dishAvailability(dish);
-            const label = escapeHtml(availabilityLabel(availability));
-            if (quantity > 0) {
-                return `
-                    <div class="flex items-center gap-2 bg-brand-100 border border-brand-300 rounded-xl p-1 shadow-sm">
-                        <button onclick="updateDishQuantity('${dishId}', -1); event.stopPropagation();" class="w-7 h-7 rounded-lg bg-white text-brand-800 font-black hover:bg-brand-500 hover:text-white transition flex items-center justify-center text-xs shadow-xs">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <span class="w-6 text-center font-black text-xs text-brand-950">${quantity}</span>
-                        <button ${availability.orderable ? "" : 'disabled aria-disabled="true"'} onclick="updateDishQuantity('${dishId}', 1); event.stopPropagation();" class="w-7 h-7 rounded-lg ${availability.orderable ? "bg-brand-500 text-white hover:bg-brand-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"} font-black transition flex items-center justify-center text-xs">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                `;
-            }
-            return `
-                <button ${availability.orderable ? "" : 'disabled aria-disabled="true"'} onclick="addDishToCartDirect('${dishId}'); event.stopPropagation();" class="${availability.orderable ? "bg-brand-500 hover:bg-brand-600 active:scale-95 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"} font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
-                    ${availability.orderable ? escapeHtml(i18nText[currentLang].addBtn) : label}
-                </button>
-            `;
-        }
-
-        function findDishById(dishId) {
-            return menuData.flatMap(category => category.subCategories.flatMap(subcategory => subcategory.dishes))
-                .find(dish => dish.id === dishId) || null;
         }
 
         let currentLang = "ar";
@@ -815,7 +678,7 @@
                     isLastItem ? 'col-span-3' : ''
                 } ${
                     isActive 
-                    ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30 scale-[1.02]" 
+                    ? "bg-brand-500 text-white border-white/40 ring-2 ring-white/30 scale-[1.02] shadow-md" 
                     : "bg-brand-950/60 hover:bg-brand-900 text-white/90 border-white/15"
                 }`;
                 btn.onclick = () => selectCategory(cat.id);
@@ -928,10 +791,26 @@
             const existingCartItem = cart.find(item => item.dishId === dishId);
             const quantity = existingCartItem ? existingCartItem.qty : 0;
 
-            const availability = dishAvailability(dish);
-            const badgeText = escapeHtml(availabilityLabel(availability));
-            const badgeClass = availabilityBadgeClass(availability);
-            const actionButtonHTML = createDishActionHTML(dish, dishId, quantity);
+            let actionButtonHTML = '';
+            if (quantity > 0) {
+                actionButtonHTML = `
+                    <div class="flex items-center gap-2.5 bg-brand-100/90 border border-brand-300 rounded-xl p-1.5 shadow-sm">
+                        <button onclick="updateDishQuantity('${dishId}', -1); event.stopPropagation();" class="w-8 h-8 rounded-lg bg-white text-brand-800 font-black hover:bg-brand-500 hover:text-white transition active:scale-90 flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="w-7 text-center font-black text-xs sm:text-sm text-brand-950">${quantity}</span>
+                        <button onclick="updateDishQuantity('${dishId}', 1); event.stopPropagation();" class="w-8 h-8 rounded-lg bg-brand-500 text-white font-black hover:bg-brand-600 transition active:scale-90 flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                actionButtonHTML = `
+                    <button onclick="addDishToCartDirect('${dishId}'); event.stopPropagation();" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow-md transition-all hover:shadow-lg">
+                        ${i18nText[currentLang].addBtn}
+                    </button>
+                `;
+            }
 
             return `
                 <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs glass-divider">
@@ -944,7 +823,6 @@
                             </div>
                             <!-- Dish Name in the Middle -->
                             <span class="font-bold text-xs sm:text-sm text-gray-900 truncate">${dishName}</span>
-                            <span class="text-[9px] px-2 py-0.5 rounded-full font-bold shrink-0 ${badgeClass}">${badgeText}</span>
                         </div>
                         
                         <!-- Price on the Left -->
@@ -957,12 +835,12 @@
                     <!-- Accordion Details Container with Glassmorphic Background -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
-                            <div class="p-3.5 sm:p-5 border-t border-brand-200/50 bg-gradient-to-br from-white/80 via-brand-50/50 to-white/90 backdrop-blur-md">
+                            <div class="p-3.5 sm:p-5 border-t border-brand-200/50 bg-gradient-to-br from-white/9ul via-brand-50/60 to-white/95 backdrop-blur-md">
                                 <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-6">
                                     
                                     <!-- Image on the Right inside Expanded View -->
                                     <div class="w-32 sm:w-40 shrink-0">
-                                        <div class="p-1 rounded-2xl bg-white border border-amber-300/80 shadow-[0_0_12px_rgba(245,158,11,0.4)] relative overflow-hidden h-full">
+                                        <div class="p-1 rounded-2xl bg-white border border-amber-300/80 shadow-[0_0_15px_rgba(245,158,11,0.45)] relative overflow-hidden h-full">
                                             <div class="w-full h-full min-h-[110px] sm:min-h-[140px] rounded-xl overflow-hidden relative">
                                                 <img src="${dishImage}" alt="${dishName}" loading="eager" class="w-full h-full object-cover">
                                                 <div class="absolute bottom-1 right-1 bg-amber-400/95 text-amber-950 font-black text-[10px] px-2 py-0.5 rounded shadow-sm border border-amber-300">
@@ -1018,11 +896,6 @@
 
             if (!foundDish) return;
 
-            if (!dishAvailability(foundDish).orderable) {
-                window.alert(i18nText[currentLang].unavailableOrder);
-                return;
-            }
-
             const rawPrice = Number.isFinite(Number(foundDish.price)) ? Number(foundDish.price) : 0;
             const calculatedPrice = rawPrice < 200 ? rawPrice * 1000 : rawPrice;
 
@@ -1049,12 +922,6 @@
             const cartItem = cart.find(item => item.dishId === dishId);
             if (!cartItem) return;
 
-            const sourceDish = findDishById(dishId);
-            if (change > 0 && (!sourceDish || !dishAvailability(sourceDish).orderable)) {
-                window.alert(i18nText[currentLang].unavailableOrder);
-                return;
-            }
-
             cartItem.qty += change;
             if (cartItem.qty <= 0) {
                 cart = cart.filter(item => item.dishId !== dishId);
@@ -1079,7 +946,26 @@
 
             const existingCartItem = cart.find(item => item.dishId === dishId);
             const quantity = existingCartItem ? existingCartItem.qty : 0;
-            actionContainer.innerHTML = createDishActionHTML(foundDish, dishId, quantity);
+
+            if (quantity > 0) {
+                actionContainer.innerHTML = `
+                    <div class="flex items-center gap-2.5 bg-brand-100/90 border border-brand-300 rounded-xl p-1.5 shadow-sm">
+                        <button onclick="updateDishQuantity('${dishId}', -1); event.stopPropagation();" class="w-8 h-8 rounded-lg bg-white text-brand-800 font-black hover:bg-brand-500 hover:text-white transition active:scale-90 flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="w-7 text-center font-black text-xs sm:text-sm text-brand-950">${quantity}</span>
+                        <button onclick="updateDishQuantity('${dishId}', 1); event.stopPropagation();" class="w-8 h-8 rounded-lg bg-brand-500 text-white font-black hover:bg-brand-600 transition active:scale-90 flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                actionContainer.innerHTML = `
+                    <button onclick="addDishToCartDirect('${dishId}'); event.stopPropagation();" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow-md transition-all hover:shadow-lg">
+                        ${i18nText[currentLang].addBtn}
+                    </button>
+                `;
+            }
         }
 
         function toggleCartModal() {
@@ -1126,22 +1012,17 @@
                 const itemImage = escapeHtml(safeImageUrl(item.img));
                 const itemName = escapeHtml(item.name);
                 const itemTotalPrice = (item.basePrice * item.qty);
-                const sourceDish = findDishById(item.dishId);
-                const availability = sourceDish ? dishAvailability(sourceDish) : { status: "unavailable", inSeason: false, orderable: false };
-                const availabilityText = escapeHtml(availabilityLabel(availability));
-                const statusBadgeHTML = availability.orderable ? "" : `<span class="text-[10px] font-bold text-red-700">${availabilityText}</span>`;
                 
                 cartRow.innerHTML = `
-                    <img src="${itemImage}" loading="eager" class="w-11 h-11 rounded-xl object-cover" alt="item">
+                    <img src="${itemImage}" loading="eager" class="w-11 h-11 rounded-xl object-cover shadow-sm" alt="item">
                     <div class="flex-1 min-w-0">
                         <h6 class="text-xs font-bold text-gray-900 truncate">${itemName} (${item.qty})</h6>
                         <span class="text-xs font-black text-brand-700">${itemTotalPrice.toLocaleString('en-US')} ${i18nText[currentLang].currency} (${item.cal * item.qty} cal)</span>
-                        ${statusBadgeHTML}
                     </div>
                     <div class="flex items-center gap-1.5">
-                        <button onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 rounded bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-xs"><i class="fa-solid fa-minus"></i></button>
-                        <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-                        <button ${availability.orderable ? "" : 'disabled aria-disabled="true"'} onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 rounded ${availability.orderable ? "bg-brand-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"} font-bold flex items-center justify-center text-xs"><i class="fa-solid fa-plus"></i></button>
+                        <button onclick="updateCartItemQty(${index}, -1)" class="w-7 h-7 rounded-lg bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-xs active:scale-90"><i class="fa-solid fa-minus"></i></button>
+                        <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
+                        <button onclick="updateCartItemQty(${index}, 1)" class="w-7 h-7 rounded-lg bg-brand-500 text-white font-bold flex items-center justify-center text-xs active:scale-90"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 `;
                 fragment.appendChild(cartRow);
@@ -1158,17 +1039,9 @@
         }
 
         function updateCartItemQty(index, change) {
-            const item = cart[index];
-            if (!item) return;
-            const sourceDish = findDishById(item.dishId);
-            if (change > 0 && (!sourceDish || !dishAvailability(sourceDish).orderable)) {
-                window.alert(i18nText[currentLang].unavailableOrder);
-                return;
-            }
-
-            item.qty += change;
-            const dishId = item.dishId;
-            if (item.qty <= 0) {
+            cart[index].qty += change;
+            const dishId = cart[index].dishId;
+            if (cart[index].qty <= 0) {
                 cart.splice(index, 1);
             }
             updateCartUI();
@@ -1177,15 +1050,6 @@
 
         function checkoutWhatsApp() {
             if (cart.length === 0) return;
-
-            const unavailableInCart = cart.some(item => {
-                const dish = findDishById(item.dishId);
-                return !dish || !dishAvailability(dish).orderable;
-            });
-            if (unavailableInCart) {
-                window.alert(i18nText[currentLang].unavailableOrder);
-                return;
-            }
 
             let msg = `*طلب جديد من تطبيق دايت فود - Diet Food (العراق)*\n\n`;
             let total = 0;
