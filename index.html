@@ -91,6 +91,36 @@
             border-color: rgba(245, 158, 11, 0.4);
         }
 
+        /* Active Accordion Glassmorphic Highlight Background */
+        .accordion-item.active {
+            background: rgba(242, 252, 243, 0.85);
+            border-color: rgba(60, 179, 76, 0.4);
+            box-shadow: 0 4px 20px rgba(60, 179, 76, 0.1);
+        }
+
+        /* Glass Dividers Between Items */
+        .glass-divider {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 1px 0 rgba(217, 119, 6, 0.05);
+        }
+
+        /* Glowing Bottom Floating Bar Animation */
+        @keyframes floatGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(60, 179, 76, 0.5), 0 0 30px rgba(60, 179, 76, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(60, 179, 76, 0.8), 0 0 45px rgba(60, 179, 76, 0.4); }
+        }
+        .glowing-floating-bar {
+            animation: floatGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes slideUpBottomBar {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up-bar {
+            animation: slideUpBottomBar 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
         /* Header Background Animation Effect */
         @keyframes headerZoom {
             0%, 100% { transform: scale(1); }
@@ -113,7 +143,7 @@
         .accordion-content {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in-out;
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
             opacity: 0;
             will-change: grid-template-rows, opacity;
         }
@@ -188,7 +218,7 @@
         }
     </style>
 </head>
-<body class="bg-gold-food-pattern text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative">
+<body class="bg-gold-food-pattern text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative pb-24">
 
     <!-- Soft Golden Overlay Background Pattern -->
     <div class="fixed inset-0 pointer-events-none z-0 opacity-10 flex items-center justify-center overflow-hidden">
@@ -231,20 +261,18 @@
                 </div>
 
                 <div class="flex items-center gap-1.5 shrink-0">
-                    <button onclick="openMapModal()" title="الموقع الجغرافي" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <button onclick="openMapModal()" title="الفروع ومواقعنا" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-solid fa-location-dot"></i>
                     </button>
-                    <a href="https://instagram.com" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" title="انستغرام" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
                         <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" title="فيسبوك" class="w-8 h-8 rounded-full bg-brand-900/80 hover:bg-brand-800 text-white transition flex items-center justify-center border border-white/20 text-xs shadow-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
                     </a>
                     <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-full bg-brand-900/80 text-white text-[10px] font-bold hover:bg-brand-800 transition border border-white/20 flex items-center gap-1 shadow-sm">
                         <i class="fa-solid fa-globe text-brand-300 text-[9px]"></i>
                         <span id="langLabel">English</span>
-                    </button>
-                    <button onclick="toggleCartModal()" class="relative px-3.5 py-1.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-basket-shopping text-xs"></i>
-                        <span class="hidden sm:inline" data-i18n="cartBtn">السلة</span>
-                        <span id="cartBadge" class="bg-white text-brand-900 text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-extrabold shadow">0</span>
                     </button>
                 </div>
             </div>
@@ -310,6 +338,26 @@
 
     </main>
 
+    <!-- Glowing Floating Bottom Cart Bar -->
+    <div id="floatingCartBar" class="fixed bottom-4 inset-x-3 sm:inset-x-auto sm:right-1/2 sm:translate-x-1/2 max-w-lg w-full z-40 hidden">
+        <div onclick="toggleCartModal()" class="bg-brand-950/90 text-white backdrop-blur-xl px-5 py-3.5 rounded-2xl border border-brand-500/50 shadow-2xl glowing-floating-bar flex items-center justify-between cursor-pointer animate-slide-up-bar transition-transform hover:scale-[1.02]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-base shadow-md relative">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span id="floatingCartCount" class="absolute -top-1.5 -right-1.5 bg-amber-400 text-brand-950 text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow">0</span>
+                </div>
+                <div>
+                    <h5 class="text-xs sm:text-sm font-black text-white" data-i18n="cartTitle">سلة الوجبات المختارة</h5>
+                    <span id="floatingCartCalories" class="text-[10px] text-brand-300 font-semibold block">0 سعرة حرارية</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="floatingCartTotal" class="text-xs sm:text-sm font-black text-amber-400">0 د.ع</span>
+                <i class="fa-solid fa-chevron-up text-brand-400 text-xs animate-bounce"></i>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Section -->
     <footer class="bg-brand-950 text-white pt-10 pb-6 border-t border-brand-900 mt-12 relative z-10">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -334,26 +382,28 @@
                 </div>
                 <div>
                     <h5 class="font-bold text-brand-400 mb-2 uppercase tracking-wider" data-i18n="footerContact">التواصل والموقع</h5>
-                    <div class="space-y-1.5 text-brand-200">
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+966 50 123 4567</span></p>
-                        <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> <span data-i18n="locationAddress">شارع الصحة والجمال، الرياض، المملكة العربية السعودية</span></p>
+                    <div class="space-y-2 text-brand-200">
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> <span>+964 770 123 4567</span></p>
+                        <p class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-1"></i> <span><strong>فرع المنصور:</strong> شارع أبو جعفر المنصور - مقابيل دائرة الجوازات</span></p>
+                        <p class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-1"></i> <span><strong>فرع الكرادة:</strong> ساحة الواثق - شارع 42 - قرب شركة ميتسوبيشي</span></p>
                     </div>
                 </div>
             </div>
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-brand-300">
                 <p>&copy; 2026 دايت فود - جميع الحقوق محفوظة.</p>
-                <div class="flex items-center gap-3 text-base">
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
+                <div class="flex items-center gap-4 text-base">
+                    <a href="https://www.instagram.com/dietfoodandcumpir?exln=ZjdlM29xN21ub3N4" target="_blank" rel="noopener" class="hover:text-white transition" title="انستغرام"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1DiBnxTnKR/" target="_blank" rel="noopener" class="hover:text-white transition" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/9647701234567" target="_blank" rel="noopener" class="hover:text-white transition" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- MODALS & OVERLAYS -->
-    <!-- Shopping Cart Modal Sidebar -->
-    <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
-        <div class="absolute inset-y-0 right-0 rtl:right-0 ltr:left-0 ltr:right-auto max-w-md w-full bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col transform transition-transform border-l border-white/50">
+    <!-- Shopping Cart Modal (Centered Glass Card in Light Green Theme) -->
+    <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-brand-50/90 backdrop-blur-2xl rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-brand-200 flex flex-col max-h-[85vh] animate-fade-in">
             <div class="p-4 sm:p-5 bg-brand-900 text-white flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-basket-shopping text-brand-400 text-lg"></i>
@@ -364,9 +414,9 @@
                 </button>
             </div>
 
-            <div id="cartItemsContainer" class="p-4 overflow-y-auto flex-1 space-y-3 divide-y divide-gray-100"></div>
+            <div id="cartItemsContainer" class="p-4 overflow-y-auto flex-1 space-y-3 divide-y divide-brand-100"></div>
 
-            <div class="p-4 sm:p-5 bg-brand-50/80 border-t border-brand-100 space-y-3">
+            <div class="p-4 sm:p-5 bg-white/80 border-t border-brand-200 space-y-3">
                 <div class="space-y-1.5 text-xs">
                     <div class="flex justify-between text-gray-600">
                         <span data-i18n="totalCalSummary">مجموع السعرات الحرارية:</span>
@@ -374,39 +424,56 @@
                     </div>
                     <div class="flex justify-between text-gray-600">
                         <span data-i18n="deliveryFee">رسوم التوصيل:</span>
-                        <span class="font-bold text-brand-900">10 SAR</span>
+                        <span class="font-bold text-brand-900">5,000 د.ع</span>
                     </div>
                     <div class="flex justify-between text-base font-black text-brand-950 pt-2 border-t border-brand-200">
                         <span data-i18n="grandTotal">المجموع النهائي:</span>
-                        <span id="cartTotalPrice" class="text-brand-700">0 SAR</span>
+                        <span id="cartTotalPrice" class="text-brand-700">0 د.ع</span>
                     </div>
                 </div>
 
-                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
+                <button onclick="checkoutWhatsApp()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="sendOrderWA">إرسال الطلب عبر الواتساب</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Google Map Modal -->
+    <!-- Branches & Maps Modal -->
     <div id="mapModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-panel bg-white/90 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between">
-                <h3 class="text-lg font-bold text-brand-950 flex items-center gap-2">
-                    <i class="fa-solid fa-location-dot text-brand-600"></i> <span data-i18n="locationTitle">موقع مطعم دايت فود</span>
+        <div class="glass-panel bg-white/95 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="text-base font-bold text-brand-950 flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-brand-600"></i> <span data-i18n="locationTitle">فروع مطعم دايت فود في بغداد</span>
                 </h3>
-                <button onclick="closeMapModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center">
+                <button onclick="closeMapModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <p class="text-xs text-gray-500" data-i18n="locationAddress">شارع الصحة والجمال، طريق الملك فهد، الرياض، المملكة العربية السعودية</p>
-            <div class="w-full h-60 bg-gray-200 rounded-2xl overflow-hidden relative border border-gray-200 shadow-inner">
-                <iframe title="Restaurant Location" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5889123!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzg5LjAiTiA0NsKwNDAnMzElevenE!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa" allowfullscreen="" loading="lazy"></iframe>
+
+            <div class="space-y-4">
+                <!-- Branch 1: Mansour -->
+                <div class="p-4 rounded-2xl bg-brand-50/70 border border-brand-200 space-y-2">
+                    <h4 class="font-bold text-sm text-brand-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-store text-brand-600"></i> فرع المنصور الأول
+                    </h4>
+                    <p class="text-xs text-gray-600">بغداد - المنصور - شارع أبو جعفر المنصور - مقابيل دائرة الجوازات</p>
+                    <a href="https://maps.apple.com/place?coordinate=33.324521,44.351678&name=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%8A%D9%88%D9%86%D8%B3%20%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%88%D9%8A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                        <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع المنصور في الخريطة
+                    </a>
+                </div>
+
+                <!-- Branch 2: Karrada -->
+                <div class="p-4 rounded-2xl bg-brand-50/70 border border-brand-200 space-y-2">
+                    <h4 class="font-bold text-sm text-brand-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-store text-brand-600"></i> فرع الكرادة الثاني
+                    </h4>
+                    <p class="text-xs text-gray-600">الكرادة - ساحة الواثق - شارع 42 - قرب شركة ميتسوبيشي</p>
+                    <a href="https://maps.apple.com/place?address=%D8%B4%D8%A7%D8%B1%D8%B9%20%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%87%D8%AF%D9%8A%20%D9%83%D8%A8%D8%A9%D8%8ícios%20%E2%80%8F%D8%A8%D8%BA%D8%AF%D8%A7%D8%_8C%20%E2%80%8F%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82&coordinate=33.309951,44.436320&name=Diet%20food&place-id=I707D22D53449510A&map=h" target="_blank" rel="noopener" class="block text-center bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-xl transition shadow-sm">
+                        <i class="fa-solid fa-map-location-dot ml-1"></i> فتح فرع الكرادة في الخريطة
+                    </a>
+                </div>
             </div>
-            <a href="https://maps.google.com" target="_blank" rel="noopener" class="w-full block text-center bg-brand-50 hover:bg-brand-100 text-brand-800 text-xs font-bold py-2.5 rounded-xl border border-brand-200 transition">
-                <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i> <span data-i18n="openGoogleMaps">فتح في خرائط جوجل</span>
-            </a>
         </div>
     </div>
 
@@ -435,6 +502,13 @@
             return customLogoUrl;
         }
 
+        function formatIQDPrice(price) {
+            const num = Number(price);
+            if (!Number.isFinite(num) || num < 0) return "0 د.ع";
+            const iqdValue = num < 200 ? num * 1000 : num;
+            return iqdValue.toLocaleString('en-US') + " د.ع";
+        }
+
         let menuData = [];
         let isLoadingMenu = true;
 
@@ -454,13 +528,12 @@
                 deliveryFee: "رسوم التوصيل:",
                 grandTotal: "المجموع النهائي:",
                 sendOrderWA: "إرسال الطلب عبر الواتساب",
-                locationTitle: "موقع مطعم دايت فود",
-                locationAddress: "شارع الصحة والجمال، الرياض، المملكة العربية السعودية",
-                openGoogleMaps: "فتح في خرائط جوجل",
+                locationTitle: "فروع مطعم دايت فود في بغداد",
+                openGoogleMaps: "فتح في الخريطة",
                 footerAbout: "وجهتك الأولى للوجبات الصحية المتوازنة. نمط حياة صحي بدون الحرمان من النكهات اللذيذة.",
                 footerQuickLinks: "روابط سريعة",
-                footerContact: "التواصل والموقع",
-                currency: "ر.س",
+                footerContact: "التواصل والفروع",
+                currency: "د.ع",
                 emptyCart: "السلة فارغة حالياً. أضف بعض الوجبات الشهية!"
             },
             en: {
@@ -478,13 +551,12 @@
                 deliveryFee: "Delivery Fee:",
                 grandTotal: "Grand Total:",
                 sendOrderWA: "Send Order via WhatsApp",
-                locationTitle: "Diet Food Location",
-                locationAddress: "Health & Beauty Street, Riyadh, Saudi Arabia",
-                openGoogleMaps: "Open in Google Maps",
+                locationTitle: "Diet Food Branches in Baghdad",
+                openGoogleMaps: "Open in Map",
                 footerAbout: "Your premier destination for balanced healthy meals without compromising on flavor.",
                 footerQuickLinks: "Quick Links",
-                footerContact: "Contact & Location",
-                currency: "SAR",
+                footerContact: "Contact & Branches",
+                currency: "IQD",
                 emptyCart: "Your cart is empty right now. Add some delicious healthy meals!"
             }
         };
@@ -495,7 +567,7 @@
         async function loadPublishedMenu() {
             try {
                 isLoadingMenu = true;
-                renderIsolatedActiveCategory(); // Render skeleton while loading
+                renderIsolatedActiveCategory();
                 
                 const response = await fetch(`${MENU_JSON_URL}?v=${Date.now()}`, { cache: "no-store" });
                 if (!response.ok) throw new Error(`Menu request failed (${response.status})`);
@@ -520,7 +592,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initWelcomeHeaderTransition();
-            renderHeaderCategoriesGrid(); // Render empty/skeleton state initially
+            renderHeaderCategoriesGrid();
             loadPublishedMenu();
         });
 
@@ -687,13 +759,13 @@
 
             currentCat.subCategories.forEach(sub => {
                 html += `
-                    <div class="space-y-2 pt-1">
+                    <div class="space-y-3 pt-1">
                         <h4 class="text-xs font-bold text-amber-800 flex items-center gap-1.5 px-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-gold-500 inline-block"></span>
                             ${escapeHtml(sub.title?.[currentLang] ?? "")}
                         </h4>
 
-                        <div class="space-y-2">
+                        <div class="space-y-2.5">
                             ${sub.dishes.map(dish => createResponsiveHorizontalCardHTML(dish)).join('')}
                         </div>
                     </div>
@@ -706,64 +778,85 @@
         }
 
         function createResponsiveHorizontalCardHTML(dish) {
-            const currency = i18nText[currentLang].currency;
             const dishId = safeIdentifier(dish?.id);
             if (!dishId) return "";
             const dishName = escapeHtml(dish.name?.[currentLang] ?? "");
             const dishDescription = escapeHtml(dish.desc?.[currentLang] ?? "");
             const dishImage = escapeHtml(safeImageUrl(dish.img));
-            const price = Number.isFinite(Number(dish.price)) && Number(dish.price) >= 0 ? Number(dish.price) : 0;
+            const rawPrice = Number.isFinite(Number(dish.price)) && Number(dish.price) >= 0 ? Number(dish.price) : 0;
+            const formattedPrice = formatIQDPrice(rawPrice);
+
+            const existingCartItem = cart.find(item => item.dishId === dishId);
+            const quantity = existingCartItem ? existingCartItem.qty : 0;
+
+            let actionButtonHTML = '';
+            if (quantity > 0) {
+                actionButtonHTML = `
+                    <div class="flex items-center gap-2 bg-brand-100 border border-brand-300 rounded-xl p-1 shadow-sm">
+                        <button onclick="updateDishQuantity('${dishId}', -1); event.stopPropagation();" class="w-7 h-7 rounded-lg bg-white text-brand-800 font-black hover:bg-brand-500 hover:text-white transition flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="w-6 text-center font-black text-xs text-brand-950">${quantity}</span>
+                        <button onclick="updateDishQuantity('${dishId}', 1); event.stopPropagation();" class="w-7 h-7 rounded-lg bg-brand-500 text-white font-black hover:bg-brand-600 transition flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                actionButtonHTML = `
+                    <button onclick="addDishToCartDirect('${dishId}'); event.stopPropagation();" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
+                        ${i18nText[currentLang].addBtn}
+                    </button>
+                `;
+            }
 
             return `
-                <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs border border-white/80">
-                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer select-none">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-brand-500/80 shrink-0"></span>
-                            <span class="font-medium text-xs sm:text-sm text-gray-800 opacity-90">${dishName}</span>
+                <div id="accordion-${dishId}" class="accordion-item glass-card rounded-2xl overflow-hidden shadow-xs glass-divider">
+                    <!-- Top Row: Order: (Image, Name, Price) from Right to Left -->
+                    <div onclick="toggleAccordion('${dishId}')" class="px-3.5 py-3 flex items-center justify-between cursor-pointer select-none">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <!-- Small Square Image on the Right -->
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 border border-white shadow-sm bg-white">
+                                <img src="${dishImage}" alt="${dishName}" loading="eager" class="w-full h-full object-cover">
+                            </div>
+                            <!-- Dish Name in the Middle -->
+                            <span class="font-bold text-xs sm:text-sm text-gray-900 truncate">${dishName}</span>
                         </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <span class="text-xs font-bold text-amber-800 bg-white/70 px-2 py-0.5 rounded-lg border border-white/80">${price} ${currency}</span>
+                        
+                        <!-- Price on the Left -->
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <span class="text-xs sm:text-sm font-black text-amber-800 bg-white/80 px-2.5 py-1 rounded-lg border border-white shadow-xs">${formattedPrice}</span>
                             <i class="fa-solid fa-chevron-down text-brand-700 text-xs accordion-chevron"></i>
                         </div>
                     </div>
 
+                    <!-- Accordion Details Container with Glassmorphic Background -->
                     <div class="accordion-content">
                         <div class="overflow-hidden">
-                            <div class="p-2.5 sm:p-3 border-t border-white/60 bg-white/60 backdrop-blur-md">
-                                <div class="flex flex-row items-stretch justify-between gap-2.5 sm:gap-4">
+                            <div class="p-3.5 sm:p-5 border-t border-brand-200/50 bg-gradient-to-br from-white/80 via-brand-50/50 to-white/90 backdrop-blur-md">
+                                <div class="flex flex-row items-stretch justify-between gap-3 sm:gap-6">
                                     
-                                    <!-- Image on the Right -->
-                                    <div class="w-28 sm:w-36 shrink-0">
-                                        <div class="p-0.5 rounded-xl bg-amber-50 border border-amber-300/60 shadow-[0_0_10px_rgba(245,158,11,0.5)] relative overflow-hidden h-full">
-                                            <div class="w-full h-full min-h-[90px] sm:min-h-[110px] rounded-lg overflow-hidden relative">
+                                    <!-- Image on the Right inside Expanded View -->
+                                    <div class="w-32 sm:w-40 shrink-0">
+                                        <div class="p-1 rounded-2xl bg-white border border-amber-300/80 shadow-[0_0_12px_rgba(245,158,11,0.4)] relative overflow-hidden h-full">
+                                            <div class="w-full h-full min-h-[110px] sm:min-h-[140px] rounded-xl overflow-hidden relative">
                                                 <img src="${dishImage}" alt="${dishName}" loading="eager" class="w-full h-full object-cover">
-                                                <div class="absolute bottom-1 right-1 bg-amber-400/95 text-amber-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded shadow-sm border border-amber-300">
-                                                    ${price} ${currency}
+                                                <div class="absolute bottom-1 right-1 bg-amber-400/95 text-amber-950 font-black text-[10px] px-2 py-0.5 rounded shadow-sm border border-amber-300">
+                                                    ${formattedPrice}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Name and Description on the Left -->
-                                    <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0">
-                                        <div class="space-y-0.5">
-                                            <h4 class="text-xs sm:text-sm font-black text-gray-900 tracking-tight leading-snug truncate">${dishName}</h4>
-                                            <p class="text-[11px] sm:text-xs text-gray-700 font-normal leading-relaxed line-clamp-2 opacity-90">${dishDescription}</p>
+                                    <!-- Name and Description on the Left with expanded spacing -->
+                                    <div class="flex-1 text-right rtl:text-right ltr:text-left flex flex-col justify-between py-0.5 min-w-0 space-y-3">
+                                        <div class="space-y-1">
+                                            <h4 class="text-sm sm:text-lg font-black text-gray-900 tracking-tight leading-snug truncate">${dishName}</h4>
+                                            <p class="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed line-clamp-3 opacity-95">${dishDescription}</p>
                                         </div>
 
-                                        <div class="pt-1.5 space-y-1.5">
-                                            <select id="base-${dishId}" class="w-full text-[10px] sm:text-[11px] bg-white/90 border border-brand-200/60 rounded-lg p-1 focus:ring-1 focus:ring-brand-500 focus:outline-none">
-                                                <option value="أرز أبيض بسمتي">أرز أبيض بسمتي</option>
-                                                <option value="أرز بني صحي">أرز بني عضوي</option>
-                                                <option value="بطاطس مهروسة">بطاطس مهروسة</option>
-                                                <option value="كينوا عضوي">كينوا</option>
-                                            </select>
-
-                                            <div>
-                                                <button onclick="addDishToCartDirect('${dishId}')" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-[11px] sm:text-xs px-4 py-1.5 rounded-lg shadow-sm transition-all">
-                                                    ${i18nText[currentLang].addBtn}
-                                                </button>
-                                            </div>
+                                        <div id="action-container-${dishId}">
+                                            ${actionButtonHTML}
                                         </div>
                                     </div>
 
@@ -801,20 +894,76 @@
 
             if (!foundDish) return;
 
-            const baseChoice = document.getElementById(`base-${dishId}`)?.value || 'أرز بسمتي';
+            const rawPrice = Number.isFinite(Number(foundDish.price)) ? Number(foundDish.price) : 0;
+            const calculatedPrice = rawPrice < 200 ? rawPrice * 1000 : rawPrice;
 
-            const item = {
-                id: foundDish.id + '_' + Date.now(),
-                name: foundDish.name[currentLang],
-                basePrice: foundDish.price,
-                cal: foundDish.cal,
-                customization: baseChoice,
-                img: foundDish.img
-            };
+            const existingIndex = cart.findIndex(item => item.dishId === dishId);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    cartItemId: dishId + '_' + Date.now(),
+                    dishId: dishId,
+                    name: foundDish.name[currentLang],
+                    basePrice: calculatedPrice,
+                    cal: foundDish.cal,
+                    img: foundDish.img,
+                    qty: 1
+                });
+            }
 
-            cart.push(item);
             updateCartUI();
-            toggleCartModal();
+            refreshDishCardAction(dishId);
+        }
+
+        function updateDishQuantity(dishId, change) {
+            const cartItem = cart.find(item => item.dishId === dishId);
+            if (!cartItem) return;
+
+            cartItem.qty += change;
+            if (cartItem.qty <= 0) {
+                cart = cart.filter(item => item.dishId !== dishId);
+            }
+
+            updateCartUI();
+            refreshDishCardAction(dishId);
+        }
+
+        function refreshDishCardAction(dishId) {
+            let foundDish = null;
+            menuData.forEach(cat => {
+                cat.subCategories.forEach(sub => {
+                    const match = sub.dishes.find(d => d.id === dishId);
+                    if (match) foundDish = match;
+                });
+            });
+            if (!foundDish) return;
+
+            const actionContainer = document.getElementById(`action-container-${dishId}`);
+            if (!actionContainer) return;
+
+            const existingCartItem = cart.find(item => item.dishId === dishId);
+            const quantity = existingCartItem ? existingCartItem.qty : 0;
+
+            if (quantity > 0) {
+                actionContainer.innerHTML = `
+                    <div class="flex items-center gap-2 bg-brand-100 border border-brand-300 rounded-xl p-1 shadow-sm">
+                        <button onclick="updateDishQuantity('${dishId}', -1); event.stopPropagation();" class="w-7 h-7 rounded-lg bg-white text-brand-800 font-black hover:bg-brand-500 hover:text-white transition flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="w-6 text-center font-black text-xs text-brand-950">${quantity}</span>
+                        <button onclick="updateDishQuantity('${dishId}', 1); event.stopPropagation();" class="w-7 h-7 rounded-lg bg-brand-500 text-white font-black hover:bg-brand-600 transition flex items-center justify-center text-xs shadow-xs">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                actionContainer.innerHTML = `
+                    <button onclick="addDishToCartDirect('${dishId}'); event.stopPropagation();" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-black text-xs sm:text-sm px-6 py-2 rounded-xl shadow-md transition-all">
+                        ${i18nText[currentLang].addBtn}
+                    </button>
+                `;
+            }
         }
 
         function toggleCartModal() {
@@ -822,14 +971,18 @@
         }
 
         function updateCartUI() {
-            const cartBadge = document.getElementById('cartBadge');
+            const floatingCartBar = document.getElementById('floatingCartBar');
+            const floatingCartCount = document.getElementById('floatingCartCount');
+            const floatingCartCalories = document.getElementById('floatingCartCalories');
+            const floatingCartTotal = document.getElementById('floatingCartTotal');
             const cartItemsContainer = document.getElementById('cartItemsContainer');
             const cartTotalCalories = document.getElementById('cartTotalCalories');
             const cartTotalPrice = document.getElementById('cartTotalPrice');
 
-            cartBadge.innerText = cart.length;
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
-            if (cart.length === 0) {
+            if (totalItemsCount === 0) {
+                floatingCartBar.classList.add('hidden');
                 cartItemsContainer.innerHTML = `
                     <div class="text-center py-10 text-gray-400">
                         <i class="fa-solid fa-basket-shopping text-3xl mb-2 text-brand-200"></i>
@@ -841,32 +994,34 @@
                 return;
             }
 
+            floatingCartBar.classList.remove('hidden');
+            floatingCartCount.innerText = totalItemsCount;
+
             let totalCal = 0;
             let totalPrice = 0;
             const fragment = document.createDocumentFragment();
 
             cart.forEach((item, index) => {
-                totalCal += item.cal;
-                totalPrice += item.basePrice;
+                totalCal += (item.cal * item.qty);
+                totalPrice += (item.basePrice * item.qty);
 
                 const cartRow = document.createElement('div');
                 cartRow.className = "pt-3 flex items-center justify-between gap-3";
                 const itemImage = escapeHtml(safeImageUrl(item.img));
                 const itemName = escapeHtml(item.name);
-                const customization = escapeHtml(item.customization);
-                const basePrice = Number.isFinite(Number(item.basePrice)) ? Number(item.basePrice) : 0;
-                const calories = Number.isFinite(Number(item.cal)) ? Number(item.cal) : 0;
+                const itemTotalPrice = (item.basePrice * item.qty);
                 
                 cartRow.innerHTML = `
                     <img src="${itemImage}" loading="eager" class="w-11 h-11 rounded-xl object-cover" alt="item">
                     <div class="flex-1 min-w-0">
-                        <h6 class="text-xs font-bold text-gray-900 truncate">${itemName}</h6>
-                        <span class="text-[10px] text-gray-400 block">${customization}</span>
-                        <span class="text-xs font-black text-brand-700">${basePrice} ${i18nText[currentLang].currency} (${calories} cal)</span>
+                        <h6 class="text-xs font-bold text-gray-900 truncate">${itemName} (${item.qty})</h6>
+                        <span class="text-xs font-black text-brand-700">${itemTotalPrice.toLocaleString('en-US')} ${i18nText[currentLang].currency} (${item.cal * item.qty} cal)</span>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs p-2">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 rounded bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-xs"><i class="fa-solid fa-minus"></i></button>
+                        <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                        <button onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 rounded bg-brand-500 text-white font-bold flex items-center justify-center text-xs"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                 `;
                 fragment.appendChild(cartRow);
             });
@@ -874,31 +1029,39 @@
             cartItemsContainer.innerHTML = '';
             cartItemsContainer.appendChild(fragment);
 
+            floatingCartCalories.innerText = `${totalCal} سعرة حرارية`;
+            floatingCartTotal.innerText = formatIQDPrice(totalPrice);
+
             cartTotalCalories.innerText = `${totalCal} kcal`;
-            cartTotalPrice.innerText = `${totalPrice + 10} ${i18nText[currentLang].currency}`;
+            cartTotalPrice.innerText = `${(totalPrice + 5000).toLocaleString('en-US')} ${i18nText[currentLang].currency}`;
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
+        function updateCartItemQty(index, change) {
+            cart[index].qty += change;
+            const dishId = cart[index].dishId;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
             updateCartUI();
+            refreshDishCardAction(dishId);
         }
 
         function checkoutWhatsApp() {
             if (cart.length === 0) return;
 
-            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food*\n\n`;
+            let msg = `*طلب جديد من تطبيق دايت فود - Diet Food (العراق)*\n\n`;
             let total = 0;
             cart.forEach((item, i) => {
-                const price = Number.isFinite(Number(item.basePrice)) ? Number(item.basePrice) : 0;
-                msg += `${i+1}. *${String(item.name ?? "").replace(/[\r\n]+/g, " ")}* (${String(item.customization ?? "").replace(/[\r\n]+/g, " ")}) - ${price} SAR\n`;
-                total += price;
+                const itemTotalPrice = (item.basePrice * item.qty);
+                msg += `${i+1}. *${String(item.name ?? "").replace(/[\r\n]+/g, " ")}* (العدد: ${item.qty}) - ${itemTotalPrice.toLocaleString('en-US')} د.ع\n`;
+                total += itemTotalPrice;
             });
 
-            msg += `\n*رسوم التوصيل:* 10 SAR`;
-            msg += `\n*المجموع الكلي:* ${total + 10} SAR`;
-            msg += `\n\nيرجى تأكيد الطلب وتحديد الموقع.`;
+            msg += `\n*رسوم التوصيل:* 5,000 د.ع`;
+            msg += `\n*المجموع الكلي:* ${(total + 5000).toLocaleString('en-US')} د.ع`;
+            msg += `\n\nيرجى تأكيد الطلب وتحديد العنوان في العراق.`;
 
-            window.open(`https://wa.me/966501234567?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+            window.open(`https://wa.me/9647701234567?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
         }
 
         function openMapModal() {
